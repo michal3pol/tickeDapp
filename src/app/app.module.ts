@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component'
+import { WalletService } from './services/wallet.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
     MatTabsModule, 
 
   ],
-  providers: [],
+  providers: [
+    WalletService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

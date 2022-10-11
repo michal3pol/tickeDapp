@@ -1,4 +1,5 @@
-<button mat-raised-button color="primary" class="btn-log-in">Connect wallet</button>
+<button mat-raised-button color="primary" class="btn-log-in" (click)="connectWallet()"
+    [disabled]="isLogged">Connect wallet</button>
 
 <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel">
     <a mat-tab-link *ngFor="let link of links"
