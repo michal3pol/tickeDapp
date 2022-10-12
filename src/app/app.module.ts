@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TransferComponent } from './components/transfer/transfer.component';
-import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button'
 import { MatNativeDateModule } from '@angular/material/core';
@@ -16,14 +15,17 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component'
 import { WalletService } from './services/wallet.service';
+import { SellComponent } from './components/sell/sell.component';
+import { ResellComponent } from './components/resell/resell.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TransferComponent,
-    LoginComponent,
     FooterComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    SellComponent,
+    ResellComponent
   ],
   imports: [
     BrowserModule,

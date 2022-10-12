@@ -14,6 +14,7 @@ export class WalletService {
   async logIn(): Promise<boolean> {
     if(window.ethereum) {
       this.wallet = await window?.ethereum.request({ method: 'eth_requestAccounts' })  
+      console.log(this.wallet)
       this.account = this.wallet[0]
       return true;
     }

@@ -10,10 +10,10 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class NavigationBarComponent {
 
-  links = ['login', 'transfer']; // TO CHANGE ?(sell, resell)
+  links = ['sell', 'resell']; 
   activeLink = this.links[0];
   background: ThemePalette = 'primary';
-  isLogged: boolean = false; // figure out how to disable button
+  isLogged: boolean = false; // figure out how to show that wallet is connected
 
   constructor(
     private walletService: WalletService,
@@ -22,6 +22,5 @@ export class NavigationBarComponent {
   async connectWallet(): Promise<void> {
     this.isLogged = await this.walletService.logIn();
   }
-
 
 }

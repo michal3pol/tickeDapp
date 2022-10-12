@@ -8,7 +8,7 @@ import { ThemePalette } from '@angular/material/core';
 })
 export class AppComponent {
   title = 'tickeDapp';
-  links = ['login', 'transfer'];
+  links = ['sell', 'resell'];
   activeLink = this.links[0];
   background: ThemePalette = 'primary';
 }

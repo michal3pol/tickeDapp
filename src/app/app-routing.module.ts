@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { TransferComponent } from './components/transfer/transfer.component';
+import { ResellComponent } from './components/resell/resell.component';
+import { SellComponent } from './components/sell/sell.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'transfer', component: TransferComponent },
+  { path: '', redirectTo: '/sell', pathMatch: 'full' },
+  { path: 'sell', component: SellComponent },
+  { path: 'resell', component: ResellComponent },
 ];
 
 @NgModule({
