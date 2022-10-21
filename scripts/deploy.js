@@ -8,7 +8,6 @@ const main = async () => {
     let txn = await nftContract.createNFT();
     await txn.wait();
 
-    
   };
 
   const runMain = async () => {
