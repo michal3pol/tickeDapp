@@ -17,7 +17,7 @@ library Base64 {
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     /// @notice Encodes some bytes to the base64 representation
-    function encode(bytes memory data) internal pure returns (string memory) {
+    function encode(bytes memory data) public pure returns (string memory) {
         uint256 len = data.length;
         if (len == 0) return "";
 
