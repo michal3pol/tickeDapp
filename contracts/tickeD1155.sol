@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./types/types.sol";
 import "./libraries/Base64.sol";
+import "./libraries/Cast.sol";
 import "hardhat/console.sol";
 
 contract tickeD1155 is ERC1155, Ownable {
@@ -23,112 +24,80 @@ contract tickeD1155 is ERC1155, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    // !!! cant pass struct....
-    constructor(string memory _name, string memory _desc, uint256 _date, Sector [] memory _sectors) ERC1155("") {
+    // !!! cant pass struct... -> pass table of strings
+    constructor(string memory _name, string memory _desc, uint256 _date, string [] memory _sectors) ERC1155("") {
+        
+        // require _sector % 4
         name = _name;
         description = _desc;
         date = _date;
-        sectors = _sectors;
-    }
-    // constructor() ERC1155("") {
-    // }
 
-    function sranie(string memory a, string memory b, uint256 c, string memory d, uint256 e) public {
-        uint256 newItemId = _tokenIds.current();
-        _mint(msg.sender, newItemId, 1, "");
-        
-        ticketAttr[newItemId] = Ticket(a,b,c,d,e); // j -> seatNumber
-        tokenURI(newItemId);
-        _tokenIds.increment();      
+        for(uint i=0; i < (_sectors.length - 1); i += 4 ){
+            sectors.push(Sector(_sectors[i], Cast.str2uint(_sectors[i+1]), 
+                                    Cast.str2uint(_sectors[i+2]), Cast.str2uint(_sectors[i+3])));
+        }
     }
 
-    function createTickets() public {
+    function mintTickets() public {
         for(uint256 i =0; i < sectors.length; i++){
-            if(sectors[i].isNumerable) {
+            if(sectors[i].isNumerable == 1) {
                 // create NFTs
-                for(uint256 j=sectors[i].seatStart; j < sectors[i].seatStop; j++) {
-                    uint256 newItemId = _tokenIds.current();
-                    _mint(msg.sender, newItemId, 1, "");
+                for(uint256 j=sectors[i].seatStart; j <= sectors[i].seatStop; j++) {
+                    uint256 newTokenId = _tokenIds.current();
+                    _mint(msg.sender, newTokenId, 1, "");
                     
-                    ticketAttr[newItemId] = Ticket(name, description,
+                    ticketAttr[newTokenId] = Ticket(name, description,
                                             date, sectors[i].name, j); // j -> seatNumber
-
-                    _tokenIds.increment();                        
+                    _tokenIds.increment();             
                 }
             } else {
                 // create SFTs
-                uint256 newItemId = _tokenIds.current();
-
-                ticketAttr[newItemId] = Ticket(name, description,
+                uint256 newTokenId = _tokenIds.current();
+                ticketAttr[newTokenId] = Ticket(name, description,
                                             date, sectors[i].name, 0); // 0 -> seatNumber not numerated
 
-                _mint(msg.sender, newItemId, sectors[i].seatStop, "");
-
-                _tokenIds.increment();   
+                _mint(msg.sender, newTokenId, sectors[i].seatStop, "");
+                _tokenIds.increment();
             }
-
         }
     }    
 
-
+    // openSea can read SFT metadata
     function uri(uint256 tokenId) override public view returns (string memory) {
-        // require(_exists(tokenId)); ŁOTAFAK NIE MA?
-        string memory json = Base64.encode(
+            return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
                 bytes(string(
                     abi.encodePacked(
                         '{"name": "', ticketAttr[tokenId].name, '",',
                         '"description": "', ticketAttr[tokenId].description, '",',
-                        '"attributes": [{"trait_type": "Date", "value": ', uint2str(ticketAttr[tokenId].date), '},',
+                        '"attributes": [{"trait_type": "Date", "value": ', Cast.uint2str(ticketAttr[tokenId].date), '},',
                         '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
-                        '{"trait_type": "Seat", "value": ', uint2str(ticketAttr[tokenId].seatNumber), '}',
+                        '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
                     ']}'
                     )
                 ))
-            );
-            console.log(string(abi.encodePacked('data:application/json;base64,', json)));
-            return string(abi.encodePacked('data:application/json;base64,', json));
+            )));
     }
 
+    // openSea can read NFT metadata
     function tokenURI(uint256 tokenId) public view returns (string memory) {
-        // require(_exists(tokenId)); ŁOTAFAK NIE MA?
-        string memory json = Base64.encode(
+            // console.log(string(abi.encodePacked('data:application/json;base64,', json)));
+            return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
                 bytes(string(
                     abi.encodePacked(
                         '{"name": "', ticketAttr[tokenId].name, '",',
                         '"description": "', ticketAttr[tokenId].description, '",',
-                        '"attributes": [{"trait_type": "Date", "value": ', uint2str(ticketAttr[tokenId].date), '},',
+                        '"attributes": [{"trait_type": "Date", "value": ', Cast.uint2str(ticketAttr[tokenId].date), '},',
                         '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
-                        '{"trait_type": "Seat", "value": ', uint2str(ticketAttr[tokenId].seatNumber), '}',
+                        '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
                     ']}'
                     )
                 ))
-            );
-            console.log(block.timestamp);
-            console.log(string(abi.encodePacked('data:application/json;base64,', json)));
-            return string(abi.encodePacked('data:application/json;base64,', json));
+            )));
     }
 
-  function uint2str(uint _i) internal pure returns (string memory _uintAsString) {
-    if (_i == 0) {
-        return "0";
+   function getSectors() public view returns (Sector [] memory){
+        return sectors;
     }
-    uint j = _i;
-    uint len;
-    while (j != 0) {
-        len++;
-        j /= 10;
-    }
-    bytes memory bstr = new bytes(len);
-    uint k = len;
-    while (_i != 0) {
-        k = k-1;
-        uint8 temp = (48 + uint8(_i - _i / 10 * 10));
-        bytes1 b1 = bytes1(temp);
-        bstr[k] = b1;
-        _i /= 10;
-    }
-    return string(bstr);
-  }
 
 }
 
