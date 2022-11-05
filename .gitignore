@@ -40,3 +40,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+#Hardhat files
+cache
+artifacts
+
+# Other
+.env
