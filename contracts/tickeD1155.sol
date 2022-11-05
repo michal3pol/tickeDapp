@@ -14,12 +14,12 @@ import "hardhat/console.sol";
 contract tickeD1155 is ERC1155, Ownable {
     
     // Concert informations
-    string name;
-    string description;
-    uint256 date;
-    Sector [] sectors;
+    string public name;
+    string public description;
+    uint256 public date;
+    Sector [] public sectors;
     // Ticket 
-    mapping(uint => Ticket) public ticketAttr;
+    mapping(uint => Ticket) private ticketAttr;
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
@@ -46,15 +46,13 @@ contract tickeD1155 is ERC1155, Ownable {
                     uint256 newTokenId = _tokenIds.current();
                     _mint(msg.sender, newTokenId, 1, "");
                     
-                    ticketAttr[newTokenId] = Ticket(name, description,
-                                            date, sectors[i].name, j); // j -> seatNumber
+                    ticketAttr[newTokenId] = Ticket(sectors[i].name, j); // j -> seatNumber
                     _tokenIds.increment();             
                 }
             } else {
                 // create SFTs
                 uint256 newTokenId = _tokenIds.current();
-                ticketAttr[newTokenId] = Ticket(name, description,
-                                            date, sectors[i].name, 0); // 0 -> seatNumber not numerated
+                ticketAttr[newTokenId] = Ticket(sectors[i].name, 0); // 0 -> seatNumber not numerated
 
                 _mint(msg.sender, newTokenId, sectors[i].seatStop, "");
                 _tokenIds.increment();
@@ -64,37 +62,37 @@ contract tickeD1155 is ERC1155, Ownable {
 
     // openSea can read SFT metadata
     function uri(uint256 tokenId) override public view returns (string memory) {
-            return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
-                bytes(string(
-                    abi.encodePacked(
-                        '{"name": "', ticketAttr[tokenId].name, '",',
-                        '"description": "', ticketAttr[tokenId].description, '",',
-                        '"attributes": [{"trait_type": "Date", "value": ', Cast.uint2str(ticketAttr[tokenId].date), '},',
-                        '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
-                        '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
-                    ']}'
-                    )
-                ))
-            )));
+        return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
+            bytes(string(
+                abi.encodePacked(
+                    '{"name": "', name, '",',
+                    '"description": "', description, '",',
+                    '"attributes": [{"trait_type": "Date", "value": ', date, '},',
+                    '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
+                    '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
+                ']}'
+                )
+            ))
+        )));
     }
 
     // openSea can read NFT metadata
     function tokenURI(uint256 tokenId) public view returns (string memory) {
-            // console.log(string(abi.encodePacked('data:application/json;base64,', json)));
-            return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
-                bytes(string(
-                    abi.encodePacked(
-                        '{"name": "', ticketAttr[tokenId].name, '",',
-                        '"description": "', ticketAttr[tokenId].description, '",',
-                        '"attributes": [{"trait_type": "Date", "value": ', Cast.uint2str(ticketAttr[tokenId].date), '},',
-                        '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
-                        '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
-                    ']}'
-                    )
-                ))
-            )));
+        return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
+            bytes(string(
+                abi.encodePacked(
+                    '{"name": "', name, '",',
+                    '"description": "', description, '",',
+                    '"attributes": [{"trait_type": "Date", "value": ', date, '},',
+                    '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
+                    '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
+                ']}'
+                )
+            ))
+        )));
     }
 
+    // generated getter returns values from specified index, this returns entire array
    function getSectors() public view returns (Sector [] memory){
         return sectors;
     }

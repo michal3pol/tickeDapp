@@ -10,10 +10,6 @@ pragma solidity ^0.8.17;
   }
 
   struct Ticket {
-    // concert data
-    string name;
-    string description;
-    uint256 date;
     // sector data 
     string sectorName;
     uint256 seatNumber;

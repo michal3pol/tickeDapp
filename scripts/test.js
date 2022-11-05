@@ -7,8 +7,6 @@ const main = async () => {
     const [owner, addr1, addr2] = await ethers.getSigners();
     //waveTxn = await waveContract.connect(addr1);
 
-
-
     // first deploy libraries
     const nftLibFactory = await hre.ethers.getContractFactory('Base64');
     const nftLib = await nftLibFactory.deploy();
@@ -40,8 +38,8 @@ const main = async () => {
     const st = ["A1","0","0","1000","A2","1","1","1000"];
     let txn = await nftContract.createTickets("First concert!", "This is description", 1, st );
     await txn.wait();
-    let adr = await nftContract.getAddr();
-    console.log("Address subcontract " + adr);
+    let adr = await nftContract.getDepContracts(owner.address);
+    console.log("Address subcontract " + adr[0]);
 
     // deployed nft smartcontract
     const subcontractFactory = await hre.ethers.getContractFactory('tickeD1155', {
@@ -51,7 +49,7 @@ const main = async () => {
         }
     });
 
-    const subcontract = await subcontractFactory.attach(adr);
+    const subcontract = await subcontractFactory.attach(adr[0]);
     let txn2 = await subcontract.mintTickets();
     await txn2.wait();
 
@@ -62,9 +60,9 @@ const main = async () => {
     const st2nd = ["A1","0","0","1000","A2","1","1","1000"];
     let txn2nd = await nftContract.createTickets("SECOND concert!", "This is description", 1, st2nd );
     await txn2nd.wait();
-    let adr2nd = await nftContract.getAddr();
-    console.log("Address subcontract " + adr2nd);
-    const subcontract2nd = await subcontractFactory.attach(adr2nd);
+    let adr2nd = await nftContract.getDepContracts(owner.address);
+    console.log("Address subcontract " + adr2nd[1]);
+    const subcontract2nd = await subcontractFactory.attach(adr2nd[1]);
     let txn2ndMINT = await subcontract2nd.mintTickets();
     await txn2ndMINT.wait();
     let sectors2nd = await subcontract2nd.getSectors();

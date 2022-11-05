@@ -10,7 +10,7 @@ contract tickeDFactory is Ownable {
     // whitelist
     mapping(address => bool) public whitelist; 
 
-    // contracts and owners
+    // owner -> their contracts
     mapping(address => address[]) public deployedContracts;
 
     event tickeD1155Created(address owner, address tokenContract); 
