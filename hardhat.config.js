@@ -10,7 +10,16 @@ module.exports = {
     },
     hardhat: {
       blockGasLimit: 10000000000,
+    },
+    localhost: {
+      chainId: 31337,
     }
+  },
+  namedAccounts: {
+    deployer: {
+      default: 0, 
+      1: 0, 
+    },
   },
   solidity: {
     version: "0.8.17",

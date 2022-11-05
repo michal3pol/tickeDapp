@@ -2,7 +2,8 @@
 
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+//import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -11,7 +12,7 @@ import "./libraries/Base64.sol";
 import "./libraries/Cast.sol";
 import "hardhat/console.sol";
 
-contract tickeD1155 is ERC1155, Ownable {
+contract tickeD1155 is ERC1155Supply, Ownable {
     
     // Concert informations
     string public name;
@@ -62,6 +63,7 @@ contract tickeD1155 is ERC1155, Ownable {
 
     // openSea can read SFT metadata
     function uri(uint256 tokenId) override public view returns (string memory) {
+        require(exists(tokenId), "Invalid tokenId");
         return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
             bytes(string(
                 abi.encodePacked(
@@ -78,6 +80,7 @@ contract tickeD1155 is ERC1155, Ownable {
 
     // openSea can read NFT metadata
     function tokenURI(uint256 tokenId) public view returns (string memory) {
+        require(exists(tokenId), "Invalid tokenId");
         return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
             bytes(string(
                 abi.encodePacked(
