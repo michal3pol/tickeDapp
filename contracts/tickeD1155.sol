@@ -27,7 +27,7 @@ contract tickeD1155 is ERC1155, Ownable {
     // !!! cant pass struct... -> pass table of strings
     constructor(string memory _name, string memory _desc, uint256 _date, string [] memory _sectors) ERC1155("") {
         
-        // require _sector % 4
+        require(_sectors.length % 4 == 0, "Wrong data format" );
         name = _name;
         description = _desc;
         date = _date;
