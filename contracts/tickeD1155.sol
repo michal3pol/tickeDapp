@@ -74,9 +74,9 @@ contract tickeD1155 is ERC1155Supply, Ownable {
                 abi.encodePacked(
                     '{"name": "', name, '",',
                     '"description": "', description, '",',
-                    '"attributes": [{"trait_type": "Date", "value": ', date, '},',
+                    '"attributes": [{"display_type": "date", "trait_type": "Date", "value": ', Cast.uint2str(date), ' },',
                     '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
-                    '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
+                    '{"display_type": "number", "trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), ' }',
                 ']}'
                 )
             ))
@@ -91,9 +91,9 @@ contract tickeD1155 is ERC1155Supply, Ownable {
                 abi.encodePacked(
                     '{"name": "', name, '",',
                     '"description": "', description, '",',
-                    '"attributes": [{"trait_type": "Date", "value": ', date, '},',
+                    '"attributes": [{"display_type": "date", "trait_type": "Date", "value": ', Cast.uint2str(date), ' },',
                     '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
-                    '{"trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), '}',
+                    '{"display_type": "number", "trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), ' }',
                 ']}'
                 )
             ))
