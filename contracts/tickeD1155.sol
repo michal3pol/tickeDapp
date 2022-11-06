@@ -22,6 +22,9 @@ contract tickeD1155 is ERC1155Supply, Ownable {
     // Ticket 
     mapping(uint => Ticket) private ticketAttr;
 
+    // Already minted sectors
+    uint256 private sectorPointer = 0;
+
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
@@ -40,7 +43,8 @@ contract tickeD1155 is ERC1155Supply, Ownable {
     }
 
     function mintTickets() public {
-        for(uint256 i =0; i < sectors.length; i++){
+        require(sectorPointer < sectors.length, "Add new sectors!");
+        for(uint256 i = sectorPointer; i < sectors.length; i++){
             if(sectors[i].isNumerable == 1) {
                 // create NFTs
                 for(uint256 j=sectors[i].seatStart; j <= sectors[i].seatStop; j++) {
@@ -58,6 +62,7 @@ contract tickeD1155 is ERC1155Supply, Ownable {
                 _mint(msg.sender, newTokenId, sectors[i].seatStop, "");
                 _tokenIds.increment();
             }
+            sectorPointer++;
         }
     }    
 
@@ -95,8 +100,17 @@ contract tickeD1155 is ERC1155Supply, Ownable {
         )));
     }
 
+    function addSectors(string [] memory _sectors) public {
+        require(_sectors.length % 4 == 0, "Wrong data format" );
+
+        for(uint i=0; i < (_sectors.length - 1); i += 4 ){
+            sectors.push(Sector(_sectors[i], Cast.str2uint(_sectors[i+1]), 
+                                    Cast.str2uint(_sectors[i+2]), Cast.str2uint(_sectors[i+3])));
+        }
+    }
+
     // generated getter returns values from specified index, this returns entire array
-   function getSectors() public view returns (Sector [] memory){
+    function getSectors() public view returns (Sector [] memory){
         return sectors;
     }
 

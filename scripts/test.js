@@ -35,8 +35,9 @@ const main = async () => {
     await access.wait();
 
     // FIRST CONCERT
-    const st = ["A1","0","0","1000","A2","1","1","1000"];
-    let txn = await nftContract.createTickets("First concert!", "This is description", 1, st );
+    const st = ["A1","0","0","1000","A2","1","1","1000"];    
+    let unixTime = 	1669492800; // Sat Nov 26 2022 21:00:00 GMT+0100 (czas środkowoeuropejski standardowy)
+    let txn = await nftContract.createTickets("Metallica concert Warsaw!", "First concert of metallica in Warsaw!", unixTime, st );
     await txn.wait();
     let adr = await nftContract.getDepContracts(owner.address);
     console.log("Address subcontract " + adr[0]);
