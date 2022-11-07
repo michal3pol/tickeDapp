@@ -100,6 +100,7 @@ contract tickeD1155 is ERC1155Supply, Ownable {
         )));
     }
 
+    // ADD OWNABLE MODIFIER!!!
     function addSectors(string [] memory _sectors) public {
         require(_sectors.length % 4 == 0, "Wrong data format" );
 

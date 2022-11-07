@@ -17,6 +17,7 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { WalletService } from './services/wallet.service';
 import { SellComponent } from './components/sell/sell.component';
 import { ResellComponent } from './components/resell/resell.component';
+import { MarketplaceComponent } from './components/marketplace/marketplace.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ResellComponent } from './components/resell/resell.component';
     FooterComponent,
     NavigationBarComponent,
     SellComponent,
-    ResellComponent
+    ResellComponent,
+    MarketplaceComponent
   ],
   imports: [
     BrowserModule,
