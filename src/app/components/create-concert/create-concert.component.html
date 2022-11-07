@@ -1,0 +1,33 @@
+<p>create-concert works!</p>
+
+<div>
+    Concert Name: <input type="text" [formControl]="concertName">
+</div>
+<div>
+    Concert Description: <input type="text" [formControl]="concertDescription">
+</div>
+<div>
+    Concert Date: <input type="date" [formControl]="concertDate">
+</div>
+<div>
+    Concert Sectors: <input type="text" [formControl]="concertSectors">
+</div>
+
+<button mat-raised-button color="primary" class="btn-log-in" 
+    (click)="createConcert()"
+    > Create Contract Concert</button>
+
+<div></div>
+<button mat-raised-button color="primary" class="btn-log-in" 
+    (click)="getDepContracts()"
+    >Get Dep Contracts</button>
+
+<div class="author__images">
+    <mat-card class="example-card" *ngFor="let address of contractsAddress">
+        <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{address}}</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+</div>
+      

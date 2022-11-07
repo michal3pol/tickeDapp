@@ -18,6 +18,9 @@ import { WalletService } from './services/wallet.service';
 import { SellComponent } from './components/sell/sell.component';
 import { ResellComponent } from './components/resell/resell.component';
 import { MarketplaceComponent } from './components/marketplace/marketplace.component';
+import { CreateConcertComponent } from './components/create-concert/create-concert.component';
+import { MatCardModule } from '@angular/material/card';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { MarketplaceComponent } from './components/marketplace/marketplace.compo
     NavigationBarComponent,
     SellComponent,
     ResellComponent,
-    MarketplaceComponent
+    MarketplaceComponent,
+    CreateConcertComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { MarketplaceComponent } from './components/marketplace/marketplace.compo
     MatCheckboxModule,
     MatSelectModule,
     MatTabsModule, 
-
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     WalletService

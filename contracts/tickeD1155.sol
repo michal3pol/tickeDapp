@@ -42,6 +42,7 @@ contract tickeD1155 is ERC1155Supply, Ownable {
         }
     }
 
+    // OWNABLE?
     function mintTickets() public {
         require(sectorPointer < sectors.length, "Add new sectors!");
         for(uint256 i = sectorPointer; i < sectors.length; i++){

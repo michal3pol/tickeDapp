@@ -13,22 +13,34 @@ export class TickedFactoryService {
   constructor() { }
 
   public async getDepContracts(address: string): Promise<any[]> {
-    address = "0x1cBC2050122E79e5EEd8a5DFFCA5163239a8D61E"; //tmp
-
-    const contract = await TickedFactoryService.getContract();
-
-    return contract['getDepContracts'](address);
-
+    const contract = await TickedFactoryService.getContract()
+    return contract['getDepContracts'](address)
   }
 
-  private static async getContract() {
-    const provider = new ethers.providers.Web3Provider(<any>window.ethereum);
-    const signer = provider.getSigner();
+  public async authorizeAccess(address: string): Promise<boolean> {
+    const contract = await TickedFactoryService.getContract();
+    return contract['whitelist'](address);
+  }
+
+  public async createConcertContract(
+    name: string, desc: string, date: Number, sectors: string[] ){
+    
+    const contract = await TickedFactoryService.getContract(true)
+    const transaction = await contract['createTickets'](
+      name, desc, date, sectors)
+    const tx = await transaction.wait()
+
+    return tx.status === 1
+  }
+
+  private static async getContract(bySigner= false) {
+    const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
+    const signer = provider.getSigner()
 
     return new ethers.Contract(
       environment.contractAddress,
       tickeDFactory.abi,
-      provider
+      bySigner ? signer : provider
     )
 
   }
