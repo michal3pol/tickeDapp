@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
+import { Ticked1155Service } from 'src/app/services/ticked1155.service';
 import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class CreateConcertComponent implements OnInit {
   constructor(
     private tickedFactoryService: TickedFactoryService,
     private walletService: WalletService,
+    private ticked1155Service: Ticked1155Service,
   ) { }
 
   ngOnInit(): void {
@@ -33,15 +35,9 @@ export class CreateConcertComponent implements OnInit {
   }
 
   public async createConcert() {
-    console.log(this.concertName.getRawValue(), this.concertDescription.getRawValue(), 
-      this.concertDate.getRawValue(), this.concertSectors.getRawValue());
-
     let stringTime = this.concertDate.getRawValue()?.toString();
-    console.log("FUA" + stringTime)
     let unixTimestamp = (new Date(stringTime!)).getTime() / 1000;
-    console.log("FIFARAFA" + unixTimestamp);
     let splittedSectors = this.concertSectors.getRawValue()?.split(",");
-    console.log(splittedSectors);
 
     this.tickedFactoryService.createConcertContract(
       this.concertName.getRawValue()!,
@@ -49,7 +45,11 @@ export class CreateConcertComponent implements OnInit {
       unixTimestamp,
       splittedSectors!
     )
+  }
 
+  // TODO somehow manage address
+  public async mintTickets() {
+    this.ticked1155Service.mintTickets("0x66716BeBba93c9A0223F47E9E87b3554Bc891d0d");
   }
 
 }
