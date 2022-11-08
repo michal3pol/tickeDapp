@@ -6,14 +6,15 @@ import { MyConcertsComponent } from './components/concert-management/my-concerts
 import { MarketplaceComponent } from './components/marketplace/marketplace.component';
 import { ResellComponent } from './components/resell/resell.component';
 import { SellComponent } from './components/sell/sell.component';
+import { AuthOrganizatorGuard } from './services/auth-organizator.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/marketplace', pathMatch: 'full' },
   { path: 'sell', component: SellComponent },
   { path: 'resell', component: ResellComponent },
   { path: 'marketplace', component: MarketplaceComponent },
-  { path: 'create-concert', component: CreateConcertComponent },
-  { path: 'my-concerts', component: MyConcertsComponent },
+  { path: 'create-concert', canActivate:[AuthOrganizatorGuard], component: CreateConcertComponent },
+  { path: 'my-concerts', canActivate:[AuthOrganizatorGuard], component: MyConcertsComponent },
 ];
 
 @NgModule({
