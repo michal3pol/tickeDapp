@@ -1,0 +1,10 @@
+.stepper {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.step {
+    display: block;
+    margin: auto;
+    padding: 10px;
+}

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ethers } from "ethers";
-import { getContractAddress } from 'ethers/lib/utils.js';
 import { environment } from 'src/environments/environment';
 
 import tickeDFactory from '../../../artifacts/contracts/tickeDFactory.sol/tickeDFactory.json'

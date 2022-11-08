@@ -20,8 +20,8 @@ export class WalletService {
 
   async getWalletAddress(): Promise<any> {
     const provider = new ethers.providers.Web3Provider(<any>window.ethereum);
-    //let accounts = await provider.send("eth_requestAccounts", []);
-    //let account = accounts[0];
+    let accounts = await provider.send("eth_requestAccounts", []);
+    let account = accounts[0];
 
     const signer = provider.getSigner();
     return await signer.getAddress();

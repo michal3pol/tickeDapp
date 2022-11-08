@@ -23,21 +23,32 @@ export class NavigationBarComponent {
   }
 
   async goToConcertForm() {
-
     const authorization: boolean = await this.tickedFactoryService.authorizeAccess(
       await this.walletService.getWalletAddress()
-      //"0x1cBC2050122E79e5EEd8a5DFFCA5163239a8D61E"
       );
 
     if(authorization) {
-      console.log(authorization + "access authorized");
+      const navigationDetails: string[] = ['/create-concert'];
+      this.router.navigate(navigationDetails);
     } else {
       console.log(authorization + "access not authorized");
       return;
     }
-
-    const navigationDetails: string[] = ['/create-concert'];
-    this.router.navigate(navigationDetails);
   }
+
+  async goToMyConcerts() {
+    const authorization: boolean = await this.tickedFactoryService.authorizeAccess(
+      await this.walletService.getWalletAddress()
+      );
+
+    if(authorization) {
+      const navigationDetails: string[] = ['/my-concerts'];
+      this.router.navigate(navigationDetails);
+    } else {
+      console.log(authorization + "access not authorized");
+      return;
+    }
+  }
+
 
 }

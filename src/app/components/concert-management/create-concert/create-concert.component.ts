@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
 import { Ticked1155Service } from 'src/app/services/ticked1155.service';
 import { WalletService } from 'src/app/services/wallet.service';
@@ -11,16 +11,20 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class CreateConcertComponent implements OnInit {
 
-  // this probably should be moved to other comp
-  concertName = new FormControl('');
-  concertDescription = new FormControl('');
-  concertDate = new FormControl('');
   concertSectors = new FormControl('');
+
+  commonInf = this.formBuilder.group({
+    concertName: ['', Validators.requiredTrue],
+    concertDescription: ['', Validators.requiredTrue],
+    concertDate: ['', Validators.requiredTrue],
+  })
+
 
   constructor(
     private tickedFactoryService: TickedFactoryService,
     private walletService: WalletService,
     private ticked1155Service: Ticked1155Service,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -28,20 +32,14 @@ export class CreateConcertComponent implements OnInit {
 
   public contractsAddress: string[] = [];
 
-  public async getDepContracts(){
-    this.contractsAddress = await this.tickedFactoryService.getDepContracts(
-      await this.walletService.getWalletAddress() )
-    console.log(this.contractsAddress)
-  }
-
   public async createConcert() {
-    let stringTime = this.concertDate.getRawValue()?.toString();
+    let stringTime = this.commonInf.get('concertDate')?.getRawValue().toString();
     let unixTimestamp = (new Date(stringTime!)).getTime() / 1000;
     let splittedSectors = this.concertSectors.getRawValue()?.split(",");
 
     this.tickedFactoryService.createConcertContract(
-      this.concertName.getRawValue()!,
-      this.concertDescription.getRawValue()!,
+      this.commonInf.get('concertName')?.getRawValue(),
+      this.commonInf.get('concertDescription')?.getRawValue(),
       unixTimestamp,
       splittedSectors!
     )

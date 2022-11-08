@@ -1,6 +1,14 @@
-<button mat-raised-button color="primary" class="btn-log-in" 
+<button mat-button [matMenuTriggerFor]="concerts"
+    >Concert Management</button>
+
+<mat-menu #concerts="matMenu">
+    <button mat-menu-item
     (click)="goToConcertForm()"
-    >Create Concert Tokens</button>
+        >Create Concert</button>
+    <button mat-menu-item
+    (click)="goToMyConcerts()"
+        >My Concerts</button>
+</mat-menu>
 
 <button mat-raised-button color="primary" class="btn-log-in" 
     (click)="connectWallet()"

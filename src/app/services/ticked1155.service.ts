@@ -16,7 +16,7 @@ export class Ticked1155Service {
 
   // TODO 
     const transaction = await contract['mintTickets']({
-      gasLimit: 30000000
+      gasLimit: 3000000
     })
     const tx = await transaction.wait()
 
