@@ -16,14 +16,18 @@
             </mat-form-field>
         </form>
         <div>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperNext>Apply</button>
         </div>
     </mat-step>
     <mat-step label="Specify sectors">
-        <div>tutaj sektory</div>
+
+        <app-sector
+            [createConcertForm]="true"
+            (sectorsEvent)="addSectors($event)"    
+        ></app-sector>
+
         <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
         </div>
     </mat-step>
     <mat-step label="Create concert smartcontract!">

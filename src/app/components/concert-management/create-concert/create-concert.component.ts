@@ -11,11 +11,11 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class CreateConcertComponent implements OnInit {
 
-  concertSectors = new FormControl('');
+  concertSectors: string [] = [];
 
   commonInf = this.formBuilder.group({
     concertName: ['', Validators.requiredTrue],
-    concertDescription: ['', Validators.requiredTrue],
+    concertDescription: ['', Validators.requiredTrue, Validators.minLength(8)],
     concertDate: ['', Validators.requiredTrue],
   })
 
@@ -35,19 +35,24 @@ export class CreateConcertComponent implements OnInit {
   public async createConcert() {
     let stringTime = this.commonInf.get('concertDate')?.getRawValue().toString();
     let unixTimestamp = (new Date(stringTime!)).getTime() / 1000;
-    let splittedSectors = this.concertSectors.getRawValue()?.split(",");
+    
+    //let splittedSectors = this.concertSectors.getRawValue()?.split(",");
 
     this.tickedFactoryService.createConcertContract(
       this.commonInf.get('concertName')?.getRawValue(),
       this.commonInf.get('concertDescription')?.getRawValue(),
       unixTimestamp,
-      splittedSectors!
+      this.concertSectors
     )
   }
 
   // TODO somehow manage address
   public async mintTickets() {
     this.ticked1155Service.mintTickets("0x66716BeBba93c9A0223F47E9E87b3554Bc891d0d");
+  }
+
+  addSectors(sectors: string[]) {
+    this.concertSectors = sectors
   }
 
 }
