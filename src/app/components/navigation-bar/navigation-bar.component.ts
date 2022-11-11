@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
 import { WalletService } from 'src/app/services/wallet.service';
 
@@ -16,6 +17,7 @@ export class NavigationBarComponent {
     private walletService: WalletService,
     private tickedFactoryService: TickedFactoryService,
     private router: Router,
+    private snackbarService: SnackbarService,
   ) { }
 
   async connectWallet() {
@@ -31,7 +33,7 @@ export class NavigationBarComponent {
       const navigationDetails: string[] = ['/create-concert'];
       this.router.navigate(navigationDetails);
     } else {
-      console.log(authorization + "access not authorized");
+      this.snackbarService.error("Access not authorized!")
       return;
     }
   }
@@ -45,8 +47,21 @@ export class NavigationBarComponent {
       const navigationDetails: string[] = ['/my-concerts'];
       this.router.navigate(navigationDetails);
     } else {
-      console.log(authorization + "access not authorized");
+      this.snackbarService.error("Access not authorized!")
       return;
+    }
+  }
+
+  async goToAdminPanel() {
+    const isOwner: boolean = await this.tickedFactoryService.validateOwner(
+      await this.walletService.getWalletAddress()
+    )
+    
+    if(isOwner){
+      const navigationDetails: string[] = ['/whitelist'];
+      this.router.navigate(navigationDetails);
+    } else {
+      this.snackbarService.error("Access not authorized!")
     }
   }
 

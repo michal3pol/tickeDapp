@@ -1,0 +1,39 @@
+<div>
+    <div>
+        Change user permissions
+    </div>
+    <mat-form-field appearance="fill"
+        class="toggle"
+    >
+        <mat-label>Choose permissions</mat-label>
+        <mat-select [(ngModel)]="permission">
+            <mat-option value="grant">Grant permissions</mat-option>
+            <mat-option value="refuse">Refuse permissions</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="address-field" appearance="fill">
+        <mat-label>Input wallet address</mat-label>
+        <input matInput type="text" [(ngModel)]="address">
+    </mat-form-field>
+
+    <button mat-button
+        color="primary"
+        (click)="changePermissions()">
+        Change permissions
+    </button>
+
+    <div>
+        Check user permissions
+    </div>
+    <mat-form-field class="address-field" appearance="fill">
+        <mat-label>Input wallet address</mat-label>
+        <input matInput type="text" [(ngModel)]="checkAddress">
+    </mat-form-field>
+    <button mat-button
+        color="primary"
+        (click)="checkPermissions()">
+        Check permissions
+    </button>
+
+
+</div>

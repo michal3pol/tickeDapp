@@ -18,7 +18,7 @@ export class TickedFactoryService {
 
   public async authorizeAccess(address: string): Promise<boolean> {
     const contract = await TickedFactoryService.getContract();
-    return contract['whitelist'](address);
+    return contract['whitelist'](address);  
   }
 
   public async createConcertContract(
@@ -41,7 +41,16 @@ export class TickedFactoryService {
       tickeDFactory.abi,
       bySigner ? signer : provider
     )
+  }
 
+  public async validateOwner(address: string): Promise<boolean> {
+    const contract = await TickedFactoryService.getContract()
+    return address === await contract['owner']()
+  }
+
+  public async setOrganizatorPermission(address: string, toggle: boolean) {
+    const contract = await TickedFactoryService.getContract(true)
+    contract['setOrganizatorPermission'](address, toggle)
   }
 
 }
