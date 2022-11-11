@@ -1,0 +1,65 @@
+
+<mat-stepper class="stepper">
+    <mat-step [stepControl]="commonInf" label="Basic informations">
+        <form [formGroup]="commonInf" class="form">
+            <div>
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Concert name" formControlName="concertName" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Concert description" formControlName="concertDescription" required>
+                    </textarea>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date" placeholder="Concert date" formControlName="concertDate" required>
+                </mat-form-field>
+            </div>
+        </form>
+        <div>
+            <button mat-button matStepperNext>Apply</button>
+        </div>
+    </mat-step>
+    <mat-step label="Specify sectors">
+
+        <app-sector
+            [createConcertForm]="true"
+            (sectorsEvent)="addSectors($event)"    
+        ></app-sector>
+
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+        </div>
+    </mat-step>
+    <mat-step label="Create concert smartcontract!">
+        <div>
+            Make sure that all data provider in previous tabs is correct!
+            You will not be able to change any part of it! 
+        </div>
+        <button mat-raised-button color="primary" class="btn-log-in" 
+        (click)="createConcert()"
+        > Create Contract Concert</button>
+    </mat-step>
+
+
+</mat-stepper>
+
+
+<button mat-raised-button color="primary" class="btn-log-in" 
+(click)="mintTickets()"
+> Mint tickets! </button>
+
+
+      

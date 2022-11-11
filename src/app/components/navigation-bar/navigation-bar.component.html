@@ -1,10 +1,18 @@
-<button mat-raised-button color="primary" class="btn-log-in" (click)="connectWallet()"
-    >Connect wallet</button>
+<button mat-button [matMenuTriggerFor]="concerts"
+    >Concert Management</button>
 
-<nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel">
-    <a mat-tab-link *ngFor="let link of links"
-        [routerLink]="link"
-        (click)="activeLink = link"
-        [active]="activeLink == link"> {{link}} </a>
-    </nav>
-<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+<mat-menu #concerts="matMenu">
+    <button mat-menu-item
+    (click)="goToConcertForm()"
+        >Create Concert</button>
+    <button mat-menu-item
+    (click)="goToMyConcerts()"
+        >My Concerts</button>
+        <button mat-menu-item
+    (click)="goToAdminPanel()"
+        >Admin Panel</button>
+</mat-menu>
+
+<button mat-raised-button color="primary" class="btn-log-in" 
+    (click)="connectWallet()"
+    >Connect wallet</button>

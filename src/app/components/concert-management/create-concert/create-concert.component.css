@@ -1,0 +1,20 @@
+.stepper {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.step {
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+.form-full-width {
+    width: 100%;
+}

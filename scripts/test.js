@@ -35,8 +35,9 @@ const main = async () => {
     await access.wait();
 
     // FIRST CONCERT
-    const st = ["A1","0","0","1000","A2","1","1","1000"];
-    let txn = await nftContract.createTickets("First concert!", "This is description", 1, st );
+    const st = ["A1","0","0","1000","A2","1","1","1000"];    
+    let unixTime = 	1669492800; // Sat Nov 26 2022 21:00:00 GMT+0100 (czas środkowoeuropejski standardowy)
+    let txn = await nftContract.createTickets("Metallica concert Warsaw!", "First concert of metallica in Warsaw!", unixTime, st );
     await txn.wait();
     let adr = await nftContract.getDepContracts(owner.address);
     console.log("Address subcontract " + adr[0]);
@@ -56,6 +57,9 @@ const main = async () => {
     let sectors = await subcontract.getSectors();
     console.log(sectors);
 
+    let uri= await subcontract.uri(1);
+    console.log("THIS IS URI 1" + uri);
+
     // SECOND CONCERT 
     const st2nd = ["A1","0","0","1000","A2","1","1","1000"];
     let txn2nd = await nftContract.createTickets("SECOND concert!", "This is description", 1, st2nd );
@@ -68,11 +72,9 @@ const main = async () => {
     let sectors2nd = await subcontract2nd.getSectors();
     console.log(sectors2nd);
 
+    let uri2 = await subcontract.uri(0);
+    console.log("THIS IS URI 2" + uri2);
 
-    // check addressess
-    console.log("---------FAJNO------------");
-    let contractAddr = await nftContract.getDepContracts(owner.address);
-    console.log(contractAddr);
 
   };
 

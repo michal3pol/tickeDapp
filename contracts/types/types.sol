@@ -14,3 +14,8 @@ pragma solidity ^0.8.17;
     string sectorName;
     uint256 seatNumber;
   }
+
+  struct DepConcert {
+    address contractAddress;
+    string name;
+  }

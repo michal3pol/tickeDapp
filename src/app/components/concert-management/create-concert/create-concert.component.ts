@@ -1,0 +1,58 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
+import { Ticked1155Service } from 'src/app/services/ticked1155.service';
+import { WalletService } from 'src/app/services/wallet.service';
+
+@Component({
+  selector: 'app-create-concert',
+  templateUrl: './create-concert.component.html',
+  styleUrls: ['./create-concert.component.css']
+})
+export class CreateConcertComponent implements OnInit {
+
+  concertSectors: string [] = [];
+
+  commonInf = this.formBuilder.group({
+    concertName: ['', Validators.requiredTrue],
+    concertDescription: ['', Validators.requiredTrue, Validators.minLength(8)],
+    concertDate: ['', Validators.requiredTrue],
+  })
+
+
+  constructor(
+    private tickedFactoryService: TickedFactoryService,
+    private walletService: WalletService,
+    private ticked1155Service: Ticked1155Service,
+    private formBuilder: FormBuilder,
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+  public contractsAddress: string[] = [];
+
+  public async createConcert() {
+    let stringTime = this.commonInf.get('concertDate')?.getRawValue().toString();
+    let unixTimestamp = (new Date(stringTime!)).getTime() / 1000;
+    
+    //let splittedSectors = this.concertSectors.getRawValue()?.split(",");
+
+    this.tickedFactoryService.createConcertContract(
+      this.commonInf.get('concertName')?.getRawValue(),
+      this.commonInf.get('concertDescription')?.getRawValue(),
+      unixTimestamp,
+      this.concertSectors
+    )
+  }
+
+  // TODO somehow manage address
+  public async mintTickets() {
+    this.ticked1155Service.mintTickets("0x66716BeBba93c9A0223F47E9E87b3554Bc891d0d");
+  }
+
+  addSectors(sectors: string[]) {
+    this.concertSectors = sectors
+  }
+
+}

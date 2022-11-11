@@ -1,0 +1,77 @@
+<div>Provide details of each sector:</div>
+<div [formGroup]="form">
+
+    <ng-container formArrayName="sectors">
+        <ng-container *ngFor="let sectorForm of sectors.controls; let i = index">
+            <div class="form" [formGroupName]="i">
+
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Sector Name</mat-label>
+                    <input matInput
+                           formControlName="sectorName"
+                           placeholder="Sector name">
+                </mat-form-field>
+
+                <mat-checkbox
+                    class="form-full-width"
+                    formControlName="isNumerable">
+                    Numberable Seats
+                </mat-checkbox>
+
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Seats from</mat-label>
+                    <input matInput
+                           type="number"
+                           formControlName="seatStart"
+                           placeholder="Seat start"
+                           [attr.disabled]="this.sectors.getRawValue()[i].isNumerable ? null : true">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Seats to</mat-label>
+                    <input matInput
+                           type="number"
+                           formControlName="seatStop"
+                           placeholder="Seat stop">
+                </mat-form-field>
+
+                <ng-container *ngIf="this.sectors.getRawValue()[i].isNumerable">
+                    <mat-checkbox
+                        class="form-full-width"
+                        formControlName="mintNow"
+                        checked="true"
+                        >
+                        Minted by organizator
+                    </mat-checkbox>
+                </ng-container>
+
+                <mat-icon class="delete-btn" (click)="deleteSector(i)">
+                    delete_forever
+                </mat-icon>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <button mat-mini-fab (click)="addSector()">
+        <mat-icon>add</mat-icon>
+    </button>
+
+    <button *ngIf="createConcertForm == true; else confirmButton"
+            mat-button matStepperNext
+            (click)="confirmSectors()"
+     >Next</button>
+
+    <ng-template #confirmButton>
+        <button 
+            (click)="confirmSectors()">
+            Confirm
+        </button>
+    </ng-template>
+
+</div>
