@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule} from '@angular/forms';
 import { ConcertManagementModule } from './components/concert-management/concert-management.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule, 
     ReactiveFormsModule,
     MatMenuModule,
+    MatSnackBarModule,
     // custom
     ConcertManagementModule,
   ],

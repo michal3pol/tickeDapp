@@ -14,13 +14,16 @@ import { MyConcertsComponent } from './my-concerts/my-concerts.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { SectorComponent } from './sector/sector.component';
 import { MatIconModule } from '@angular/material/icon';
+import { WhitelistComponent } from './whitelist/whitelist.component';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 
 @NgModule({
   declarations: [
     CreateConcertComponent,
     MyConcertsComponent,
-    SectorComponent
+    SectorComponent,
+    WhitelistComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000,
+                                                        horizontalPosition: 'center',
+                                                        verticalPosition: 'top'}}
   ]
 })
 export class ConcertManagementModule { }
