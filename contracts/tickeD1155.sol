@@ -40,10 +40,12 @@ contract tickeD1155 is ERC1155Supply, Ownable {
             sectors.push(Sector(_sectors[i], Cast.str2uint(_sectors[i+1]), 
                                     Cast.str2uint(_sectors[i+2]), Cast.str2uint(_sectors[i+3])));
         }
+
+        // tutaj poustawiac atrybuty w ticketAttr[newTokenId]
+
     }
 
-    // OWNABLE?
-    function mintTickets() public {
+    function mintTickets() public onlyOwner {
         require(sectorPointer < sectors.length, "Add new sectors!");
         for(uint256 i = sectorPointer; i < sectors.length; i++){
             if(sectors[i].isNumerable == 1) {
@@ -101,8 +103,7 @@ contract tickeD1155 is ERC1155Supply, Ownable {
         )));
     }
 
-    // ADD OWNABLE MODIFIER!!!
-    function addSectors(string [] memory _sectors) public {
+    function addSectors(string [] memory _sectors) public onlyOwner {
         require(_sectors.length % 4 == 0, "Wrong data format" );
 
         for(uint i=0; i < (_sectors.length - 1); i += 4 ){
