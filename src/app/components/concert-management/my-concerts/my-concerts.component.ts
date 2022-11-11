@@ -16,7 +16,7 @@ export class MyConcertsComponent implements OnInit {
     private ticked1155Service: Ticked1155Service,
   ) { }
 
-  public contractsAddress: string[] = [];
+  public contractsAddress: DepConcert[] = [];
 
   async ngOnInit() {
     this.contractsAddress = await this.tickedFactoryService.getDepContracts(
