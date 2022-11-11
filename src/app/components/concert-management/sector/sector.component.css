@@ -1,7 +1,7 @@
-.inputs {
+.form {
+    width: 100%;
+  }
 
-}
-
-.input > * {
+.form-full-width {
     padding: 10px;
 }

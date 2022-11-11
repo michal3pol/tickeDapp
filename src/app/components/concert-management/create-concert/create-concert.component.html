@@ -1,19 +1,32 @@
 
 <mat-stepper class="stepper">
     <mat-step [stepControl]="commonInf" label="Basic informations">
-        <form [formGroup]="commonInf">
-            <mat-form-field appearance="fill">
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Concert name" formControlName="concertName" required>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Description</mat-label>
-                <input matInput placeholder="Concert description" formControlName="concertDescription" required>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Date</mat-label>
-                <input matInput type="date" placeholder="Concert date" formControlName="concertDate" required>
-            </mat-form-field>
+        <form [formGroup]="commonInf" class="form">
+            <div>
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Concert name" formControlName="concertName" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Concert description" formControlName="concertDescription" required>
+                    </textarea>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill"
+                    class="form-full-width"
+                >
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date" placeholder="Concert date" formControlName="concertDate" required>
+                </mat-form-field>
+            </div>
         </form>
         <div>
             <button mat-button matStepperNext>Apply</button>
