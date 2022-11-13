@@ -21,7 +21,7 @@
                 </mat-checkbox>
 
                 <mat-form-field appearance="fill"
-                    class="form-full-width"
+                    class="form-numbers"
                 >
                     <mat-label>Seats from</mat-label>
                     <input matInput
@@ -32,13 +32,23 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill"
-                    class="form-full-width"
+                    class="form-numbers"
                 >
                     <mat-label>Seats to</mat-label>
                     <input matInput
                            type="number"
                            formControlName="seatStop"
                            placeholder="Seat stop">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill"
+                    class="form-numbers"
+                >
+                    <mat-label>Price (1 ticket)</mat-label>
+                    <input matInput
+                        type="number"
+                        formControlName="price"
+                        placeholder="Price">
                 </mat-form-field>
 
                 <ng-container *ngIf="this.sectors.getRawValue()[i].isNumerable">
@@ -62,16 +72,17 @@
         <mat-icon>add</mat-icon>
     </button>
 
-    <button *ngIf="createConcertForm == true; else confirmButton"
-            mat-button matStepperNext
-            (click)="confirmSectors()"
-     >Next</button>
+    <div>
+        <button *ngIf="createConcertForm == true; else confirmButton"
+                mat-button matStepperNext
+                (click)="confirmSectors()"
+        >Next</button>
 
-    <ng-template #confirmButton>
-        <button 
-            (click)="confirmSectors()">
-            Confirm
-        </button>
-    </ng-template>
-
+        <ng-template #confirmButton>
+            <button 
+                (click)="confirmSectors()">
+                Confirm
+            </button>
+        </ng-template>
+    </div>
 </div>

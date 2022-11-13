@@ -31,17 +31,15 @@ export class SectorComponent {
       isNumerable:  ['', Validators.required],
       seatStart:  ['1', Validators.required],
       seatStop:  ['', Validators.required],
-      mintNow:   ['', Validators.required]
+      mintNow:   ['', Validators.required],
+      price:  ['', Validators.required]
     })
 
     this.sectors.push(sectorForm)
-
-    console.log(this.sectors)
   }
 
   deleteSector(sectorIndex: number) {
     this.sectors.removeAt(sectorIndex)
-    console.log(this.sectors.getRawValue()[0].isNumerable)
   }
 
   confirmSectors() {
@@ -50,14 +48,15 @@ export class SectorComponent {
       sectorsArray.push(sector.sectorName)
       let isNumerableString = sector.isNumerable ? "1" : "0"
       sectorsArray.push(isNumerableString)
-      sectorsArray.push(sector.seatStart)
-      sectorsArray.push(sector.seatStop)
+      sectorsArray.push(sector.seatStart.toString())
+      sectorsArray.push(sector.seatStop.toString())
       if(sector.isNumerable) {
         let mintNowString = sector.mintNow ? "1" : "0"
         sectorsArray.push(mintNowString)
       } else {
         sectorsArray.push("0")
       }
+      sectorsArray.push(sector.price.toString())
     }
     console.log(sectorsArray);
     this.sectorsEvent.emit(sectorsArray);

@@ -16,12 +16,19 @@ export class MyConcertsComponent implements OnInit {
     private ticked1155Service: Ticked1155Service,
   ) { }
 
-  public contractsAddress: string[] = [];
+  public deployedConcerts: DepConcert[] = [];
 
   async ngOnInit() {
-    this.contractsAddress = await this.tickedFactoryService.getDepContracts(
+    this.deployedConcerts = await this.tickedFactoryService.getDepContracts(
       await this.walletService.getWalletAddress() )
-    console.log(this.contractsAddress)
+  }
+
+  public async mintTickets(contractAddress: string) {
+    this.ticked1155Service.createAndMintTickets(contractAddress)
+  }
+
+  addSectors(sectors: string[], address: string) {
+    this.ticked1155Service.addSectors(address, sectors)
   }
 
 }

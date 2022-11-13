@@ -11,7 +11,7 @@ export class TickedFactoryService {
 
   constructor() { }
 
-  public async getDepContracts(address: string): Promise<any[]> {
+  public async getDepContracts(address: string): Promise<DepConcert[]> {
     const contract = await TickedFactoryService.getContract()
     return contract['getDepContracts'](address)
   }
