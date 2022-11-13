@@ -13,7 +13,6 @@ import "./libraries/Base64.sol";
 import "./libraries/Cast.sol";
 import "hardhat/console.sol";
 
-error PriceNotMet(uint256 tokenId, uint256 price);
 
 contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
     
@@ -97,18 +96,15 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
     }
 
     function buyTicket(uint256 tokenId, uint256 amount) external payable nonReentrant {
-        Ticket memory ticket = ticketAttr[tokenId];
-        require(ticket.sold == false, "Ticket sold!");
-        if(msg.value < ticket.price * amount) {
-            revert PriceNotMet(tokenId, ticket.price * amount);
-        }
-        if(!ticket.minted) { // possible only with nft
+        require(ticketAttr[tokenId].sold == false, "Ticket sold!");
+        require(msg.value >= (ticketAttr[tokenId].price * amount), "Too small value");
+        if(!ticketAttr[tokenId].minted) { // possible only with nft
             _mint(msg.sender, tokenId, 1, "");
-            ticket.minted = true;
+            ticketAttr[tokenId].minted = true;
         }
         orgCredits += msg.value;
-        if(balanceOf(orgAddress, tokenId) == 0){
-             ticket.sold = true; // sprawdzic ilosc bo sft moze byc wiecej 
+        if(balanceOf(orgAddress, tokenId) == 1) { // if it's last mark it as sold
+             ticketAttr[tokenId].sold = true; 
         }
         safeTransferFrom(orgAddress, msg.sender, tokenId, amount, "");
     }    
@@ -164,13 +160,12 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
         }
     }
 
-    function withdrawOrgCredits() external {
+    function withdrawOrgCredits(address payable destAddr) external {
         require(msg.sender == orgAddress, "Only owner!");
         require(orgCredits > 0, "0 credits");
         uint256 proceeds = orgCredits; 
         orgCredits = 0;
-        (bool success, ) = payable(msg.sender).call{value: proceeds}("");
-        require(success, "Transfer failed");
+        destAddr.transfer(proceeds);
     }
 
     // generated getter returns values from specified index, this returns entire array
