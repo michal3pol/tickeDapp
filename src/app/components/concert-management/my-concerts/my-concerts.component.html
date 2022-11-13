@@ -3,10 +3,23 @@
 </div>
 
 <div class="author__images">
-    <mat-card class="example-card" *ngFor="let address of contractsAddress">
+    <mat-card class="example-card" *ngFor="let concert of deployedConcerts">
         <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{address}}</mat-card-title>
+        <mat-card-title>{{concert.name}}</mat-card-title>
+        <mat-card-subtitle>{{concert.contractAddress}}</mat-card-subtitle>
         </mat-card-header>
+        <mat-card-content>
+            <mat-card-actions>
+            <button mat-raised-button color="primary" class="btn-log-in" 
+            (click)="mintTickets(concert.contractAddress)"
+            > Mint tickets and publish them! </button>
+            </mat-card-actions>
+        <div>
+            You can still add some sectors here:
+        </div>
+            <app-sector
+                (sectorsEvent)="addSectors($event, concert.contractAddress)"   
+            ></app-sector>
+        </mat-card-content>
     </mat-card>
 </div>

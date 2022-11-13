@@ -11,16 +11,19 @@ export class Ticked1155Service {
   constructor() { }
 
 
-  public async mintTickets(address: string) {
+  public async createAndMintTickets(address: string) {
     const contract = await Ticked1155Service.getContract(address, true)
 
   // TODO 
-    const transaction = await contract['mintTickets']({
-      gasLimit: 3000000
-    })
+    const transaction = await contract['createAndMintTickets']()
     const tx = await transaction.wait()
 
     return tx.status === 1 
+  }
+
+  public async addSectors(address: string, sectors: string[]) {
+    const contract = await Ticked1155Service.getContract(address, true)
+    await contract['addSectors'](sectors)
   }
 
   private static async getContract(address: string, bySigner= false) {

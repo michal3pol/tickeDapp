@@ -46,11 +46,6 @@ export class CreateConcertComponent implements OnInit {
     )
   }
 
-  // TODO somehow manage address
-  public async mintTickets() {
-    this.ticked1155Service.mintTickets("0x66716BeBba93c9A0223F47E9E87b3554Bc891d0d");
-  }
-
   addSectors(sectors: string[]) {
     this.concertSectors = sectors
   }
