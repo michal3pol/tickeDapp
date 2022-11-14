@@ -1,21 +1,21 @@
-<div>
-    YOUR CONTRACT ADDRESSES
-</div>
+<div class="page-content">
+    <div>
+        Here you can find your concerts:
+    </div>
 
-<div class="author__images">
-    <mat-card class="example-card" *ngFor="let concert of deployedConcerts">
+    <mat-card class="concert" *ngFor="let concert of deployedConcerts">
         <mat-card-header>
         <mat-card-title>{{concert.name}}</mat-card-title>
         <mat-card-subtitle>{{concert.contractAddress}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="concert-content">
             <mat-card-actions>
             <button mat-raised-button color="primary" class="btn-log-in" 
             (click)="mintTickets(concert.contractAddress)"
             > Mint tickets and publish them! </button>
             </mat-card-actions>
         <div>
-            You can still add some sectors here:
+            You can still add some sectors, then you also have to mint them!
         </div>
             <app-sector
                 (sectorsEvent)="addSectors($event, concert.contractAddress)"   

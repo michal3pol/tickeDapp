@@ -68,21 +68,25 @@
         </ng-container>
     </ng-container>
 
-    <button mat-mini-fab (click)="addSector()">
-        <mat-icon>add</mat-icon>
-    </button>
+    <div class="nav-button">
+        <button mat-mini-fab (click)="addSector()">
+            <mat-icon>add</mat-icon>
+        </button>
 
-    <div>
         <button *ngIf="createConcertForm == true; else confirmButton"
-                mat-button matStepperNext
-                (click)="confirmSectors()"
-        >Next</button>
+            mat-button matStepperNext
+            (click)="confirmSectors()"
+        >
+            Confirm sectors
+        </button>
 
         <ng-template #confirmButton>
             <button 
-                (click)="confirmSectors()">
-                Confirm
+                mat-button
+                (click)="confirmSectors()"
+            >
+                Confirm sectors
             </button>
         </ng-template>
-    </div>
+    </div>      
 </div>
