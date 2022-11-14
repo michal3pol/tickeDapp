@@ -10,6 +10,10 @@ export class MarketplaceComponent implements OnInit {
 
   links = ['sell', 'resell']; 
   activeLink = this.links[0];
+
+  components = ['sell', 'resell']; 
+  activeComponent = this.components[0];
+
   background: ThemePalette = 'primary';
 
   constructor() { }

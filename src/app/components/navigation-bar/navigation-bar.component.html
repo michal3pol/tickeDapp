@@ -1,18 +1,26 @@
-<button mat-button [matMenuTriggerFor]="concerts"
-    >Concert Management</button>
+<div class="nav-container">
+    <button mat-button [matMenuTriggerFor]="concerts"
+        >Concert Management</button>
 
-<mat-menu #concerts="matMenu">
-    <button mat-menu-item
-    (click)="goToConcertForm()"
-        >Create Concert</button>
-    <button mat-menu-item
-    (click)="goToMyConcerts()"
-        >My Concerts</button>
+    <mat-menu #concerts="matMenu">
         <button mat-menu-item
-    (click)="goToAdminPanel()"
-        >Admin Panel</button>
-</mat-menu>
+        (click)="goToConcertForm()"
+            >Create Concert</button>
+        <button mat-menu-item
+        (click)="goToMyConcerts()"
+            >My Concerts</button>
+            <button mat-menu-item
+        (click)="goToAdminPanel()"
+            >Admin Panel</button>
+    </mat-menu>
 
-<button mat-raised-button color="primary" class="btn-log-in" 
-    (click)="connectWallet()"
-    >Connect wallet</button>
+    <button mat-button
+        class="btn-marketplace"
+        (click)="goToMarketplace()">
+        tickeD MARKETPLACE
+    </button>
+
+    <button mat-raised-button color="primary" class="btn-log-in" 
+        (click)="connectWallet()"
+        >Connect wallet</button>
+</div>

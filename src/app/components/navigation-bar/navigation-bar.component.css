@@ -1,3 +1,13 @@
 .btn-log-in {
     float: right;
 }
+
+.nav-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-marketplace {
+    margin: auto;
+    flex-grow: 3;
+}

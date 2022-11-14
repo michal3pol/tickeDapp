@@ -65,5 +65,10 @@ export class NavigationBarComponent {
     }
   }
 
+  goToMarketplace() {
+    const navigationDetails: string[] = ['/marketplace/sell'];
+    this.router.navigate(navigationDetails);
+  }
+
 
 }

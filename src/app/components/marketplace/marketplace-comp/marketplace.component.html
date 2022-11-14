@@ -1,0 +1,21 @@
+<div class="page-content">
+    <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel"
+        class="nav-marketplace">
+        <a mat-tab-link *ngFor="let link of links"
+            [routerLink]="link"
+            (click)="activeLink = link"
+            [active]="activeLink == link"
+            class="link">
+            {{link}} 
+            </a>
+            <!-- <a mat-tab-link *ngFor="let component of components"
+                (click)="activeComponent = component"
+                class="link">
+                {{component}}
+            </a> -->
+        </nav>
+    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+
+    <router-outlet></router-outlet>
+
+</div>

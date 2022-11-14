@@ -32,4 +32,10 @@ contract tickeDFactory is Ownable {
         return deployedContracts[org];
     }
 
+    // TO DO - retrieve all
+    // moze tablica z white adresami - prywatna i iteracja po nie i zwroc depcontracts
+    // function getAllDepContracts() public view returns (DepConcert [] memory){
+    //     return deployedContracts;
+    // }
+
 }
