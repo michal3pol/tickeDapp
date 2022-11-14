@@ -9,9 +9,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component'
 import { WalletService } from './services/wallet.service';
-import { SellComponent } from './components/marketplace/sell/sell.component';
-import { ResellComponent } from './components/marketplace/resell/resell.component';
-import { MarketplaceComponent } from './components/marketplace/marketplace-comp/marketplace.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule} from '@angular/forms';
 import { ConcertManagementModule } from './components/concert-management/concert-management.module';
