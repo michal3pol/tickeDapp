@@ -28,8 +28,7 @@ export class SellComponent implements OnInit {
   }
 
   goToConcert(concertAddress: string) {
-    const navigationDetails: string[] = ['/my-concerts'];
-    this.router.navigate(navigationDetails);
+    this.router.navigate(['sell', concertAddress]);
   }
 
 }

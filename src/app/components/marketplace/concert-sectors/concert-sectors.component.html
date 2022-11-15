@@ -1,0 +1,32 @@
+<div class="sector-container">
+    <div class="sectors">
+        <a *ngFor="let sector of sectors"
+            >
+            <mat-card class="sector" >
+                <mat-card-header>
+                <mat-card-title>{{sector.name}}</mat-card-title>
+                <mat-card-subtitle> Available seats: {{sector.availableTokenIds.length}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content class="sector-content">
+                    <div> Ticket price: {{ sector.price }} </div>
+                    <ng-container *ngIf="sector.isNumerable; else notNumerated">
+                        <div> Seats from {{ sector.seatStart }} to {{ sector.seatStop }} </div>
+                    </ng-container>
+                    <ng-template #notNumerated>
+                        <div> Capacity: {{ sector.seatStop }} </div>
+                    </ng-template>
+
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary"
+                            class="btn-details"
+                        > Tickets &#8594;</button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+        </a>
+    </div>
+    <div class="tickets">
+       
+    </div>
+
+</div>

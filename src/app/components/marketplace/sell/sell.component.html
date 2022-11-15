@@ -1,7 +1,8 @@
 
 <div class="concert-container">
     <a *ngFor="let concert of concerts"
-        [routerLink]="[concert.contractAddress]">
+        [routerLink]="[concert.contractAddress]"
+        >
         <mat-card class="concert" >
             <mat-card-header>
             <mat-card-title>{{concert.name}}</mat-card-title>

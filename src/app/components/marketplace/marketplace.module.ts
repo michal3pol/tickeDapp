@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ResellComponent } from './resell/resell.component';
 import { SellComponent } from './sell/sell.component';
+import { ConcertSectorsComponent } from './concert-sectors/concert-sectors.component';
 
 
 
@@ -16,7 +17,8 @@ import { SellComponent } from './sell/sell.component';
   declarations: [
     MarketplaceComponent,
     ResellComponent,
-    SellComponent
+    SellComponent,
+    ConcertSectorsComponent
   ],
   imports: [
     BrowserModule,

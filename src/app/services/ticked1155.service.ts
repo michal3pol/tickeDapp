@@ -26,6 +26,11 @@ export class Ticked1155Service {
     await contract['addSectors'](sectors)
   }
 
+  public async getSectors(address: string): Promise<Sector[]> {
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['getSectors']()
+  }
+
   private static async getContract(address: string, bySigner= false) {
     const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
     const signer = provider.getSigner()
@@ -35,6 +40,5 @@ export class Ticked1155Service {
       ticked1155.abi,
       bySigner ? signer : provider
     )
-
   }
 }
