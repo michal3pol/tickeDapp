@@ -5,7 +5,7 @@ import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
 @Component({
   selector: 'app-whitelist',
   templateUrl: './whitelist.component.html',
-  styleUrls: ['./whitelist.component.css']
+  styleUrls: ['./whitelist.component.scss']
 })
 export class WhitelistComponent {
 

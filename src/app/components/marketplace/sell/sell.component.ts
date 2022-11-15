@@ -7,7 +7,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.component.html',
-  styleUrls: ['./sell.component.css']
+  styleUrls: ['./sell.component.scss']
 })
 export class SellComponent implements OnInit {
 

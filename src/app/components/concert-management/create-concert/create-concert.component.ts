@@ -7,7 +7,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 @Component({
   selector: 'app-create-concert',
   templateUrl: './create-concert.component.html',
-  styleUrls: ['./create-concert.component.css']
+  styleUrls: ['./create-concert.component.scss']
 })
 export class CreateConcertComponent implements OnInit {
 

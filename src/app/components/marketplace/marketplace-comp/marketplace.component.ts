@@ -4,7 +4,7 @@ import { ThemePalette } from '@angular/material/core';
 @Component({
   selector: 'app-marketplace',
   templateUrl: './marketplace.component.html',
-  styleUrls: ['./marketplace.component.css']
+  styleUrls: ['./marketplace.component.scss']
 })
 export class MarketplaceComponent implements OnInit {
 

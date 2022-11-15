@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-sector',
   templateUrl: './sector.component.html',
-  styleUrls: ['./sector.component.css']
+  styleUrls: ['./sector.component.scss']
 })
 export class SectorComponent {
 

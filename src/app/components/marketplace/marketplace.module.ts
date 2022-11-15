@@ -10,7 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ResellComponent } from './resell/resell.component';
 import { SellComponent } from './sell/sell.component';
 import { ConcertSectorsComponent } from './concert-sectors/concert-sectors.component';
-
+import { SwiperModule } from "swiper/angular";
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { ConcertSectorsComponent } from './concert-sectors/concert-sectors.compo
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    RouterModule
+    RouterModule,
+    SwiperModule
   ]
 })
 export class MarketplaceModule { }

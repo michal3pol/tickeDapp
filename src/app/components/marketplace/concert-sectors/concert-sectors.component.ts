@@ -5,7 +5,7 @@ import { Ticked1155Service } from 'src/app/services/ticked1155.service';
 @Component({
   selector: 'app-concert-sectors',
   templateUrl: './concert-sectors.component.html',
-  styleUrls: ['./concert-sectors.component.css']
+  styleUrls: ['./concert-sectors.component.scss']
 })
 export class ConcertSectorsComponent implements OnInit {
 

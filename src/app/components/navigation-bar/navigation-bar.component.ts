@@ -7,7 +7,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.css']
+  styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent {
 
