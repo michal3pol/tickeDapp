@@ -11,6 +11,7 @@ import { ResellComponent } from './resell/resell.component';
 import { SellComponent } from './sell/sell.component';
 import { ConcertSectorsComponent } from './concert-sectors/concert-sectors.component';
 import { SwiperModule } from "swiper/angular";
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SwiperModule } from "swiper/angular";
     MatCardModule,
     MatTabsModule,
     RouterModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ]
 })
 export class MarketplaceModule { }
