@@ -36,6 +36,16 @@ export class Ticked1155Service {
     return contract['ticketAttr'](tokenId)
   }
 
+  public async buyTicket(address: string, tokenId: number, price: number, amount = 1) {
+    const contract = await Ticked1155Service.getContract(address, true)
+    const transaction = await contract['buyTicket'](tokenId, amount, {
+      value: ethers.utils.parseEther(price.toString())
+    })
+    const tx = await transaction.wait();
+
+    return tx.status === 1
+  }
+
   private static async getContract(address: string, bySigner= false) {
     const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
     const signer = provider.getSigner()

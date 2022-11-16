@@ -40,13 +40,13 @@
 
 <div class="tickets">
     <ng-container 
-        *ngFor="let ticket of tickets">
+        *ngFor="let ticket of ticketsMap | keyvalue">
 
-        <ng-container *ngIf="ticket.seatNumber == 0; else numerable">
+        <ng-container *ngIf="ticket.value.seatNumber == 0; else numerable">
             <mat-card class="ticket">
                 <mat-card-header>
                     <mat-card-subtitle>
-                        Sector: {{ ticket.sectorName }}
+                        Sector: {{ ticket.value.sectorName }}
                     </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
@@ -55,7 +55,7 @@
                     </div>
                     <div>
                         Minted by organizator: 
-                        <ng-container *ngIf="ticket.minted === false; else minted"
+                        <ng-container *ngIf="ticket.value.minted === false; else minted"
                             > NOPE! </ng-container>
                         <ng-template #minted>
                             YASS!
@@ -63,7 +63,6 @@
                     </div>
 
                     <mat-card-actions>
-
                         <mat-form-field appearance="fill" >
                             <mat-label>Number of tickets</mat-label>
                             <input matInput type="number" min="1"
@@ -71,7 +70,8 @@
                         </mat-form-field>
 
                         <button mat-raised-button color="primary"
-                            class="btn-details">
+                            class="btn-details"
+                            (click)="buyTicket(ticket.key, ticket.value.price, amount)">
                             BUY
                         </button>
                     </mat-card-actions>
@@ -79,20 +79,21 @@
 
             </mat-card>
         </ng-container> 
+        <!-- NUMERABLE TICKETS -->
         <ng-template #numerable>        
             <mat-card class="ticket">
                 <mat-card-header>
                     <mat-card-title>
-                        Seat: {{ ticket.seatNumber }} 
+                        Seat: {{ ticket.value.seatNumber }} 
                     </mat-card-title>
                     <mat-card-subtitle>
-                        Sector: {{ ticket.sectorName }}
+                        Sector: {{ ticket.value.sectorName }}
                     </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <div>
                         Minted by organizator: 
-                        <ng-container *ngIf="ticket.minted === false; else minted"
+                        <ng-container *ngIf="ticket.value.minted === false; else minted"
                             > NOPE! </ng-container>
                         <ng-template #minted>
                             YASS!
@@ -101,12 +102,12 @@
 
                     <mat-card-actions>
                         <button mat-raised-button color="primary"
-                            class="btn-details">
+                            class="btn-details"
+                            (click)="buyTicket(ticket.key, ticket.value.price)">
                             BUY
                         </button>
                     </mat-card-actions>
                 </mat-card-content>
-
             </mat-card>
         </ng-template>
 

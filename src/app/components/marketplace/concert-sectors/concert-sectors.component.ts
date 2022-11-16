@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BigNumber } from 'ethers';
 import { Ticked1155Service } from 'src/app/services/ticked1155.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class ConcertSectorsComponent implements OnInit {
   concertAddress!: string;
   sectors: Sector[] = [];
   tickets: Ticket[] = [];
+  ticketsMap: Map<number, Ticket> = new Map<number, Ticket>;
   amount = 1;
 
   constructor(
@@ -28,13 +30,22 @@ export class ConcertSectorsComponent implements OnInit {
   }
 
   async getTickets(index: number) {
-    this.tickets.length = 0; // clear 
+    this.ticketsMap.clear();
     for(let tokenId of this.sectors[index].availableTokenIds) {
-      this.tickets.push(
+      this.ticketsMap.set(
+        tokenId,
         await this.ticked1155Service.getTicketAttr(this.concertAddress, tokenId)
-      )
+        )
     }
+    console.log(index)
     console.log(this.tickets)
+  }
+
+  buyTicket(tokenId: any, price: number, amount = 1) {
+    console.log(tokenId.toNumber(), amount)
+    let transaction = this.ticked1155Service.buyTicket(
+                          this.concertAddress, tokenId.toNumber(), price, amount)
+    console.log(transaction)
   }
 
 }
