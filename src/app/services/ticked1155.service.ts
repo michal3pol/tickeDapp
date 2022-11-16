@@ -31,6 +31,11 @@ export class Ticked1155Service {
     return contract['getSectors']()
   }
 
+  public async getTicketAttr(address: string, tokenId: number): Promise<Ticket> {
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['ticketAttr'](tokenId)
+  }
+
   private static async getContract(address: string, bySigner= false) {
     const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
     const signer = provider.getSigner()

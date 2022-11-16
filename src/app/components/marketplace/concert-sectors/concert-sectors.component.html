@@ -5,11 +5,15 @@
     [pagination]="{
       clickable: true
     }"
+    [scrollbar]="{
+        hide: true
+    }"
     class="mySwiper"
     >
     <ng-template swiperSlide 
-        *ngFor="let sector of sectors">
-        <mat-card>
+        *ngFor="let sector of sectors; let i=index">
+        <mat-card class="sector"
+            (click)="getTickets(i)">
             <mat-card-header>
             <mat-card-title>{{sector.name}}</mat-card-title>
             <mat-card-subtitle> Available seats: {{sector.availableTokenIds.length}}</mat-card-subtitle>
@@ -22,18 +26,90 @@
                 <ng-template #notNumerated>
                     <div> Capacity: {{ sector.seatStop }} </div>
                 </ng-template>
-
+            <!-- 
                 <mat-card-actions>
                     <button mat-raised-button color="primary"
                         class="btn-details"
                     > Tickets &#8595;</button>
-                </mat-card-actions>
+                </mat-card-actions> 
+            -->
             </mat-card-content>
         </mat-card>
     </ng-template> 
 </swiper>
 
 <div class="tickets">
-    
+    <ng-container 
+        *ngFor="let ticket of tickets">
+
+        <ng-container *ngIf="ticket.seatNumber == 0; else numerable">
+            <mat-card class="ticket">
+                <mat-card-header>
+                    <mat-card-subtitle>
+                        Sector: {{ ticket.sectorName }}
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        Sector without numerable seats
+                    </div>
+                    <div>
+                        Minted by organizator: 
+                        <ng-container *ngIf="ticket.minted === false; else minted"
+                            > NOPE! </ng-container>
+                        <ng-template #minted>
+                            YASS!
+                        </ng-template>
+                    </div>
+
+                    <mat-card-actions>
+
+                        <mat-form-field appearance="fill" >
+                            <mat-label>Number of tickets</mat-label>
+                            <input matInput type="number" min="1"
+                                [(ngModel)]="amount">
+                        </mat-form-field>
+
+                        <button mat-raised-button color="primary"
+                            class="btn-details">
+                            BUY
+                        </button>
+                    </mat-card-actions>
+                </mat-card-content>
+
+            </mat-card>
+        </ng-container> 
+        <ng-template #numerable>        
+            <mat-card class="ticket">
+                <mat-card-header>
+                    <mat-card-title>
+                        Seat: {{ ticket.seatNumber }} 
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        Sector: {{ ticket.sectorName }}
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        Minted by organizator: 
+                        <ng-container *ngIf="ticket.minted === false; else minted"
+                            > NOPE! </ng-container>
+                        <ng-template #minted>
+                            YASS!
+                        </ng-template>
+                    </div>
+
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary"
+                            class="btn-details">
+                            BUY
+                        </button>
+                    </mat-card-actions>
+                </mat-card-content>
+
+            </mat-card>
+        </ng-template>
+
+    </ng-container>
 </div>
 

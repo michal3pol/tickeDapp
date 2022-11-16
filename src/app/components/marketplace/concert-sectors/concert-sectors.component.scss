@@ -39,13 +39,12 @@
   object-fit: cover;
 }
 
-.sector-container {
-    display: flex;
+.swiper-button-prev {
+  color: grey;
 }
-
-.sectors {
-    flex-direction: row;
-}   
+.swiper-button-next {
+  color: grey;
+}
 
 .sector {
     padding: 10px;
@@ -56,10 +55,11 @@
 .tickets {
     display: flex;
     flex-direction: row; 
+    flex-wrap: wrap;
 }
 
-.sector:hover {
-    transform: scale(1.02);
+.ticket {
+  margin: 10px;
 }
 
 .btn-details {

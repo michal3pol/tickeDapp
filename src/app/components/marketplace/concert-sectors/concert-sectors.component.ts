@@ -12,6 +12,8 @@ export class ConcertSectorsComponent implements OnInit {
 
   concertAddress!: string;
   sectors: Sector[] = [];
+  tickets: Ticket[] = [];
+  amount = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +25,16 @@ export class ConcertSectorsComponent implements OnInit {
     this.concertAddress = this.route.snapshot.paramMap.get('address')!;
     
     this.sectors = await this.ticked1155Service.getSectors(this.concertAddress);
+  }
 
+  async getTickets(index: number) {
+    this.tickets.length = 0; // clear 
+    for(let tokenId of this.sectors[index].availableTokenIds) {
+      this.tickets.push(
+        await this.ticked1155Service.getTicketAttr(this.concertAddress, tokenId)
+      )
+    }
+    console.log(this.tickets)
   }
 
 }

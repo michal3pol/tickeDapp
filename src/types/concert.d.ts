@@ -12,3 +12,11 @@ interface Sector {
     price: boolean ;
     availableTokenIds: number[];
 }
+
+interface Ticket {
+    sectorName: string;
+    seatNumber: number;
+    minted: boolean;
+    price: number;
+    sold: boolean;
+}
