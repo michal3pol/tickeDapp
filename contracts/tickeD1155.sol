@@ -86,7 +86,7 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
                 // create SFTs 
                 // don't check 'mintedByOrg' -> those tokens have to be minted earlier
                 uint256 newTokenId = _tokenIds.current();
-                ticketAttr[newTokenId] = Ticket(sectors[i].name, 0, sectors[i].mintedByOrg, sectors[i].price, false); // 0 -> seatNumber not numerated
+                ticketAttr[newTokenId] = Ticket(sectors[i].name, 0, sectors[i].mintedByOrg, sectors[i].price, true); // 0 -> seatNumber not numerated
                 _mint(msg.sender, newTokenId, sectors[i].seatStop, "");
                 sectors[i].availableTokenIds.push(newTokenId);
                 _tokenIds.increment();
