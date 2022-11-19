@@ -1,9 +1,9 @@
-interface DepConcert {
+export interface DepConcert {
     contractAddress: string,
     name: string
 }
 
-interface Sector {
+export interface Sector {
     name:string;
     isNumerable: boolean; 
     seatStart: number;
@@ -13,7 +13,7 @@ interface Sector {
     availableTokenIds: number[];
 }
 
-interface Ticket {
+export interface Ticket {
     sectorName: string;
     seatNumber: number;
     minted: boolean;

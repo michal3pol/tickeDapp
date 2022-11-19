@@ -54,6 +54,9 @@
                         Sector without numerable seats
                     </div>
                     <div>
+                        Price: {{ ticket.value.price }} ETH
+                    </div>
+                    <div>
                         Minted by organizator: 
                         <ng-container *ngIf="ticket.value.minted === false; else minted"
                             > NOPE! </ng-container>
@@ -91,6 +94,9 @@
                     </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
+                    <div>
+                        Price: {{ ticket.value.price }} ETH
+                    </div>
                     <div>
                         Minted by organizator: 
                         <ng-container *ngIf="ticket.value.minted === false; else minted"
