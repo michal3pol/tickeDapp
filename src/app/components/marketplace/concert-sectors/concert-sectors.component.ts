@@ -43,10 +43,8 @@ export class ConcertSectorsComponent implements OnInit {
   }
 
   buyTicket(tokenId: any, price: number, amount = 1) {
-    console.log(tokenId.toNumber(), amount)
-    let transaction = this.ticked1155Service.buyTicket(
-                          this.concertAddress, tokenId.toNumber(), price, amount)
-    console.log(transaction)
+    this.ticked1155Service.buyTicket(
+      this.concertAddress, tokenId.toNumber(), price, amount)
   }
 
 }

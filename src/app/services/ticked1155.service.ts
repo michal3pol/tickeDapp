@@ -40,7 +40,7 @@ export class Ticked1155Service {
   public async buyTicket(address: string, tokenId: number, price: number, amount = 1) {
     const contract = await Ticked1155Service.getContract(address, true)
     const transaction = await contract['buyTicket'](tokenId, amount, {
-      value: ethers.utils.parseEther(price.toString())
+      value: ethers.utils.parseUnits(price.toString(), "wei")
     })
     const tx = await transaction.wait();
 
