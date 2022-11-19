@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BigNumber } from 'ethers';
 import { Ticked1155Service } from 'src/app/services/ticked1155.service';
+import { Sector, Ticket } from 'src/types/concert.model';
 
 @Component({
   selector: 'app-concert-sectors',
@@ -13,7 +14,6 @@ export class ConcertSectorsComponent implements OnInit {
 
   concertAddress!: string;
   sectors: Sector[] = [];
-  tickets: Ticket[] = [];
   ticketsMap: Map<number, Ticket> = new Map<number, Ticket>;
   amount = 1;
 
@@ -32,13 +32,14 @@ export class ConcertSectorsComponent implements OnInit {
   async getTickets(index: number) {
     this.ticketsMap.clear();
     for(let tokenId of this.sectors[index].availableTokenIds) {
-      this.ticketsMap.set(
-        tokenId,
-        await this.ticked1155Service.getTicketAttr(this.concertAddress, tokenId)
-        )
+      // because reading from chain is free I think it's better to make more calls
+      // than iterate in smartcontract through sectors and available id's 
+      // and deleting them when they are sold (we have to pay for code execution)
+      const ticket = await this.ticked1155Service.getTicketAttr(this.concertAddress, tokenId);
+      if( !ticket.sold ) {
+        this.ticketsMap.set(tokenId, ticket)
+      }
     }
-    console.log(index)
-    console.log(this.tickets)
   }
 
   buyTicket(tokenId: any, price: number, amount = 1) {

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
 import { Ticked1155Service } from 'src/app/services/ticked1155.service';
 import { WalletService } from 'src/app/services/wallet.service';
+import { DepConcert } from 'src/types/concert.model';
 
 @Component({
   selector: 'app-sell',
@@ -19,12 +20,16 @@ export class SellComponent implements OnInit {
   ) { }
 
   public concerts: DepConcert[] = [];
+  public concertOrg: string[] = [];
 
   async ngOnInit() {
-    // TODO - all concerts not from specific addr
-    this.concerts = await this.tickedFactoryService.getDepContracts(
-      "0x1cBC2050122E79e5EEd8a5DFFCA5163239a8D61E"
-    )
+    this.concertOrg = await this.tickedFactoryService.getOrganizers();
+    console.log(this.concertOrg)
+    for(let org of this.concertOrg) {
+      console.log(org)
+      this.concerts = await this.tickedFactoryService.getDepContracts(org)
+      console.log(this.concerts)
+    }
   }
 
   goToConcert(concertAddress: string) {
