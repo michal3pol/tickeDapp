@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ethers } from "ethers";
 import { Sector, Ticket } from 'src/types/concert.model';
-import ticked1155 from '../../../artifacts/contracts/tickeD1155.sol/tickeD1155.json'
+import ticked1155 from '../../../../artifacts/contracts/tickeD1155.sol/tickeD1155.json'
 
 @Injectable({
   providedIn: 'root'

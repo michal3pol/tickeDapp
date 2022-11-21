@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { environment } from 'src/environments/environment';
 import { DepConcert } from 'src/types/concert.model';
 
-import tickeDFactory from '../../../artifacts/contracts/tickeDFactory.sol/tickeDFactory.json'
+import tickeDFactory from '../../../../artifacts/contracts/tickeDFactory.sol/tickeDFactory.json'
 
 @Injectable({
   providedIn: 'root'
