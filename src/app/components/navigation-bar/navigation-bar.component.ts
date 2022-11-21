@@ -11,8 +11,6 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class NavigationBarComponent {
 
-  isLogged: boolean = false; // figure out how to show that wallet is connected
-
   constructor(
     private walletService: WalletService,
     private tickedFactoryService: TickedFactoryService,
@@ -21,7 +19,10 @@ export class NavigationBarComponent {
   ) { }
 
   async connectWallet() {
-    this.isLogged = await this.walletService.logIn();
+    let isLogged = await this.walletService.logIn();
+    if(isLogged){
+      this.snackbarService.info("You are already connected")
+    }
   }
 
   async goToConcertForm() {
