@@ -1,0 +1,24 @@
+<div class="page-content">
+    <div *ngIf="nft$ | async as nfts">
+
+        <div> You own: {{nfts.totalCount}} NFTs </div>
+
+        <ng-container *ngFor="let nft of nfts.ownedNfts">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <div> {{ nft.metadata.name }} </div>
+                        <div> {{ nft.metadata.description }} </div>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        {{ nft.contract.address }}
+                    </mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+
+        </ng-container>
+
+    </div>
+</div>
+

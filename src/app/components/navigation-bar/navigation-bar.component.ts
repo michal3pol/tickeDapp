@@ -71,5 +71,10 @@ export class NavigationBarComponent {
     this.router.navigate(navigationDetails);
   }
 
+  goToMyNfts() {
+    const navigationDetails: string[] = ['/my-nft'];
+    this.router.navigate(navigationDetails);
+  }
+
 
 }

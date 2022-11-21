@@ -16,6 +16,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MarketplaceModule } from './components/marketplace/marketplace.module';
+import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { UserModule } from './components/user/user.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { MarketplaceModule } from './components/marketplace/marketplace.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
@@ -34,9 +38,11 @@ import { MarketplaceModule } from './components/marketplace/marketplace.module';
     ReactiveFormsModule,
     MatMenuModule,
     MatSnackBarModule,
+    MatIconModule,
     // custom
     ConcertManagementModule,
-    MarketplaceModule
+    MarketplaceModule,
+    UserModule
   ],
   providers: [
     WalletService
