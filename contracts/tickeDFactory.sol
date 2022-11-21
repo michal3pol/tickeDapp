@@ -23,9 +23,9 @@ contract tickeDFactory is Ownable {
         whitelist[addr] = toggle;
     }
 
-    function createTickets(string memory _name, string memory _desc, uint256 _date, string [] memory _sectors) external{
+    function createTickets(string memory _name, string memory _desc, uint256 _date, string memory _svg, string [] memory _sectors) external{
         require(whitelist[msg.sender], "Not allowed to mint");
-        tickeD1155 tickeDContract = new tickeD1155(msg.sender, _name, _desc, _date, _sectors);
+        tickeD1155 tickeDContract = new tickeD1155(msg.sender, _name, _desc, _date, _svg, _sectors);
 
         if (getDepContracts(msg.sender).length == 0){
             organizers.push(msg.sender);

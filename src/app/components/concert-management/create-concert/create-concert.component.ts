@@ -17,6 +17,7 @@ export class CreateConcertComponent implements OnInit {
     concertName: ['', Validators.required],
     concertDescription: ['', Validators.required, Validators.minLength(8)],
     concertDate: ['', Validators.required],
+    concertSvg: ['', Validators.required],
   })
 
 
@@ -35,13 +36,11 @@ export class CreateConcertComponent implements OnInit {
   public async createConcert() {
     let stringTime = this.commonInf.get('concertDate')?.getRawValue().toString();
     let unixTimestamp = (new Date(stringTime!)).getTime() / 1000;
-    
-    //let splittedSectors = this.concertSectors.getRawValue()?.split(",");
-
     this.tickedFactoryService.createConcertContract(
       this.commonInf.get('concertName')?.getRawValue(),
       this.commonInf.get('concertDescription')?.getRawValue(),
       unixTimestamp,
+      this.commonInf.get('concertSvg')?.getRawValue(),
       this.concertSectors
     )
   }
