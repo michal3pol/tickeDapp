@@ -8,7 +8,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ResellComponent } from './resell/resell.component';
-import { SellComponent } from './sell/sell.component';
+import { ConcertSellComponent } from './concert-sell/concert-sell.component';
 import { ConcertSectorsComponent } from './concert-sectors/concert-sectors.component';
 import { SwiperModule } from "swiper/angular";
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [
     MarketplaceComponent,
     ResellComponent,
-    SellComponent,
+    ConcertSellComponent,
     ConcertSectorsComponent
   ],
   imports: [

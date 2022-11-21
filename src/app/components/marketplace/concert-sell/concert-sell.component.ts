@@ -7,10 +7,10 @@ import { DepConcert } from 'src/types/concert.model';
 
 @Component({
   selector: 'app-sell',
-  templateUrl: './sell.component.html',
-  styleUrls: ['./sell.component.scss']
+  templateUrl: './concert-sell.component.html',
+  styleUrls: ['./concert-sell.component.scss']
 })
-export class SellComponent implements OnInit {
+export class ConcertSellComponent implements OnInit {
 
   constructor(
     private tickedFactoryService: TickedFactoryService,

@@ -7,7 +7,7 @@ import { WhitelistComponent } from './components/concert-management/whitelist/wh
 import { ConcertSectorsComponent } from './components/marketplace/concert-sectors/concert-sectors.component';
 import { MarketplaceComponent } from './components/marketplace/marketplace-comp/marketplace.component';
 import { ResellComponent } from './components/marketplace/resell/resell.component';
-import { SellComponent } from './components/marketplace/sell/sell.component';
+import { ConcertSellComponent } from './components/marketplace/concert-sell/concert-sell.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthOrganizatorGuard } from './services/auth-organizator.guard';
 
@@ -17,7 +17,7 @@ const routes: Routes = [
     children:[
       {
         path:'sell',
-        component: SellComponent
+        component: ConcertSellComponent
       },
       {
         path:'sell/:address',
