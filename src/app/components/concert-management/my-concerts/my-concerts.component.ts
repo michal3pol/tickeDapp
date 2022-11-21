@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
-import { Ticked1155Service } from 'src/app/services/ticked1155.service';
+import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
+import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import { DepConcert } from 'src/types/concert.model';
 

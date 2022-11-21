@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
+import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
 
 @Component({
   selector: 'app-whitelist',

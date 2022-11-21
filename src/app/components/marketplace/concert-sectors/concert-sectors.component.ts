@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BigNumber } from 'ethers';
-import { Ticked1155Service } from 'src/app/services/ticked1155.service';
+import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { Sector, Ticket } from 'src/types/concert.model';
 
 @Component({

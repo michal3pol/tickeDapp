@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
+import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
 import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
