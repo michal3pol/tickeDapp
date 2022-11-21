@@ -7,16 +7,16 @@ import { WalletService } from 'src/app/services/wallet.service';
 @Component({
   selector: 'app-create-concert',
   templateUrl: './create-concert.component.html',
-  styleUrls: ['./create-concert.component.css']
+  styleUrls: ['./create-concert.component.scss']
 })
 export class CreateConcertComponent implements OnInit {
 
   concertSectors: string [] = [];
 
   commonInf = this.formBuilder.group({
-    concertName: ['', Validators.requiredTrue],
-    concertDescription: ['', Validators.requiredTrue, Validators.minLength(8)],
-    concertDate: ['', Validators.requiredTrue],
+    concertName: ['', Validators.required],
+    concertDescription: ['', Validators.required, Validators.minLength(8)],
+    concertDate: ['', Validators.required],
   })
 
 

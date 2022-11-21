@@ -26,7 +26,7 @@ const main = async () => {
 
     const unixTime = 1669492800; // Sat Nov 26 2022 21:00:00 GMT+0100 (czas środkowoeuropejski standardowy)
 
-    let txn = await nftContract.createTickets("concert run.js!", "First concert of aaa in aaa!", 1669495020, st );
+    let txn = await nftContract.createTickets("Initial concert from run!", "First concert of aaa in aaa!", 1669495020, st );
     await txn.wait();
 
     let adr = await nftContract.getDepContracts(owner.address);

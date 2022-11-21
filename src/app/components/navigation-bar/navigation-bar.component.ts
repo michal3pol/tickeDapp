@@ -7,7 +7,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.css']
+  styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent {
 
@@ -63,6 +63,11 @@ export class NavigationBarComponent {
     } else {
       this.snackbarService.error("Access not authorized!")
     }
+  }
+
+  goToMarketplace() {
+    const navigationDetails: string[] = ['/marketplace/sell'];
+    this.router.navigate(navigationDetails);
   }
 
 

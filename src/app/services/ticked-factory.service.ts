@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ethers } from "ethers";
 import { environment } from 'src/environments/environment';
+import { DepConcert } from 'src/types/concert.model';
 
 import tickeDFactory from '../../../artifacts/contracts/tickeDFactory.sol/tickeDFactory.json'
 
@@ -51,6 +52,11 @@ export class TickedFactoryService {
   public async setOrganizatorPermission(address: string, toggle: boolean) {
     const contract = await TickedFactoryService.getContract(true)
     contract['setOrganizatorPermission'](address, toggle)
+  }
+
+  public async getOrganizers() {
+    const contract = await TickedFactoryService.getContract()
+    return contract['getOrganizers']()
   }
 
 }

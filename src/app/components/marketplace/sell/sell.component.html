@@ -1,0 +1,20 @@
+
+<div class="concert-container">
+    <a *ngFor="let concert of concerts"
+        [routerLink]="[concert.contractAddress]"
+        >
+        <mat-card class="concert" >
+            <mat-card-header>
+            <mat-card-title>{{concert.name}}</mat-card-title>
+            <mat-card-subtitle>{{concert.contractAddress}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="concert-content">
+                <mat-card-actions>
+                    <button mat-raised-button color="primary"
+                        class="btn-details"
+                    > Click here to see more details &#8594;</button>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    </a>
+</div>

@@ -1,13 +1,14 @@
 
-<mat-stepper class="stepper">
-    <mat-step [stepControl]="commonInf" label="Basic informations">
+<mat-stepper class="page-content">
+    <mat-step [stepControl]="commonInf" label="Basic informations"
+        class="step">
         <form [formGroup]="commonInf" class="form">
             <div>
                 <mat-form-field appearance="fill"
                     class="form-full-width"
                 >
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="Concert name" formControlName="concertName" required>
+                    <input matInput placeholder="Concert name" formControlName="concertName">
                 </mat-form-field>
             </div>
             <div>
@@ -15,7 +16,7 @@
                     class="form-full-width"
                 >
                     <mat-label>Description</mat-label>
-                    <textarea matInput placeholder="Concert description" formControlName="concertDescription" required>
+                    <textarea matInput placeholder="Concert description" formControlName="concertDescription" >
                     </textarea>
                 </mat-form-field>
             </div>
@@ -24,7 +25,7 @@
                     class="form-full-width"
                 >
                     <mat-label>Date</mat-label>
-                    <input matInput type="datetime-local" placeholder="Concert date" formControlName="concertDate" required>
+                    <input matInput type="datetime-local" placeholder="Concert date" formControlName="concertDate">
                 </mat-form-field>
             </div>
         </form>
@@ -32,16 +33,14 @@
             <button mat-button matStepperNext>Apply</button>
         </div>
     </mat-step>
-    <mat-step label="Specify sectors">
-
+    <mat-step label="Specify sectors"
+        class="step">
         <app-sector
             [createConcertForm]="true"
             (sectorsEvent)="addSectors($event)"    
         ></app-sector>
 
-        <div>
-            <button mat-button matStepperPrevious>Back</button>
-        </div>
+        <button mat-button matStepperPrevious>Back</button>
     </mat-step>
     <mat-step label="Create concert smartcontract!">
         <div>

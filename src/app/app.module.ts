@@ -9,14 +9,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component'
 import { WalletService } from './services/wallet.service';
-import { SellComponent } from './components/sell/sell.component';
-import { ResellComponent } from './components/resell/resell.component';
-import { MarketplaceComponent } from './components/marketplace/marketplace.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule} from '@angular/forms';
 import { ConcertManagementModule } from './components/concert-management/concert-management.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MarketplaceModule } from './components/marketplace/marketplace.module';
 
 @NgModule({
   declarations: [
@@ -24,9 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     TransferComponent,
     FooterComponent,
     NavigationBarComponent,
-    SellComponent,
-    ResellComponent,
-    MarketplaceComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule,
     // custom
     ConcertManagementModule,
+    MarketplaceModule
   ],
   providers: [
     WalletService

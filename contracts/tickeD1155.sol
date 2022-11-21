@@ -2,19 +2,19 @@
 
 pragma solidity ^0.8.17;
 
-//import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 import "./types/types.sol";
 import "./libraries/Base64.sol";
 import "./libraries/Cast.sol";
 import "hardhat/console.sol";
 
-
-contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
+// TODO delete tokenId from availabletokens while sold
+contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     
     uint256 private orgCredits;
     address public orgAddress;
@@ -29,11 +29,12 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
     // Already minted sectors
     uint256 private sectorPointer = 0;
 
-    // Marketplace ( tokenId -> inf ) / maybe []? / move to other contract 
-    //mapping(uint256 => Listing) public listing; 
-
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC1155, ERC1155Receiver) returns (bool) {
+        return super.supportsInterface(interfaceId);
+    }
 
     // !!! cant pass struct... -> pass table of strings
     constructor(address _owner, string memory _name, string memory _desc, uint256 _date, string [] memory _sectors) ERC1155("") { 
@@ -58,7 +59,6 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
     }
 
     // Function for creating tickets attributes and minting if specified
-    // problem with owner
     function createAndMintTickets() public {
         require(msg.sender == orgAddress, "Only owner!");
         require(sectorPointer < sectors.length, "Add new sectors!");
@@ -68,7 +68,7 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
                 if(sectors[i].mintedByOrg){
                    for(uint256 j=sectors[i].seatStart; j <= sectors[i].seatStop; j++) {
                         uint256 newTokenId = _tokenIds.current();
-                        _mint(msg.sender, newTokenId, 1, "");
+                        _mint(address(this), newTokenId, 1, ""); // contract -> owner of the nft
                         ticketAttr[newTokenId] = Ticket(sectors[i].name, j, sectors[i].mintedByOrg, sectors[i].price, false); // j -> seatNumber
                         sectors[i].availableTokenIds.push(newTokenId);
                         _tokenIds.increment();             
@@ -87,7 +87,7 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
                 // don't check 'mintedByOrg' -> those tokens have to be minted earlier
                 uint256 newTokenId = _tokenIds.current();
                 ticketAttr[newTokenId] = Ticket(sectors[i].name, 0, sectors[i].mintedByOrg, sectors[i].price, false); // 0 -> seatNumber not numerated
-                _mint(msg.sender, newTokenId, sectors[i].seatStop, "");
+                _mint(address(this), newTokenId, sectors[i].seatStop, ""); // contract -> owner of the nft
                 sectors[i].availableTokenIds.push(newTokenId);
                 _tokenIds.increment();
             }
@@ -101,12 +101,15 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
         if(!ticketAttr[tokenId].minted) { // possible only with nft
             _mint(msg.sender, tokenId, 1, "");
             ticketAttr[tokenId].minted = true;
+            ticketAttr[tokenId].sold = true;
+            orgCredits += msg.value;
+            return; // no transfer -> return
         }
         orgCredits += msg.value;
-        if(balanceOf(orgAddress, tokenId) == 1) { // if it's last mark it as sold
+        if(this.balanceOf(address(this), tokenId) == 1) { // if it's last mark it as sold
              ticketAttr[tokenId].sold = true; 
         }
-        safeTransferFrom(orgAddress, msg.sender, tokenId, amount, "");
+        this.safeTransferFrom(address(this), msg.sender, tokenId, amount, ""); // address(this) -> contract is nft's owner
     }    
 
     // openSea can read SFT metadata
@@ -143,7 +146,7 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
         )));
     }
 
-    function addSectors(string [] memory _sectors) public {
+    function addSectors(string [] memory _sectors) external {
         require(_sectors.length % 6 == 0, "Wrong data format" );
         require(msg.sender == orgAddress, "Only owner!");
         for(uint i=0; i < (_sectors.length - 1); i += 6 ){
@@ -160,7 +163,7 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
         }
     }
 
-    function withdrawOrgCredits(address payable destAddr) external {
+    function withdrawOrgCredits(address payable destAddr) public {
         require(msg.sender == orgAddress, "Only owner!");
         require(orgCredits > 0, "0 credits");
         uint256 proceeds = orgCredits; 
@@ -172,12 +175,6 @@ contract tickeD1155 is ERC1155Supply, Ownable, ReentrancyGuard {
     function getSectors() public view returns (Sector [] memory){
         return sectors;
     }
-
-
-    // // same ^
-    // function getListing() public view returns (Listing[] memory){
-    //     return listing;
-    // }
 
 }
 
