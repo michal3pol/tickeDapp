@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import EtherUnitConverter from 'src/app/utils/EtherUnitConverter';
 
 @Component({
   selector: 'app-sector',
@@ -56,7 +57,7 @@ export class SectorComponent {
       } else {
         sectorsArray.push("0")
       }
-      sectorsArray.push(sector.price.toString())
+      sectorsArray.push(EtherUnitConverter.etherToWei(sector.price).toString())
     }
     console.log(sectorsArray);
     this.sectorsEvent.emit(sectorsArray);

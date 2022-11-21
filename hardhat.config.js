@@ -8,6 +8,11 @@ module.exports = {
       url: process.env.QUICKNODE_API_KEY_URL,
       accounts: [process.env.GOERLI_PRIVATE_KEY],
     },
+    // need to create api key
+    // matic: {
+    //   url: process.env.,
+    //   accounts: [process.env.GOERLI_PRIVATE_KEY],
+    // },
     hardhat: {
       blockGasLimit: 10000000000,
     },

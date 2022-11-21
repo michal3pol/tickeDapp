@@ -38,7 +38,7 @@ const main = async () => {
 
 
     // FIRST CONCERT
-    const st = ["A1","0","0","1000","1","1","A2","1","1","100","1","500","C5","1","1","20","1","500"];    
+    const st = ["A1","0","0","1000","1","1","A2","1","1","100","1","1","C5","1","1","20","1","500"];    
     let unixTime = 	1669492800; // Sat Nov 26 2022 21:00:00 GMT+0100 (czas środkowoeuropejski standardowy)
     let txn = await nftContract.createTickets("Metallica concert Warsaw!", "First concert of metallica in Warsaw!", unixTime, st );
     await txn.wait();
@@ -62,7 +62,7 @@ const main = async () => {
     await txn2.wait();
 
     let sectors = await subcontract.getSectors();
-    console.log(sectors);
+    //console.log(sectors);
 
     // let uri= await subcontract.uri(1);
     // console.log("THIS IS URI 1" + uri);
@@ -73,8 +73,11 @@ const main = async () => {
     console.log("owner ballance" +await owner.getBalance());
     subcontract.connect(addr1);
     console.log("addr1 ballance" + await addr1.getBalance());
+    console.log("-------------------")
+    console.log(await subcontract.ticketAttr(2));
+    console.log("-------------------")
     let txn3 = await subcontract.buyTicket(2, 1, {
-      value: ethers.utils.parseEther("1")
+      value: ethers.utils.parseEther("0.1")
     });
     // 1 -> w smartocntracie to 1000000000000000000
     await txn3.wait();
@@ -82,10 +85,10 @@ const main = async () => {
     console.log(await subcontract.ticketAttr(2));
 
     console.log("addr1 ballance" + await addr1.getBalance());
-    let txn4 = await subcontract.buyTicket(2, 1, {
-      value: ethers.utils.parseEther("20.0")
-    });
-    await txn4.wait();
+    // let txn4 = await subcontract.buyTicket(2, 1, {
+    //   value: ethers.utils.parseEther("20.0")
+    // });
+    // await txn4.wait();
     // WITHDRAW
     await subcontract.connect(owner);
     console.log("owner ballance" +await owner.getBalance());

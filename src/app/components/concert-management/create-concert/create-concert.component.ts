@@ -14,9 +14,9 @@ export class CreateConcertComponent implements OnInit {
   concertSectors: string [] = [];
 
   commonInf = this.formBuilder.group({
-    concertName: ['', Validators.requiredTrue],
-    concertDescription: ['', Validators.requiredTrue, Validators.minLength(8)],
-    concertDate: ['', Validators.requiredTrue],
+    concertName: ['', Validators.required],
+    concertDescription: ['', Validators.required, Validators.minLength(8)],
+    concertDate: ['', Validators.required],
   })
 
 

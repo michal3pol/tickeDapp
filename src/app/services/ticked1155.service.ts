@@ -15,7 +15,6 @@ export class Ticked1155Service {
   public async createAndMintTickets(address: string) {
     const contract = await Ticked1155Service.getContract(address, true)
 
-  // TODO 
     const transaction = await contract['createAndMintTickets']()
     const tx = await transaction.wait()
 

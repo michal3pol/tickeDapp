@@ -20,17 +20,19 @@
                     Numberable Seats
                 </mat-checkbox>
 
-                <mat-form-field appearance="fill"
-                    class="form-numbers"
-                >
-                    <mat-label>Seats from</mat-label>
-                    <input matInput
-                           type="number"
-                           formControlName="seatStart"
-                           placeholder="Seat start"
-                           [attr.disabled]="this.sectors.getRawValue()[i].isNumerable ? null : true">
-                </mat-form-field>
-
+                <ng-container *ngIf="this.sectors.getRawValue()[i].isNumerable">
+                    <mat-form-field appearance="fill"
+                        class="form-numbers"
+                    >
+                        <mat-label>Seats from</mat-label>
+                        <input matInput
+                            type="number"
+                            formControlName="seatStart"
+                            placeholder="Seat start"
+                            [attr.disabled]="this.sectors.getRawValue()[i].isNumerable ? null : true">
+                    </mat-form-field>
+                </ng-container>
+                
                 <mat-form-field appearance="fill"
                     class="form-numbers"
                 >
@@ -46,9 +48,11 @@
                 >
                     <mat-label>Price (1 ticket)</mat-label>
                     <input matInput
+                        class="input-price"
                         type="number"
                         formControlName="price"
-                        placeholder="Price">
+                        floatLabel="always">
+                    <span matSuffix>  ETH</span>
                 </mat-form-field>
 
                 <ng-container *ngIf="this.sectors.getRawValue()[i].isNumerable">
