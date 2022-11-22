@@ -12,16 +12,18 @@ import { ConcertSellComponent } from './concert-sell/concert-sell.component';
 import { ConcertSectorsComponent } from './concert-sectors/concert-sectors.component';
 import { SwiperModule } from "swiper/angular";
 import { FormsModule } from '@angular/forms';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { AudienceLayoutComponent } from './audience-layout/audience-layout.component';
 
 @NgModule({
   declarations: [
     MarketplaceComponent,
     ResellComponent,
     ConcertSellComponent,
-    ConcertSectorsComponent
+    ConcertSectorsComponent,
+    AudienceLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     MatTabsModule,
     MatFormFieldModule,
+    MatDialogModule,
     MatInputModule,
     RouterModule,
     SwiperModule,

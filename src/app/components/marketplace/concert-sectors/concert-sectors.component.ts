@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { BigNumber } from 'ethers';
 import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { Sector, Ticket } from 'src/types/concert.model';
+import { AudienceLayoutComponent } from '../audience-layout/audience-layout.component';
 
 @Component({
   selector: 'app-concert-sectors',
@@ -19,7 +20,8 @@ export class ConcertSectorsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private ticked1155Service: Ticked1155Service
+    private ticked1155Service: Ticked1155Service,
+    private matDialog: MatDialog,
   ) { }
 
 
@@ -45,6 +47,15 @@ export class ConcertSectorsComponent implements OnInit {
   buyTicket(tokenId: any, price: number, amount = 1) {
     this.ticked1155Service.buyTicket(
       this.concertAddress, tokenId.toNumber(), price, amount)
+  }
+
+  async showLayout(){
+    let _image = await this.ticked1155Service.getImage(this.concertAddress);
+    let dialogRef = this.matDialog.open(AudienceLayoutComponent, {
+      maxHeight: '80%',
+      maxWidth: '80%',
+      data: { image: _image }
+    });
   }
 
 }
