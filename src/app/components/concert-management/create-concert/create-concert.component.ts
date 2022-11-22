@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
 import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { WalletService } from 'src/app/services/wallet.service';
@@ -17,7 +17,7 @@ export class CreateConcertComponent implements OnInit {
     concertName: ['', Validators.required],
     concertDescription: ['', Validators.required, Validators.minLength(8)],
     concertDate: ['', Validators.required],
-    concertSvg: ['', Validators.required],
+    concertImage: ['', Validators.required],
   })
 
 
@@ -40,7 +40,7 @@ export class CreateConcertComponent implements OnInit {
       this.commonInf.get('concertName')?.getRawValue(),
       this.commonInf.get('concertDescription')?.getRawValue(),
       unixTimestamp,
-      this.commonInf.get('concertSvg')?.getRawValue(),
+      this.commonInf.get('concertImage')?.getRawValue(),
       this.concertSectors
     )
   }

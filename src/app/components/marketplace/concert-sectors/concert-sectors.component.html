@@ -38,6 +38,11 @@
     </ng-template> 
 </swiper>
 
+<button mat-button
+    (click)="showLayout()">
+    Audience layout 
+</button>
+
 <div class="tickets">
     <ng-container 
         *ngFor="let ticket of ticketsMap | keyvalue">

@@ -22,7 +22,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     string public name;
     string public description;
     uint256 public date;
-    string public svg;
+    string public image;
     Sector [] public sectors;
     // tokenId -> Ticket 
     mapping(uint256 => Ticket) public ticketAttr;
@@ -38,13 +38,13 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     // !!! cant pass struct... -> pass table of strings
-    constructor(address _owner, string memory _name, string memory _desc, uint256 _date, string memory _svg, string [] memory _sectors) ERC1155("") { 
+    constructor(address _owner, string memory _name, string memory _desc, uint256 _date, string memory _image, string [] memory _sectors) ERC1155("") { 
         require(_sectors.length % 6 == 0, "Wrong data format" );
         orgAddress = _owner;
         name = _name;
         description = _desc;
         date = _date;
-        svg = _svg;
+        image = _image;
         // addSectors(_sectors); -> msg.sender cause prob
        for(uint i=0; i < (_sectors.length - 1); i += 6 ){
             bool tmp_isNumberable;
@@ -122,7 +122,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
                 abi.encodePacked(
                     '{"name": "', name, '",',
                     '"description": "', description, '",',
-                    '"image_data": "', svg, '",',
+                    '"image": "', image, '",',
                     '"attributes": [{"display_type": "date", "trait_type": "Date", "value": ', Cast.uint2str(date), ' },',
                     '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
                     '{"display_type": "number", "trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), ' }',
@@ -140,7 +140,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
                 abi.encodePacked(
                     '{"name": "', name, '",',
                     '"description": "', description, '",',
-                    '"image_data": "', svg, '",',
+                    '"image": "', image, '",',
                     '"attributes": [{"display_type": "date", "trait_type": "Date", "value": ', Cast.uint2str(date), ' },',
                     '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
                     '{"display_type": "number", "trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), ' }',

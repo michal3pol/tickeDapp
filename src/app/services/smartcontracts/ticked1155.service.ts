@@ -46,6 +46,11 @@ export class Ticked1155Service {
     return tx.status === 1
   }
 
+  public async getImage(address: string): Promise<string>{
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['image']()
+  }
+
   private static async getContract(address: string, bySigner= false) {
     const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
     const signer = provider.getSigner()

@@ -23,14 +23,14 @@ export class TickedFactoryService {
   }
 
   public async createConcertContract(
-    name: string, desc: string, date: Number, svg: string, sectors: string[] ){
+    name: string, desc: string, date: Number, image: string, sectors: string[] ){
     
     const contract = await TickedFactoryService.getContract(true)
-    // const transaction = await contract['createTickets'](
-    //   name, desc, date, svg, sectors)
-    // const tx = await transaction.wait()
+    const transaction = await contract['createTickets'](
+      name, desc, date, image, sectors)
+    const tx = await transaction.wait()
 
-    // return tx.status === 1
+    return tx.status === 1
   }
 
   private static async getContract(bySigner= false) {
