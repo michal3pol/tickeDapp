@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AlchemyApiService } from 'src/app/services/alchemy-api.service';
 import { OwnedNFTs } from 'src/types/nft.model';
 
@@ -18,7 +18,9 @@ export class MyNftComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.nft$ = await this.alchemyApiService.getUserNfts();
+    this.nft$ = await (await this.alchemyApiService.getUserNfts()).pipe(
+      tap(t => console.log(t))
+    );
   }
 
 }
