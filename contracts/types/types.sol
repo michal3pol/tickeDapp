@@ -27,7 +27,6 @@ pragma solidity ^0.8.17;
   }
 
   struct Listing {
-    uint256 tokenId;
     uint256 amount;
     uint256 price;
     address seller;
