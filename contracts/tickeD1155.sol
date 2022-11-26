@@ -99,7 +99,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
 
     function buyTicket(uint256 tokenId, uint256 amount) external payable nonReentrant {
         require(ticketAttr[tokenId].sold == false, "Ticket sold!");
-        require(msg.value >= (ticketAttr[tokenId].price * amount), "Too small value");
+        require(msg.value == (ticketAttr[tokenId].price * amount), "Too small value");
         if(!ticketAttr[tokenId].minted) { // possible only with nft
             _mint(msg.sender, tokenId, 1, "");
             ticketAttr[tokenId].minted = true;
