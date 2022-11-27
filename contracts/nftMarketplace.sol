@@ -120,6 +120,19 @@ contract nftMarketplace is ReentrancyGuard {
         return sellerIds[concert];
     }
 
-    // TODO function for retrieving listing + ticketAttr from 1155
+    function getListedTicked(address concertAddr, string memory sellerId, uint256 tokenId)
+        external 
+        view
+        returns(ListedTicket memory)
+    {
+        // we have to do little "fikołek" here cuz .ticketAttr() returns tuple that's not assignable to Ticket...
+        (string memory secN, uint256 seatN, bool mint, uint256 price, bool sold) = 
+            tickeD1155(concertAddr).ticketAttr(tokenId);
+
+        return(ListedTicket(
+            listing[concertAddr][sellerId],
+            Ticket(secN, seatN, mint, price, sold)
+        ));
+    }
 
 }

@@ -31,3 +31,8 @@ pragma solidity ^0.8.17;
     uint256 price;
     address seller;
   }
+
+  struct ListedTicket {
+    Listing listing;
+    Ticket ticket;
+  }
