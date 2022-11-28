@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { BigNumber } from 'ethers';
 import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { Sector, Ticket } from 'src/types/concert.model';
 import { AudienceLayoutComponent } from '../audience-layout/audience-layout.component';
@@ -48,11 +49,12 @@ export class ConcertSectorsComponent implements OnInit {
     }
   }
 
-  validateAvailability(allTickets: number[], soldTickets: number[]): number[] {
+  validateAvailability(allTickets: BigNumber[], soldTickets: BigNumber[]): number[] {
       let resultArray: number[] = [];
       for(let ticketId of allTickets){
-        if( !soldTickets.includes(ticketId) ) {
-          resultArray.push(ticketId);
+        // if soldTickets does not contain ticketId -> push
+        if( !soldTickets.some(id => id.toNumber() == ticketId.toNumber())) {
+          resultArray.push(ticketId.toNumber());
         }
       }
       return resultArray;

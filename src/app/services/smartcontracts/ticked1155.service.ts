@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { Sector, Ticket } from 'src/types/concert.model';
 import ticked1155 from '../../../../artifacts/contracts/tickeD1155.sol/tickeD1155.json'
 
@@ -31,7 +31,7 @@ export class Ticked1155Service {
     return contract['getSectors']()
   }
 
-  public async getSectorSoldIds(address: string, sector: string): Promise<number []> {
+  public async getSectorSoldIds(address: string, sector: string): Promise<BigNumber []> {
     const contract = await Ticked1155Service.getContract(address)
     return contract['getSoldTokenIds'](sector)
   }
@@ -54,6 +54,16 @@ export class Ticked1155Service {
   public async getImage(address: string): Promise<string>{
     const contract = await Ticked1155Service.getContract(address)
     return contract['image']()
+  }
+
+  public async isApprovedForAll(address: string, account: string, operator: string): Promise<boolean>{
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['isApprovedForAll'](account, operator)
+  }
+
+  public async setApprovalForAll(address: string, operator: string, approved: boolean) {
+    const contract = await Ticked1155Service.getContract(address, true)
+    contract['setApprovalForAll'](operator, approved)
   }
 
   private static async getContract(address: string, bySigner= false) {
