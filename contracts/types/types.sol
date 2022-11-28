@@ -36,3 +36,8 @@ pragma solidity ^0.8.17;
     Listing listing;
     Ticket ticket;
   }
+
+  struct SellerOffer {
+    address concertAddr;
+    string sellerId;
+  }

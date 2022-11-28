@@ -21,6 +21,9 @@ contract nftMarketplace is ReentrancyGuard {
     // concert -> available sellerAddr+tokenId
     mapping(address => string[]) public sellerIds;
 
+    // seller offers -> 'myOffers'
+    mapping(address => SellerOffer[]) public sellerOffers;
+
     // MODIFIERS
     modifier isOwner(
         address concertAddr,
@@ -67,6 +70,7 @@ contract nftMarketplace is ReentrancyGuard {
                 Strings.toHexString(uint256(uint160(msg.sender)), 20), Strings.toHexString(tokenId));
         listing[concertAddr][sellerId] = (params);
         sellerIds[concertAddr].push(sellerId);
+        sellerOffers[msg.sender].push(SellerOffer(concertAddr, sellerId));
     }
 
     function updateOffer(address concertAddr, uint256 tokenId, Listing memory params) 
@@ -120,7 +124,11 @@ contract nftMarketplace is ReentrancyGuard {
         return sellerIds[concert];
     }
 
-    function getListedTicked(address concertAddr, string memory sellerId, uint256 tokenId)
+    function getOffersBySeller(address seller) public view returns(SellerOffer[] memory){
+        return sellerOffers[seller];
+    }
+
+    function getListedTicket(address concertAddr, string memory sellerId, uint256 tokenId)
         external 
         view
         returns(ListedTicket memory)

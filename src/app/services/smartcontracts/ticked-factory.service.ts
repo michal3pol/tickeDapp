@@ -38,7 +38,7 @@ export class TickedFactoryService {
     const signer = provider.getSigner()
 
     return new ethers.Contract(
-      environment.contractAddress,
+      environment.contractTickeDFactoryAddress,
       tickeDFactory.abi,
       bySigner ? signer : provider
     )
