@@ -2,7 +2,7 @@ export interface Contract {
     address: string
 }
 export interface Id {
-    tokenId: string
+    tokenId: number
     tokenMetadata: TokenMetadata
 }
 export interface TokenMetadata {

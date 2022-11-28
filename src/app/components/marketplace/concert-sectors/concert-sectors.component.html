@@ -16,7 +16,14 @@
             (click)="getTickets(i)">
             <mat-card-header>
             <mat-card-title>{{sector.name}}</mat-card-title>
-            <mat-card-subtitle> Available seats: {{sector.availableTokenIds.length}}</mat-card-subtitle>
+            <mat-card-subtitle>
+                <ng-container *ngIf="sector.isNumerable; else notNumerated">
+                    <div> Capacity: {{sector.availableTokenIds.length}} </div>
+                </ng-container>
+                <ng-template #notNumerated>
+                    <div> Capacity: {{ sector.seatStop }} </div>
+                </ng-template> 
+            </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content class="sector-content">
                 <div> Ticket price: {{ sector.price | weiToEth }}ETH </div>
