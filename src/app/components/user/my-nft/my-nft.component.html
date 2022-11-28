@@ -30,10 +30,14 @@
                             <ng-container *ngIf="attr.trait_type === 'Seat'">
                                 <div> Seat: {{ attr.value }}</div>
                             </ng-container>
-                                
                         </ng-container>
                         
-                        <div> </div>
+                        <mat-card-actions> 
+                            <button mat-button
+                            (click)="sellTicket(nft)">
+                                SELL
+                            </button>   
+                        </mat-card-actions>
                     </mat-card-content>
                 </mat-card>
             </ng-container>            
