@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AudienceLayoutComponent } from './audience-layout/audience-layout.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { StandardTicketComponent } from './standard-ticket/standard-ticket.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     ResellComponent,
     ConcertSellComponent,
     ConcertSectorsComponent,
-    AudienceLayoutComponent
+    AudienceLayoutComponent,
+    StandardTicketComponent
   ],
   imports: [
     BrowserModule,
