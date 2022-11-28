@@ -31,6 +31,11 @@ export class Ticked1155Service {
     return contract['getSectors']()
   }
 
+  public async getSectorSoldIds(address: string, sector: string): Promise<number []> {
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['getSoldTokenIds'](sector)
+  }
+
   public async getTicketAttr(address: string, tokenId: number): Promise<Ticket> {
     const contract = await Ticked1155Service.getContract(address)
     return contract['ticketAttr'](tokenId)

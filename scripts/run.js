@@ -14,7 +14,7 @@ const main = async () => {
 
     //const nftContractFactory = await hre.ethers.getContractFactory('tickeDFactory', {libraries: {Base64: "0xA838A27DC8EEa77ad676Ae0C2c52c36Adf82C69f",Cast: "0xE8d24b027574ba4c351a61216Bd748f6eC54CC19",}});
 
-    const st = ["A1","0","0","10","1","1","A2","1","1","5","1","1","C5","1","1","4","0","1"];
+    const st = ["A1","0","0","10","1","1000000000000000","A2","1","1","5","1","1000000000000000","C5","1","1","4","0","10000000000000000"];
 
     const nftContract = await nftContractFactory.deploy();
     await nftContract.deployed();
@@ -29,7 +29,7 @@ const main = async () => {
     //let txn = await nftContract.createTickets("Initial concert from run!", "First concert of aaa in aaa!", 1669495020, st );
     //await txn.wait();
     let image = "https://bafkreiajmvoddrzqjupncsvhyyqdphmz3nrztglogtotimizqm7jhsmqza.ipfs.nftstorage.link/"
-    let txn = await nftContract.createTickets("Concert with !", "First concert of metallica in Warsaw!", unixTime, image, st );
+    let txn = await nftContract.createTickets("Test concert!", "First concert of test in Warsaw!", unixTime, image, st );
     await txn.wait();
     
     let adr = await nftContract.getDepContracts(owner.address);

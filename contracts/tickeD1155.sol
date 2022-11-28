@@ -24,6 +24,11 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     uint256 public date;
     string public image;
     Sector [] public sectors;
+    // by comparing array with Sector.availableTokenIds we can get tokens that are for sale 
+    // - don't waste ETH on itereating throught availableTokenIds to delete
+    // - optimize number of calls to chain
+    mapping(string => uint256[]) public soldTokenIds;
+    
     // tokenId -> Ticket 
     mapping(uint256 => Ticket) public ticketAttr;
 
@@ -104,12 +109,14 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
             _mint(msg.sender, tokenId, 1, "");
             ticketAttr[tokenId].minted = true;
             ticketAttr[tokenId].sold = true;
+            soldTokenIds[ticketAttr[tokenId].sectorName].push(tokenId);
             orgCredits += msg.value;
             return; // no transfer -> return
         }
         orgCredits += msg.value;
         if(this.balanceOf(address(this), tokenId) == 1) { // if it's last mark it as sold
-             ticketAttr[tokenId].sold = true; 
+            ticketAttr[tokenId].sold = true; 
+            soldTokenIds[ticketAttr[tokenId].sectorName].push(tokenId);
         }
         this.safeTransferFrom(address(this), msg.sender, tokenId, amount, ""); // address(this) -> contract is nft's owner
     }    
@@ -180,5 +187,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         return sectors;
     }
 
+    function getSoldTokenIds(string memory sectorName) public view returns (uint256[] memory) {
+        return soldTokenIds[sectorName];
+    }
 }
 

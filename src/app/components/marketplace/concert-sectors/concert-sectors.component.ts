@@ -33,15 +33,29 @@ export class ConcertSectorsComponent implements OnInit {
 
   async getTickets(index: number) {
     this.ticketsMap.clear();
-    for(let tokenId of this.sectors[index].availableTokenIds) {
-      // because reading from chain is free I think it's better to make more calls
-      // than iterate in smartcontract through sectors and available id's 
-      // and deleting them when they are sold (we have to pay for code execution)
+
+    const availableTickets: number[] = this.validateAvailability(
+        this.sectors[index].availableTokenIds, 
+        await this.ticked1155Service.getSectorSoldIds(this.concertAddress, this.sectors[index].name)
+        );
+
+    for(let tokenId of availableTickets) {
+      // DEPRECATED APPROACH: because reading from chain is free I think it's better to make more calls than iterate 
+      // in smartcontract through sectors and available id's and deleting them when they are sold (we have to pay for code execution)
+      // NEW APPROACH: store sold tickets ids in smartcontract map then use validateAvailability
       const ticket = await this.ticked1155Service.getTicketAttr(this.concertAddress, tokenId);
-      if( !ticket.sold ) {
-        this.ticketsMap.set(tokenId, ticket)
-      }
+      this.ticketsMap.set(tokenId, ticket)
     }
+  }
+
+  validateAvailability(allTickets: number[], soldTickets: number[]): number[] {
+      let resultArray: number[] = [];
+      for(let ticketId of allTickets){
+        if( !soldTickets.includes(ticketId) ) {
+          resultArray.push(ticketId);
+        }
+      }
+      return resultArray;
   }
 
   buyTicket(tokenId: any, price: number, amount = 1) {
@@ -50,7 +64,7 @@ export class ConcertSectorsComponent implements OnInit {
   }
 
   async showLayout(){
-    let _image = await this.ticked1155Service.getImage(this.concertAddress);
+    const _image = await this.ticked1155Service.getImage(this.concertAddress);
     let dialogRef = this.matDialog.open(AudienceLayoutComponent, {
       maxHeight: '80%',
       maxWidth: '80%',
