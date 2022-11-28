@@ -8,8 +8,8 @@ export interface Sector {
     isNumerable: boolean; 
     seatStart: number;
     seatStop: number;
-    mintedByOrg: boolean ;
-    price: boolean ;
+    mintedByOrg: boolean;
+    price: number;
     availableTokenIds: number[];
 }
 

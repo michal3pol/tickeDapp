@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AudienceLayoutComponent } from './audience-layout/audience-layout.component';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AudienceLayoutComponent } from './audience-layout/audience-layout.compo
     MatInputModule,
     RouterModule,
     SwiperModule,
-    FormsModule
+    FormsModule,
+    PipesModule
   ]
 })
 export class MarketplaceModule { }

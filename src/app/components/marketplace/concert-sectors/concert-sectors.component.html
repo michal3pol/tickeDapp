@@ -19,7 +19,7 @@
             <mat-card-subtitle> Available seats: {{sector.availableTokenIds.length}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content class="sector-content">
-                <div> Ticket price: {{ sector.price }} </div>
+                <div> Ticket price: {{ sector.price | weiToEth }}ETH </div>
                 <ng-container *ngIf="sector.isNumerable; else notNumerated">
                     <div> Seats from {{ sector.seatStart }} to {{ sector.seatStop }} </div>
                 </ng-container>
@@ -59,7 +59,7 @@
                         Sector without numerable seats
                     </div>
                     <div>
-                        Price: {{ ticket.value.price }} ETH
+                        Price: {{ ticket.value.price | weiToEth }} ETH
                     </div>
                     <div>
                         Minted by organizator: 
@@ -100,7 +100,7 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div>
-                        Price: {{ ticket.value.price }} ETH
+                        Price: {{ ticket.value.price | weiToEth }} ETH
                     </div>
                     <div>
                         Minted by organizator: 
