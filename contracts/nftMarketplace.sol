@@ -33,7 +33,7 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
     ) {
         require(amount > 0, "Invalid amount");
         tickeD1155 concert = tickeD1155(concertAddr);
-        require(concert.balanceOf(msg.sender, tokenId) > amount, "Don't own enough tokens");
+        require(concert.balanceOf(msg.sender, tokenId) >= amount, "Don't own enough tokens");
         _;
     }
 

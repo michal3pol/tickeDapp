@@ -29,7 +29,8 @@
                     <mat-card-actions>
                         <mat-form-field appearance="fill" >
                             <mat-label>Number of tickets</mat-label>
-                            <input matInput type="number" min="1"
+                            <!-- TODO add max value after fixing smartcontract "amount bug" -->
+                            <input matInput type="number" min="1" 
                                 [(ngModel)]="amount">
                         </mat-form-field>
 

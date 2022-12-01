@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BigNumber } from 'ethers';
 import { NftMarketplaceService } from 'src/app/services/smartcontracts/nft-marketplace.service';
 import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { WalletService } from 'src/app/services/wallet.service';
+import EtherUnitConverter from 'src/app/utils/EtherUnitConverter';
 import { environment } from 'src/environments/environment';
 import { CreateOfferDialogData } from 'src/types/dialogs.model';
 import { NFT } from 'src/types/nft.model';
@@ -44,7 +46,6 @@ export class CreateOfferDialogComponent implements OnInit {
       environment.contractNftMarketplaceAddress,
       true
     )
-    this.isMarketplaceApproved = true;
   }
 
   revokeMarketplaceApproval() {
@@ -60,9 +61,16 @@ export class CreateOfferDialogComponent implements OnInit {
       this.nft.contract.address,
       { tokenId: this.nft.id.tokenId,
         amount: this.amount,
-        price: this.price,
+        price: EtherUnitConverter.etherToWei(this.price),
         seller: await this.walletService.getWalletAddress() }
     )
   }
 
+  async refresh() {
+    this.isMarketplaceApproved = await this.ticked1155Service.isApprovedForAll(
+      this.nft.contract.address,
+      await this.walletService.getWalletAddress(),
+      environment.contractNftMarketplaceAddress,
+    )
+  }
 }

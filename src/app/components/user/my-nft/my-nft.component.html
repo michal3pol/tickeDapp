@@ -1,7 +1,7 @@
 <div class="page-content">
     <div *ngIf="nft$ | async as nfts">
 
-        <div> You own: {{nfts.totalCount}} NFTs </div>
+        <div> You own: {{nfts.ownedNfts.length}} NFTs. </div>
         <div class="nft-container">
             <ng-container *ngFor="let nft of nfts.ownedNfts">
 
