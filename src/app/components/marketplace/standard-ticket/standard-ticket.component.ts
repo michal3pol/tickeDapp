@@ -12,6 +12,7 @@ export class StandardTicketComponent implements OnChanges {
 
   @Input() concertAddress!: string;
   @Input() sector!: Sector;
+  // map - ticketId -> tickerAttr
   ticketsMap: Map<number, Ticket> = new Map<number, Ticket>;
   amount = 1;
 
