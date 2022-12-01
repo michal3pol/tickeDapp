@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   contractTickeDFactoryAddress: "0x60EC13e30b21890FbB79386BB12D5491148911dD",
-  contractNftMarketplaceAddress: "0x42aF937f067EA04498d246f9e5C63a3ce406aBa0",
+  contractNftMarketplaceAddress: " 0x7c610fAD88A71AB1d72eDAd34984fBfEA7a96849",
   alchemyApi: "https://eth-goerli.g.alchemy.com/v2/9XMQ5x8fQjeWNnufjSXkhh5TMLnCnStG",
 };
 

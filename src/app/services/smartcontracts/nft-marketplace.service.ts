@@ -50,9 +50,9 @@ export class NftMarketplaceService {
     return contract['getOffersBySeller'](sellerAddr)
   }
 
-  public async getListedTicket(concertAddr: string, sellerId: string, tokenId: number): Promise<ListedTicket> {
+  public async getListedTicket(concertAddr: string, sellerId: string): Promise<ListedTicket> {
     const contract = await NftMarketplaceService.getContract()
-    return contract['getListedTicket'](concertAddr, sellerId, tokenId)
+    return contract['getListedTicket'](concertAddr, sellerId)
   }
 
   private static async getContract(bySigner= false) {
