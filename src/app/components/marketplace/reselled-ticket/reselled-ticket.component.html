@@ -1,0 +1,85 @@
+<div class="tickets">
+    <ng-container 
+        *ngFor="let listElem of listing">
+
+        <ng-container *ngIf="listElem.ticket.seatNumber == 0; else numerable">
+            <mat-card class="ticket">
+                <mat-card-header>
+                    <mat-card-title>
+                        Sector: {{ listElem.ticket.sectorName }} 
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        Sector without numerable seats
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        Price: {{ listElem.listing.price | weiToEth }} ETH
+                    </div>
+                    <div>
+                        Minted / Not unique
+                    </div>
+                    <div>
+                        Reseller:
+                    </div>
+                    <div>
+                        {{ listElem.listing.seller }}
+                    </div>
+                    <div>
+                        Amount: {{ listElem.listing.amount }}
+                    </div>
+                    <mat-card-actions>
+                        <mat-form-field appearance="fill" >
+                            <mat-label>Number of tickets</mat-label>
+                            <input matInput type="number" min="1" max="{{listElem.listing.amount}}"
+                                [(ngModel)]="amount">
+                        </mat-form-field>
+
+                        <button mat-raised-button color="primary"
+                            class="btn-details"
+                            (click)="buyTicket()">
+                            BUY
+                        </button>
+                    </mat-card-actions>
+                </mat-card-content>
+
+            </mat-card>
+        </ng-container> 
+        <!-- NUMERABLE TICKETS -->
+        <ng-template #numerable>        
+            <mat-card class="ticket">
+                <mat-card-header>
+                    <mat-card-title>
+                        Seat: {{ listElem.ticket.seatNumber }} 
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        Sector: {{ listElem.ticket.sectorName }}
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        Price: {{ listElem.listing.price | weiToEth }} ETH
+                    </div>
+                    <div>
+                        Minted / Unique
+                    </div>
+                    <div>
+                        Reseller:
+                    </div>
+                    <div>
+                        {{ listElem.listing.seller }}
+                    </div>
+
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary"
+                            class="btn-details"
+                            (click)="buyTicket()">
+                            BUY
+                        </button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+        </ng-template>
+
+    </ng-container>
+</div> 

@@ -46,7 +46,7 @@
     <!-- RESELLER OFFERS -->
     <ng-template swiperSlide>
         <mat-card class="sector"
-            (click)="getResellersOffers()">
+            (click)="resellersOffers()">
             <mat-card-header>
                 RESELLERS OFFERS
             </mat-card-header>
@@ -63,9 +63,16 @@
     Audience layout 
 </button>
 
-<app-standard-ticket
+<ng-container *ngIf="selectedStandardTickets; else reselled">
+    <app-standard-ticket
     [concertAddress]="concertAddress"
     [sector]="selectedSector">
 
-</app-standard-ticket>
- 
+    </app-standard-ticket>
+</ng-container>
+<ng-template #reselled>
+    <app-reselled-ticket
+    [concertAddress]="concertAddress">
+
+    </app-reselled-ticket>
+</ng-template>

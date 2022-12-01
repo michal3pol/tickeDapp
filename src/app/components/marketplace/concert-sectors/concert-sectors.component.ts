@@ -19,6 +19,7 @@ export class ConcertSectorsComponent implements OnInit {
   selectedSector!: Sector;
   ticketsMap: Map<number, Ticket> = new Map<number, Ticket>;
   amount = 1;
+  selectedStandardTickets: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class ConcertSectorsComponent implements OnInit {
   }
 
   selectSector(index: number) {
+    this.selectedStandardTickets = true;
     this.selectedSector = this.sectors[index];
   }
 
@@ -47,8 +49,8 @@ export class ConcertSectorsComponent implements OnInit {
   }
 
   // resells
-  getResellersOffers() {
-
+  resellersOffers() {
+    this.selectedStandardTickets = false;
   }
 
 }
