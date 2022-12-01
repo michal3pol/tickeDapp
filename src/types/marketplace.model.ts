@@ -1,9 +1,10 @@
+import { BigNumber } from "ethers";
 import { Ticket } from "./concert.model";
 
 export interface Listing {
   tokenId: number;
   amount: number;
-  price: number;
+  price: BigNumber;
   seller: string;
 }
 

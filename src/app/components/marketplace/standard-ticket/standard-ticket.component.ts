@@ -54,7 +54,7 @@ export class StandardTicketComponent implements OnChanges {
   }
 
 
-  buyTicket(tokenId: number, price: number, amount = 1) {
+  buyTicket(tokenId: number, price: BigNumber, amount = 1) {
     this.ticked1155Service.buyTicket(
       this.concertAddress, tokenId, price, amount)
   }

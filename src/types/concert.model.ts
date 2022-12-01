@@ -11,7 +11,7 @@ export interface Sector {
     seatStart: number;
     seatStop: number;
     mintedByOrg: boolean;
-    price: number;
+    price: BigNumber;
     availableTokenIds: BigNumber[];
 }
 
@@ -19,6 +19,6 @@ export interface Ticket {
     sectorName: string;
     seatNumber: number;
     minted: boolean;
-    price: number;
+    price: BigNumber;
     sold: boolean;
 }

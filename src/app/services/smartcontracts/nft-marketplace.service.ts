@@ -20,9 +20,16 @@ export class NftMarketplaceService {
     contract['withdraw'](this.walletService.getWalletAddress())
   }
 
-  public async buyTicket(concertAddr: string, owner: string, tokenId: number) {
+  public async buyTicket(
+    concertAddr: string, 
+    owner: string, 
+    tokenId: number,
+    price: number,
+    amount: number) {
     const contract = await NftMarketplaceService.getContract(true)
-    contract['buyTicket'](concertAddr, owner, tokenId)
+    contract['buyTicket'](concertAddr, owner, tokenId, {
+      value: ethers.utils.parseUnits(price.toString(), "wei")
+    })
   }
 
   public async deleteOffer(concertAddr: string, tokenId: number) {
