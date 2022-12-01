@@ -58,8 +58,8 @@ export class CreateOfferDialogComponent implements OnInit {
   async createOffer() {
     this.nftMarketplaceService.insertOffer(
       this.nft.contract.address,
-      this.nft.id.tokenId,
-      { amount: this.amount,
+      { tokenId: this.nft.id.tokenId,
+        amount: this.amount,
         price: this.price,
         seller: await this.walletService.getWalletAddress() }
     )

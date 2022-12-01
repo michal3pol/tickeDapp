@@ -1,6 +1,7 @@
 import { Ticket } from "./concert.model";
 
 export interface Listing {
+  tokenId: number;
   amount: number;
   price: number;
   seller: string;

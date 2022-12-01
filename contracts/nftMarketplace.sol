@@ -6,9 +6,10 @@ import "./types/types.sol";
 import "./tickeD1155.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 
-// TODO maybe marketplace should stake nft for sale to prevent someone sold somewhere else? 
-contract nftMarketplace is ReentrancyGuard {
+// marketplace holds nfts that available to sell to prevent selling on other market
+contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
 
     mapping(address => uint256) private balance;
 
@@ -58,34 +59,38 @@ contract nftMarketplace is ReentrancyGuard {
     }
 
     // FUNCTIONS
-    function insertOffer(address concertAddr, uint256 tokenId, Listing memory params) 
+    function insertOffer(address concertAddr, Listing memory params) 
         external
-        isOwner(concertAddr, tokenId, params.amount)
-        isNotListed(concertAddr, tokenId)
+        isOwner(concertAddr, params.tokenId, params.amount)
+        isNotListed(concertAddr, params.tokenId)
     {
         require(params.price > 0, "Invalid price");
         tickeD1155 concert = tickeD1155(concertAddr);
         require(concert.isApprovedForAll(msg.sender, address(this)), "Not approved");
+        tickeD1155(concertAddr).safeTransferFrom(
+            msg.sender, address(this), params.tokenId, params.amount, ""); // address(this) -> contract is nft's owner
         string memory sellerId = string.concat(
-                Strings.toHexString(uint256(uint160(msg.sender)), 20), Strings.toHexString(tokenId));
+                Strings.toHexString(uint256(uint160(msg.sender)), 20), Strings.toHexString(params.tokenId));
         listing[concertAddr][sellerId] = (params);
         sellerIds[concertAddr].push(sellerId);
         sellerOffers[msg.sender].push(SellerOffer(concertAddr, sellerId));
     }
 
-    function updateOffer(address concertAddr, uint256 tokenId, Listing memory params) 
+    // dont need to check isOwner (marketplace holds tokens) 
+    // isListed is enough since we use msg.sender as param - it checks if msg.sender listed this tokenId
+    function updateOffer(address concertAddr, Listing memory params) 
         external
-        isOwner(concertAddr, tokenId, params.amount)
-        isListed(concertAddr, msg.sender, tokenId)
+        isListed(concertAddr, msg.sender, params.tokenId)
     {
         require(params.price > 0, "Invalid price");
         tickeD1155 concert = tickeD1155(concertAddr);
         require(concert.isApprovedForAll(msg.sender, address(this)), "Not approved");
         string memory sellerId = string.concat(
-                Strings.toHexString(uint256(uint160(msg.sender)), 20), Strings.toHexString(tokenId));
+                Strings.toHexString(uint256(uint160(msg.sender)), 20), Strings.toHexString(params.tokenId));
         listing[concertAddr][sellerId] = (params);
     }
-    
+
+    // same as above
     function deleteOffer(address concertAddr, uint256 tokenId) 
         external
         isListed(concertAddr, msg.sender, tokenId)
@@ -110,7 +115,7 @@ contract nftMarketplace is ReentrancyGuard {
         balance[ticket.seller] += msg.value;
         delete listing[concertAddr][sellerId];
         tickeD1155(concertAddr).safeTransferFrom(
-            ticket.seller, msg.sender, tokenId, ticket.amount, "");
+            address(this), msg.sender, tokenId, ticket.amount, "");
     }
 
     function withdraw(address payable destAddr) public {
