@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TransferComponent } from './components/transfer/transfer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
@@ -23,7 +22,6 @@ import { UserModule } from './components/user/user.module';
 @NgModule({
   declarations: [
     AppComponent,
-    TransferComponent,
     FooterComponent,
     NavigationBarComponent,
     PageNotFoundComponent
