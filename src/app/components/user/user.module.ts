@@ -10,13 +10,16 @@ import { CreateOfferDialogComponent } from './create-offer-dialog/create-offer-d
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MyOffersComponent } from './my-offers/my-offers.component';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 
 @NgModule({
   declarations: [
     MyNftComponent,
-    CreateOfferDialogComponent
+    CreateOfferDialogComponent,
+    MyOffersComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    PipesModule
   ]
 })
 export class UserModule { }

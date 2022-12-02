@@ -13,7 +13,6 @@ import "./libraries/Base64.sol";
 import "./libraries/Cast.sol";
 import "hardhat/console.sol";
 
-// TODO delete tokenId from availabletokens while sold
 contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     
     uint256 private orgCredits;

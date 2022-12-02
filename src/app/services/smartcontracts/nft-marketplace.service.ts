@@ -17,7 +17,7 @@ export class NftMarketplaceService {
 
   public async withdraw(){
     const contract = await NftMarketplaceService.getContract(true)
-    contract['withdraw'](this.walletService.getWalletAddress())
+    return contract['withdraw'](this.walletService.getWalletAddress())
   }
 
   public async buyTicket(
@@ -52,14 +52,23 @@ export class NftMarketplaceService {
     return contract['getSellerIds'](concertAddr)
   }
   
-  public async getOffersBySeller(sellerAddr: string): Promise<SellerOffer []>{
+  public async getOffersBySeller(): Promise<SellerOffer []>{
     const contract = await NftMarketplaceService.getContract()
-    return contract['getOffersBySeller'](sellerAddr)
+    return contract['getOffersBySeller'](
+      await this.walletService.getWalletAddress()
+    )
   }
 
   public async getListedTicket(concertAddr: string, sellerId: string): Promise<ListedTicket> {
     const contract = await NftMarketplaceService.getContract()
     return contract['getListedTicket'](concertAddr, sellerId)
+  }
+
+  public async getBalance(): Promise<number>{
+    const contract = await NftMarketplaceService.getContract()
+    return contract['balance'](
+      await this.walletService.getWalletAddress()
+    )
   }
 
   private static async getContract(bySigner= false) {

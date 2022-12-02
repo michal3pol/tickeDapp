@@ -76,5 +76,9 @@ export class NavigationBarComponent {
     this.router.navigate(navigationDetails);
   }
 
+  goToMyOffers() {
+    const navigationDetails: string[] = ['/my-offers'];
+    this.router.navigate(navigationDetails);
+  }
 
 }
