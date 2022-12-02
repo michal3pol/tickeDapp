@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 
-// marketplace holds nfts that available to sell to prevent selling on other market
+// marketplace holds nfts that are available to sell to prevent selling on other market
 contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
 
     mapping(address => uint256) private balance;
@@ -102,7 +102,7 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         delete listing[concertAddr][sellerId];
     }
 
-    function buyTicket(address concertAddr, address owner, uint256 tokenId)
+    function buyTicket(address concertAddr, address owner, uint256 tokenId, uint256 amount)
         external
         payable
         nonReentrant
@@ -111,11 +111,16 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         string memory sellerId = string.concat(
             Strings.toHexString(uint256(uint160(owner)), 20), Strings.toHexString(tokenId));
         Listing memory ticket = listing[concertAddr][sellerId];
-        require(msg.value == (ticket.price * ticket.amount), "Not enough ETH");
+        require(ticket.amount >= amount, "Invalid amount");
+        require(msg.value == (ticket.price * amount), "Not enough ETH");
         balance[ticket.seller] += msg.value;
-        delete listing[concertAddr][sellerId];
+        if(ticket.amount == amount){
+            delete listing[concertAddr][sellerId];
+        } else {
+            listing[concertAddr][sellerId].amount -= amount;
+        }
         tickeD1155(concertAddr).safeTransferFrom(
-            address(this), msg.sender, tokenId, ticket.amount, "");
+            address(this), msg.sender, tokenId, amount, "");
     }
 
     function withdraw(address payable destAddr) public {

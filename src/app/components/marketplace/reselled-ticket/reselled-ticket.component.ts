@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BigNumber } from 'ethers';
 import { NftMarketplaceService } from 'src/app/services/smartcontracts/nft-marketplace.service';
 import { ListedTicket } from 'src/types/marketplace.model';
 
@@ -25,22 +26,21 @@ export class ReselledTicketComponent implements OnInit {
     for(let sellerId of this.sellerIds) {
       const ticket: ListedTicket = await this.nftMarketplaceService
                                           .getListedTicket(this.concertAddress, sellerId)
-      // if someone delete his offer it will probably returns undefined                                          
-      if(ticket != undefined){
+      // if someone delete his offer each value in map is set to 0                                        
+      if(ticket.listing.price.toNumber() != 0){
         this.listing.push(ticket);
       }
     }
   }
 
-  buyTicket(){
-    // TODO 
+  buyTicket(owner: string, tokenId: number, price: BigNumber){
+    this.nftMarketplaceService.buyTicket(
+                                this.concertAddress,
+                                owner,
+                                tokenId,
+                                price,
+                                this.amount)
   }
 
-  // buyTicket(owner: string, tokenId: number, price: number, amount: number){
-  //   this.nftMarketplaceService.buyTicket(
-  //                               this.concertAddress,
-  //                               owner,
-  //                               tokenId)
-  // }
 
 }

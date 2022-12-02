@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import { environment } from 'src/environments/environment';
 import { ListedTicket, Listing, SellerOffer } from 'src/types/marketplace.model';
 
@@ -24,11 +24,11 @@ export class NftMarketplaceService {
     concertAddr: string, 
     owner: string, 
     tokenId: number,
-    price: number,
-    amount: number) {
+    price: BigNumber,
+    amount = 1) {
     const contract = await NftMarketplaceService.getContract(true)
     contract['buyTicket'](concertAddr, owner, tokenId, {
-      value: ethers.utils.parseUnits(price.toString(), "wei")
+      value: ethers.utils.parseUnits((price.mul(amount)).toString(), "wei")
     })
   }
 
