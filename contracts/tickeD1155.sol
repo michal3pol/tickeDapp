@@ -13,7 +13,6 @@ import "./libraries/Base64.sol";
 import "./libraries/Cast.sol";
 import "hardhat/console.sol";
 
-// TODO delete tokenId from availabletokens while sold
 contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     
     uint256 private orgCredits;
@@ -22,7 +21,13 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     string public name;
     string public description;
     uint256 public date;
+    string public image;
     Sector [] public sectors;
+    // by comparing array with Sector.availableTokenIds we can get tokens that are for sale 
+    // - don't waste ETH on itereating throught availableTokenIds to delete
+    // - optimize number of calls to chain
+    mapping(string => uint256[]) public soldTokenIds;
+    
     // tokenId -> Ticket 
     mapping(uint256 => Ticket) public ticketAttr;
 
@@ -37,12 +42,13 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     // !!! cant pass struct... -> pass table of strings
-    constructor(address _owner, string memory _name, string memory _desc, uint256 _date, string [] memory _sectors) ERC1155("") { 
+    constructor(address _owner, string memory _name, string memory _desc, uint256 _date, string memory _image, string [] memory _sectors) ERC1155("") { 
         require(_sectors.length % 6 == 0, "Wrong data format" );
         orgAddress = _owner;
         name = _name;
         description = _desc;
         date = _date;
+        image = _image;
         // addSectors(_sectors); -> msg.sender cause prob
        for(uint i=0; i < (_sectors.length - 1); i += 6 ){
             bool tmp_isNumberable;
@@ -95,19 +101,22 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         }
     }
 
+    // TODO validate amount in modifier...
     function buyTicket(uint256 tokenId, uint256 amount) external payable nonReentrant {
         require(ticketAttr[tokenId].sold == false, "Ticket sold!");
-        require(msg.value >= (ticketAttr[tokenId].price * amount), "Too small value");
+        require(msg.value == (ticketAttr[tokenId].price * amount), "Too small value");
         if(!ticketAttr[tokenId].minted) { // possible only with nft
             _mint(msg.sender, tokenId, 1, "");
             ticketAttr[tokenId].minted = true;
             ticketAttr[tokenId].sold = true;
+            soldTokenIds[ticketAttr[tokenId].sectorName].push(tokenId);
             orgCredits += msg.value;
             return; // no transfer -> return
         }
         orgCredits += msg.value;
         if(this.balanceOf(address(this), tokenId) == 1) { // if it's last mark it as sold
-             ticketAttr[tokenId].sold = true; 
+            ticketAttr[tokenId].sold = true; 
+            soldTokenIds[ticketAttr[tokenId].sectorName].push(tokenId);
         }
         this.safeTransferFrom(address(this), msg.sender, tokenId, amount, ""); // address(this) -> contract is nft's owner
     }    
@@ -120,6 +129,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
                 abi.encodePacked(
                     '{"name": "', name, '",',
                     '"description": "', description, '",',
+                    '"image": "', image, '",',
                     '"attributes": [{"display_type": "date", "trait_type": "Date", "value": ', Cast.uint2str(date), ' },',
                     '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
                     '{"display_type": "number", "trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), ' }',
@@ -137,6 +147,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
                 abi.encodePacked(
                     '{"name": "', name, '",',
                     '"description": "', description, '",',
+                    '"image": "', image, '",',
                     '"attributes": [{"display_type": "date", "trait_type": "Date", "value": ', Cast.uint2str(date), ' },',
                     '{"trait_type": "Sector", "value": "', ticketAttr[tokenId].sectorName, '"},',
                     '{"display_type": "number", "trait_type": "Seat", "value": ', Cast.uint2str(ticketAttr[tokenId].seatNumber), ' }',
@@ -176,5 +187,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         return sectors;
     }
 
+    function getSoldTokenIds(string memory sectorName) public view returns (uint256[] memory) {
+        return soldTokenIds[sectorName];
+    }
 }
 

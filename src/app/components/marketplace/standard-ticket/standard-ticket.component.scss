@@ -1,0 +1,13 @@
+.tickets {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+}
+
+.ticket {
+  margin: 10px;
+}
+
+.ticket:hover {
+    transform: scale(1.02);
+}

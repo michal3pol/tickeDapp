@@ -20,7 +20,22 @@
         tickeD MARKETPLACE
     </button>
 
-    <button mat-raised-button color="primary" class="btn-log-in" 
+    <button mat-raised-button [matMenuTriggerFor]="myAccount"
+        class="my-account" >
+        My Account
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #myAccount="matMenu">
+        <button mat-menu-item color="primary"
         (click)="connectWallet()"
         >Connect wallet</button>
+        <button mat-menu-item color="primary"
+        (click)="goToMyNfts()"
+        >My NFTs</button>        
+        <button mat-menu-item color="primary"
+        (click)="goToMyOffers()"
+        >My Offers</button>
+    </mat-menu>
+
 </div>

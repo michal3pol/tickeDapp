@@ -1,0 +1,16 @@
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.dialog {
+    position: relative !important;
+}
+
+.btn-close {
+    position: relative !important;
+    left: 10px;
+    bottom: 10px;
+}

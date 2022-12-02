@@ -13,13 +13,20 @@
     <ng-template swiperSlide 
         *ngFor="let sector of sectors; let i=index">
         <mat-card class="sector"
-            (click)="getTickets(i)">
+            (click)="selectSector(i)">
             <mat-card-header>
             <mat-card-title>{{sector.name}}</mat-card-title>
-            <mat-card-subtitle> Available seats: {{sector.availableTokenIds.length}}</mat-card-subtitle>
+            <mat-card-subtitle>
+                <ng-container *ngIf="sector.isNumerable; else notNumerated">
+                    <div> Capacity: {{sector.availableTokenIds.length}} </div>
+                </ng-container>
+                <ng-template #notNumerated>
+                    <div> Capacity: {{ sector.seatStop }} </div>
+                </ng-template> 
+            </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content class="sector-content">
-                <div> Ticket price: {{ sector.price }} </div>
+                <div> Ticket price: {{ sector.price | weiToEth }}ETH </div>
                 <ng-container *ngIf="sector.isNumerable; else notNumerated">
                     <div> Seats from {{ sector.seatStart }} to {{ sector.seatStop }} </div>
                 </ng-container>
@@ -36,87 +43,36 @@
             </mat-card-content>
         </mat-card>
     </ng-template> 
+    <!-- RESELLER OFFERS -->
+    <ng-template swiperSlide>
+        <mat-card class="sector"
+            (click)="resellersOffers()">
+            <mat-card-header>
+                RESELLERS OFFERS
+            </mat-card-header>
+
+
+        </mat-card>
+    </ng-template>
+
+
 </swiper>
 
-<div class="tickets">
-    <ng-container 
-        *ngFor="let ticket of ticketsMap | keyvalue">
+<button mat-button
+    (click)="showLayout()">
+    Audience layout 
+</button>
 
-        <ng-container *ngIf="ticket.value.seatNumber == 0; else numerable">
-            <mat-card class="ticket">
-                <mat-card-header>
-                    <mat-card-subtitle>
-                        Sector: {{ ticket.value.sectorName }}
-                    </mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <div>
-                        Sector without numerable seats
-                    </div>
-                    <div>
-                        Price: {{ ticket.value.price }} ETH
-                    </div>
-                    <div>
-                        Minted by organizator: 
-                        <ng-container *ngIf="ticket.value.minted === false; else minted"
-                            > NOPE! </ng-container>
-                        <ng-template #minted>
-                            YASS!
-                        </ng-template>
-                    </div>
+<ng-container *ngIf="selectedStandardTickets; else reselled">
+    <app-standard-ticket
+    [concertAddress]="concertAddress"
+    [sector]="selectedSector">
 
-                    <mat-card-actions>
-                        <mat-form-field appearance="fill" >
-                            <mat-label>Number of tickets</mat-label>
-                            <input matInput type="number" min="1"
-                                [(ngModel)]="amount">
-                        </mat-form-field>
+    </app-standard-ticket>
+</ng-container>
+<ng-template #reselled>
+    <app-reselled-ticket
+    [concertAddress]="concertAddress">
 
-                        <button mat-raised-button color="primary"
-                            class="btn-details"
-                            (click)="buyTicket(ticket.key, ticket.value.price, amount)">
-                            BUY
-                        </button>
-                    </mat-card-actions>
-                </mat-card-content>
-
-            </mat-card>
-        </ng-container> 
-        <!-- NUMERABLE TICKETS -->
-        <ng-template #numerable>        
-            <mat-card class="ticket">
-                <mat-card-header>
-                    <mat-card-title>
-                        Seat: {{ ticket.value.seatNumber }} 
-                    </mat-card-title>
-                    <mat-card-subtitle>
-                        Sector: {{ ticket.value.sectorName }}
-                    </mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <div>
-                        Price: {{ ticket.value.price }} ETH
-                    </div>
-                    <div>
-                        Minted by organizator: 
-                        <ng-container *ngIf="ticket.value.minted === false; else minted"
-                            > NOPE! </ng-container>
-                        <ng-template #minted>
-                            YASS!
-                        </ng-template>
-                    </div>
-
-                    <mat-card-actions>
-                        <button mat-raised-button color="primary"
-                            class="btn-details"
-                            (click)="buyTicket(ticket.key, ticket.value.price)">
-                            BUY
-                        </button>
-                    </mat-card-actions>
-                </mat-card-content>
-            </mat-card>
-        </ng-template>
-
-    </ng-container>
-</div>
-
+    </app-reselled-ticket>
+</ng-template>

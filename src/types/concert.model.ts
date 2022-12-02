@@ -1,3 +1,5 @@
+import { BigNumber } from "ethers";
+
 export interface DepConcert {
     contractAddress: string,
     name: string
@@ -8,15 +10,15 @@ export interface Sector {
     isNumerable: boolean; 
     seatStart: number;
     seatStop: number;
-    mintedByOrg: boolean ;
-    price: boolean ;
-    availableTokenIds: number[];
+    mintedByOrg: boolean;
+    price: BigNumber;
+    availableTokenIds: BigNumber[];
 }
 
 export interface Ticket {
     sectorName: string;
     seatNumber: number;
     minted: boolean;
-    price: number;
+    price: BigNumber;
     sold: boolean;
 }

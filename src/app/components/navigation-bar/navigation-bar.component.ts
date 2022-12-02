@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
+import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
 import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
@@ -11,8 +11,6 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class NavigationBarComponent {
 
-  isLogged: boolean = false; // figure out how to show that wallet is connected
-
   constructor(
     private walletService: WalletService,
     private tickedFactoryService: TickedFactoryService,
@@ -21,7 +19,10 @@ export class NavigationBarComponent {
   ) { }
 
   async connectWallet() {
-    this.isLogged = await this.walletService.logIn();
+    let isLogged = await this.walletService.logIn();
+    if(isLogged){
+      this.snackbarService.info("You are already connected")
+    }
   }
 
   async goToConcertForm() {
@@ -70,5 +71,14 @@ export class NavigationBarComponent {
     this.router.navigate(navigationDetails);
   }
 
+  goToMyNfts() {
+    const navigationDetails: string[] = ['/my-nft'];
+    this.router.navigate(navigationDetails);
+  }
+
+  goToMyOffers() {
+    const navigationDetails: string[] = ['/my-offers'];
+    this.router.navigate(navigationDetails);
+  }
 
 }

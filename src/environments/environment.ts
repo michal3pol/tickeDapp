@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  contractAddress: "0x0de9148d44a39a4806587f73edD8791De4478aEa",
-  //contractAddress: "0x2E0474eB08610A785e11D4eA0fD4DAfF87511E40",
-  //contractAddress: "0x065bea6aFdb96BD9100Ba209299CA84a7f957640", old without selling
+  contractTickeDFactoryAddress: "0x60EC13e30b21890FbB79386BB12D5491148911dD",
+  contractNftMarketplaceAddress: "0xf3fA26E59157520193880CeF6915235AAe1DC9B0",
+  alchemyApi: "https://eth-goerli.g.alchemy.com/v2/9XMQ5x8fQjeWNnufjSXkhh5TMLnCnStG",
 };
 
 /*

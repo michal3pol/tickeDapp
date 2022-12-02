@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TickedFactoryService } from './ticked-factory.service';
+import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
 import { WalletService } from './wallet.service';
 
 @Injectable({

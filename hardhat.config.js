@@ -6,13 +6,12 @@ module.exports = {
   networks: {
     goerli: {
       url: process.env.QUICKNODE_API_KEY_URL,
-      accounts: [process.env.GOERLI_PRIVATE_KEY],
+      accounts: [process.env.WALLET_PRIVATE_KEY],
     },
-    // need to create api key
-    // matic: {
-    //   url: process.env.,
-    //   accounts: [process.env.GOERLI_PRIVATE_KEY],
-    // },
+    matic: {
+      url: process.env.ALCHEMY_MUMBAI_API_KEY,
+      accounts: [process.env.WALLET_PRIVATE_KEY],
+    },
     hardhat: {
       blockGasLimit: 10000000000,
     },

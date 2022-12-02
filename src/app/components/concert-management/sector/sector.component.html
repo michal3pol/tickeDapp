@@ -77,12 +77,14 @@
             <mat-icon>add</mat-icon>
         </button>
 
-        <button *ngIf="createConcertForm == true; else confirmButton"
-            mat-button matStepperNext
-            (click)="confirmSectors()"
-        >
-            Confirm sectors
-        </button>
+        <div>
+            <button *ngIf="createConcertForm == true; else confirmButton"
+                mat-button matStepperNext
+                (click)="confirmSectors()"
+            >
+                Confirm sectors
+            </button>
+        </div>
 
         <ng-template #confirmButton>
             <button 

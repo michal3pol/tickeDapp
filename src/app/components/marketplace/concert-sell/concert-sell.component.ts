@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TickedFactoryService } from 'src/app/services/ticked-factory.service';
-import { Ticked1155Service } from 'src/app/services/ticked1155.service';
+import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
+import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import { DepConcert } from 'src/types/concert.model';
 
 @Component({
   selector: 'app-sell',
-  templateUrl: './sell.component.html',
-  styleUrls: ['./sell.component.scss']
+  templateUrl: './concert-sell.component.html',
+  styleUrls: ['./concert-sell.component.scss']
 })
-export class SellComponent implements OnInit {
+export class ConcertSellComponent implements OnInit {
 
   constructor(
     private tickedFactoryService: TickedFactoryService,

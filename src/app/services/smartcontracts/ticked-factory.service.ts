@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { environment } from 'src/environments/environment';
 import { DepConcert } from 'src/types/concert.model';
 
-import tickeDFactory from '../../../artifacts/contracts/tickeDFactory.sol/tickeDFactory.json'
+import tickeDFactory from '../../../../artifacts/contracts/tickeDFactory.sol/tickeDFactory.json'
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +23,11 @@ export class TickedFactoryService {
   }
 
   public async createConcertContract(
-    name: string, desc: string, date: Number, sectors: string[] ){
+    name: string, desc: string, date: Number, image: string, sectors: string[] ){
     
     const contract = await TickedFactoryService.getContract(true)
     const transaction = await contract['createTickets'](
-      name, desc, date, sectors)
+      name, desc, date, image, sectors)
     const tx = await transaction.wait()
 
     return tx.status === 1
@@ -38,7 +38,7 @@ export class TickedFactoryService {
     const signer = provider.getSigner()
 
     return new ethers.Contract(
-      environment.contractAddress,
+      environment.contractTickeDFactoryAddress,
       tickeDFactory.abi,
       bySigner ? signer : provider
     )

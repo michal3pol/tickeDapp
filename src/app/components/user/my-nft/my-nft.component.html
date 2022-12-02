@@ -1,0 +1,48 @@
+<div class="page-content">
+    <div *ngIf="nft$ | async as nfts">
+
+        <div> You own: {{nfts.ownedNfts.length}} NFTs. </div>
+        <div class="nft-container">
+            <ng-container *ngFor="let nft of nfts.ownedNfts">
+
+                <mat-card class="nft">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <div> {{ nft.metadata.name }} </div>
+                            <div> {{ nft.metadata.description }} </div>
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            {{ nft.contract.address }}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div> Token id: {{ nft.id.tokenId }} </div>
+                        <div> Token type:  {{ nft.id.tokenMetadata.tokenType }}</div>
+                        <b> Balance: {{nft.balance}} </b>
+                        
+                        <ng-container *ngFor="let attr of nft.metadata.attributes">
+                            <ng-container *ngIf="attr.trait_type === 'Date'">
+                                <div> Date: {{ attr.value * 1000 | date:'medium' }}</div>
+                            </ng-container>
+                            <ng-container *ngIf="attr.trait_type === 'Sector'">
+                                <div> Sector: {{ attr.value }}</div>
+                            </ng-container>
+                            <ng-container *ngIf="attr.trait_type === 'Seat'">
+                                <div> Seat: {{ attr.value }}</div>
+                            </ng-container>
+                        </ng-container>
+                        
+                        <mat-card-actions> 
+                            <button mat-button
+                            (click)="sellTicket(nft)">
+                                SELL
+                            </button>   
+                        </mat-card-actions>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>            
+        </div>
+
+    </div>
+</div>
+

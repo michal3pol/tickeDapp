@@ -7,9 +7,11 @@ import { WhitelistComponent } from './components/concert-management/whitelist/wh
 import { ConcertSectorsComponent } from './components/marketplace/concert-sectors/concert-sectors.component';
 import { MarketplaceComponent } from './components/marketplace/marketplace-comp/marketplace.component';
 import { ResellComponent } from './components/marketplace/resell/resell.component';
-import { SellComponent } from './components/marketplace/sell/sell.component';
+import { ConcertSellComponent } from './components/marketplace/concert-sell/concert-sell.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthOrganizatorGuard } from './services/auth-organizator.guard';
+import { MyNftComponent } from './components/user/my-nft/my-nft.component';
+import { MyOffersComponent } from './components/user/my-offers/my-offers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/marketplace', pathMatch: 'full' },
@@ -17,7 +19,7 @@ const routes: Routes = [
     children:[
       {
         path:'sell',
-        component: SellComponent
+        component: ConcertSellComponent
       },
       {
         path:'sell/:address',
@@ -31,6 +33,8 @@ const routes: Routes = [
   },
   { path: 'create-concert', canActivate:[AuthOrganizatorGuard], component: CreateConcertComponent },
   { path: 'my-concerts', canActivate:[AuthOrganizatorGuard], component: MyConcertsComponent },
+  { path: 'my-nft', component: MyNftComponent },
+  { path: 'my-offers', component: MyOffersComponent },
   { path: 'whitelist', component: WhitelistComponent },
   { path: '**', component:  PageNotFoundComponent },
 ];
