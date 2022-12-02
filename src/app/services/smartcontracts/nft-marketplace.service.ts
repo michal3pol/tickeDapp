@@ -27,7 +27,7 @@ export class NftMarketplaceService {
     price: BigNumber,
     amount = 1) {
     const contract = await NftMarketplaceService.getContract(true)
-    contract['buyTicket'](concertAddr, owner, tokenId, {
+    contract['buyTicket'](concertAddr, owner, tokenId, amount, {
       value: ethers.utils.parseUnits((price.mul(amount)).toString(), "wei")
     })
   }

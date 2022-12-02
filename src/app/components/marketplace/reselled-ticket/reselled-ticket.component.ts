@@ -26,8 +26,8 @@ export class ReselledTicketComponent implements OnInit {
     for(let sellerId of this.sellerIds) {
       const ticket: ListedTicket = await this.nftMarketplaceService
                                           .getListedTicket(this.concertAddress, sellerId)
-      // if someone delete his offer each value in map is set to 0                                        
-      if(ticket.listing.price.toNumber() != 0){
+      // if someone delete his offer each value in map is set to 0
+      if(ticket.listing.seller != "0x0000000000000000000000000000000000000000"){
         this.listing.push(ticket);
       }
     }
