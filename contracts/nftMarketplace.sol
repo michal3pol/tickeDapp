@@ -11,7 +11,7 @@ import "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 // marketplace holds nfts that are available to sell to prevent selling on other market
 contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
 
-    mapping(address => uint256) private balance;
+    mapping(address => uint256) public balance;
 
     // seller gets unicate identifier for his token 
     // only 1 offer per seller+tokenId is possible

@@ -17,7 +17,11 @@ export class NftMarketplaceService {
 
   public async withdraw(){
     const contract = await NftMarketplaceService.getContract(true)
-    return contract['withdraw'](this.walletService.getWalletAddress())
+    try {
+      return await contract['withdraw'](this.walletService.getWalletAddress())
+    } catch(e: any) {
+      console.log(e.error.message )
+    }
   }
 
   public async buyTicket(
