@@ -122,7 +122,10 @@ describe('TickeDFactory contract', function () {
         orgAuth1.address
       );
 
-      expect(await depConcerts[0].name).to.equal(concertName);
+      expect(
+        await depConcerts[0].name,
+        'Incorrect concert name in Dep concerts'
+      ).to.equal(concertName);
 
       const tickeD1155Factory = await ethers.getContractFactory('tickeD1155', {
         libraries: {
@@ -135,7 +138,10 @@ describe('TickeDFactory contract', function () {
         depConcerts[0].contractAddress
       );
 
-      expect(await createdContract['orgAddress']()).to.equal(orgAuth1.address);
+      expect(
+        await createdContract['orgAddress'](),
+        'Incorrect organizator address in concert smartcontract'
+      ).to.equal(orgAuth1.address);
     });
   });
 });
