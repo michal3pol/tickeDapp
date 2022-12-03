@@ -47,3 +47,4 @@ artifacts
 
 # Other
 .env
+/typechain-types
