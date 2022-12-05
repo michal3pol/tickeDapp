@@ -49,7 +49,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         description = _desc;
         date = _date;
         image = _image;
-        // addSectors(_sectors); -> msg.sender cause prob
+        // addSectors(_sectors); -> msg.sender cause prob - onlyOwner can call this function, but 
        for(uint i=0; i < (_sectors.length - 1); i += 6 ){
             bool tmp_isNumberable;
             bool tmp_mintedByOrg;
@@ -162,8 +162,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     function addSectors(string [] memory _sectors) external {
-        require(_sectors.length % 6 == 0, "Wrong data format" );
         require(msg.sender == orgAddress, "Only owner!");
+        require(_sectors.length % 6 == 0, "Wrong data format" );
         for(uint i=0; i < (_sectors.length - 1); i += 6 ){
             bool tmp_isNumberable;
             bool tmp_mintedByOrg;

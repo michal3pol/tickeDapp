@@ -14,6 +14,7 @@ const sectorB = ['B2', '1', '1', '5', '1', '2000000000000000'];
 const sectorC = ['C3', '1', '1', '10', '0', '1000000000000000'];
 const sectors = sectorA.concat(sectorB).concat(sectorC);
 const sectorD = ['D4', '1', '1', '10', '0', '4000000000000000'];
+const wrongSector = ['D4', '1', '1', '10', '0'];
 
 // runs before each
 async function deployFixtureWithManySectors() {
@@ -157,6 +158,24 @@ describe('TickeD1155 contract tests', function () {
       ).to.equal(Boolean(JSON.parse(sectorC[4])));
       expect(sectors[2].price, 'Wrong property price of sector C').to.equal(
         sectorC[5]
+      );
+    });
+
+    it('Should revert if not owner try to add new sectors', async function () {
+      const { tickeD1155, concertgoer } = await loadFixture(
+        deployFixtureWithManySectors
+      );
+
+      await expect(
+        tickeD1155.connect(concertgoer)['addSectors'](sectorD)
+      ).to.be.revertedWith('Only owner!');
+    });
+
+    it('Should revert if new sectors are wrong format', async function () {
+      const { tickeD1155 } = await loadFixture(deployFixtureWithManySectors);
+
+      await expect(tickeD1155['addSectors'](wrongSector)).to.be.revertedWith(
+        'Wrong data format'
       );
     });
   });
@@ -622,5 +641,71 @@ describe('TickeD1155 contract tests', function () {
     });
   });
 
-  // uri, addtickets, withdraw
+  describe('Withdraw credits', function () {
+    it('Should revert if not owner try to withdraw', async function () {
+      const { tickeD1155, concertgoer } = await loadFixture(
+        deployFixtureWithManySectors
+      );
+
+      await expect(
+        tickeD1155
+          .connect(concertgoer)
+          ['withdrawOrgCredits'](concertgoer.address)
+      ).to.be.revertedWith('Only owner!');
+    });
+
+    it('Should revert if credits equals 0', async function () {
+      const { tickeD1155, owner } = await loadFixture(
+        deployFixtureWithManySectors
+      );
+
+      await expect(
+        tickeD1155['withdrawOrgCredits'](owner.address)
+      ).to.be.revertedWith('0 credits');
+    });
+
+    it('Should send credits (regarding sells) to specified address', async function () {
+      const { tickeD1155, owner, concertgoer, orgAuth1 } = await loadFixture(
+        deployFixtureWithManySectors
+      );
+      const tokenId = 0;
+      await tickeD1155['createAndMintTickets']();
+      const ticket: Ticket = await tickeD1155['ticketAttr'](tokenId);
+      await tickeD1155.connect(concertgoer)['buyTicket'](tokenId, 1, {
+        value: ethers.utils.parseUnits(
+          (ticket.price.toNumber() * 1).toString(),
+          'wei'
+        ),
+      });
+
+      const prevBalance = await orgAuth1.getBalance();
+      await tickeD1155['withdrawOrgCredits'](orgAuth1.address);
+      const newBalance = await orgAuth1.getBalance();
+      await expect(newBalance.sub(prevBalance)).to.be.equal(
+        ticket.price.mul(1)
+      );
+    });
+
+    it('Should set credits to 0 after withdraw (should revert)', async function () {
+      const { tickeD1155, owner, concertgoer, orgAuth1 } = await loadFixture(
+        deployFixtureWithManySectors
+      );
+      const tokenId = 0;
+      await tickeD1155['createAndMintTickets']();
+      const ticket: Ticket = await tickeD1155['ticketAttr'](tokenId);
+      await tickeD1155.connect(concertgoer)['buyTicket'](tokenId, 1, {
+        value: ethers.utils.parseUnits(
+          (ticket.price.toNumber() * 1).toString(),
+          'wei'
+        ),
+      });
+
+      await tickeD1155['withdrawOrgCredits'](orgAuth1.address);
+      await expect(
+        tickeD1155['withdrawOrgCredits'](owner.address)
+      ).to.be.revertedWith('0 credits');
+    });
+  });
+
+  // uri
 });
