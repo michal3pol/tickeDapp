@@ -102,7 +102,11 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     function buyTicket(uint256 tokenId, uint256 amount) external payable nonReentrant {
-        require(this.balanceOf(address(this), tokenId) >= amount, "Not enough tokens");
+        require(tokenId <= _tokenIds.current(), "Too big tokenId");
+        if(ticketAttr[tokenId].minted) {
+            require(this.balanceOf(address(this), tokenId) >= amount, "Not enough tokens");    
+            // else - > purchaser will mint it
+        }
         require(ticketAttr[tokenId].sold == false, "Ticket sold!");
         require(msg.value == (ticketAttr[tokenId].price * amount), "Too small value");
         if(!ticketAttr[tokenId].minted) { // possible only with nft
@@ -114,7 +118,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
             return; // no transfer -> return
         }
         orgCredits += msg.value;
-        if(this.balanceOf(address(this), tokenId) == 1) { // if it's last mark it as sold
+        if(this.balanceOf(address(this), tokenId) - amount == 0) { // if sb buy all - mark it as sold
             ticketAttr[tokenId].sold = true; 
             soldTokenIds[ticketAttr[tokenId].sectorName].push(tokenId);
         }
