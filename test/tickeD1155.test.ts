@@ -2,6 +2,7 @@ import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { ethers } from 'hardhat';
 import { expect } from 'chai';
 import { Sector, Ticket } from 'src/types/concert.model';
+import { TicketAttr } from './structs/TicketAttr.model';
 
 // constants
 const concertName = 'Concert';
@@ -707,5 +708,85 @@ describe('TickeD1155 contract tests', function () {
     });
   });
 
-  // uri
+  describe('Validate URI', function () {
+    it('Should revert if token with given id dont exist', async function () {
+      const { tickeD1155 } = await loadFixture(deployFixtureWithManySectors);
+      // tickets don't exist yet
+      await expect(tickeD1155['uri'](0)).to.be.revertedWith('Invalid tokenId');
+    });
+
+    it('Should return valid uri (uri)', async function () {
+      const { tickeD1155 } = await loadFixture(deployFixtureWithManySectors);
+      await tickeD1155['createAndMintTickets']();
+      const uriBase64 = await tickeD1155['uri'](0);
+      const tokenAttr: Ticket = await tickeD1155['ticketAttr'](0);
+
+      const uriJson = Buffer.from(uriBase64.substring(29), 'base64').toString();
+      const uri: TicketAttr = JSON.parse(uriJson);
+      expect(uri.name, 'Wrong concert name').equals(concertName);
+      expect(uri.description, 'Wrong concert description').equals(
+        concertDescription
+      );
+      expect(uri.image, 'Wrong concert image').equals(imageUrl);
+      expect(uri.attributes[0].display_type, 'Wrong display_type date').equals(
+        'date'
+      );
+      expect(uri.attributes[0].trait_type, 'Wrong trait_type date').equals(
+        'Date'
+      );
+      expect(uri.attributes[0].value, 'Wrong concert date').equals(concertDate);
+      expect(uri.attributes[1].trait_type, 'Wrong trait_type sector').equals(
+        'Sector'
+      );
+      expect(uri.attributes[1].value, 'Wrong sector').equals(
+        tokenAttr.sectorName
+      );
+      expect(uri.attributes[2].display_type, 'Wrong display_type seat').equals(
+        'number'
+      );
+      expect(uri.attributes[2].trait_type, 'Wrong trait_type seat').equals(
+        'Seat'
+      );
+      expect(uri.attributes[2].value, 'Wrong concert seat').equals(
+        tokenAttr.seatNumber
+      );
+    });
+
+    it('Should return valid uri (tokenURI)', async function () {
+      const { tickeD1155 } = await loadFixture(deployFixtureWithManySectors);
+      await tickeD1155['createAndMintTickets']();
+      const uriBase64 = await tickeD1155['tokenURI'](0);
+      const tokenAttr: Ticket = await tickeD1155['ticketAttr'](0);
+
+      const uriJson = Buffer.from(uriBase64.substring(29), 'base64').toString();
+      const uri: TicketAttr = JSON.parse(uriJson);
+      expect(uri.name, 'Wrong concert name').equals(concertName);
+      expect(uri.description, 'Wrong concert description').equals(
+        concertDescription
+      );
+      expect(uri.image, 'Wrong concert image').equals(imageUrl);
+      expect(uri.attributes[0].display_type, 'Wrong display_type date').equals(
+        'date'
+      );
+      expect(uri.attributes[0].trait_type, 'Wrong trait_type date').equals(
+        'Date'
+      );
+      expect(uri.attributes[0].value, 'Wrong concert date').equals(concertDate);
+      expect(uri.attributes[1].trait_type, 'Wrong trait_type sector').equals(
+        'Sector'
+      );
+      expect(uri.attributes[1].value, 'Wrong sector').equals(
+        tokenAttr.sectorName
+      );
+      expect(uri.attributes[2].display_type, 'Wrong display_type seat').equals(
+        'number'
+      );
+      expect(uri.attributes[2].trait_type, 'Wrong trait_type seat').equals(
+        'Seat'
+      );
+      expect(uri.attributes[2].value, 'Wrong concert seat').equals(
+        tokenAttr.seatNumber
+      );
+    });
+  });
 });
