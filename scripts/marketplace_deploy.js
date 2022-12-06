@@ -1,9 +1,13 @@
+/* 
+* This script deploy ONLY marketplace contract
+*/
+
 const main = async () => {
 
-    const nftMarketplaceFactory = await hre.ethers.getContractFactory('nftMarketplace');
-    const nftMFD = await nftMarketplaceFactory.deploy();
-    await nftMFD.deployed();
-    console.log("Contract nfMarketplace deployed to:", nftMFD.address);
+  const nftMarketplaceFactory = await hre.ethers.getContractFactory('nftMarketplace');
+  const nftMarketplace = await nftMarketplaceFactory.deploy();
+  await nftMarketplace.deployed();
+  console.log("Contract nfMarketplace deployed to:", nftMarketplace.address);
 
   };
 
