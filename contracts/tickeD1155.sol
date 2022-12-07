@@ -49,7 +49,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         description = _desc;
         date = _date;
         image = _image;
-        // addSectors(_sectors); -> msg.sender cause prob
+        // addSectors(_sectors); -> msg.sender cause prob - onlyOwner can call this function, but 
        for(uint i=0; i < (_sectors.length - 1); i += 6 ){
             bool tmp_isNumberable;
             bool tmp_mintedByOrg;
@@ -101,8 +101,12 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         }
     }
 
-    // TODO validate amount in modifier...
     function buyTicket(uint256 tokenId, uint256 amount) external payable nonReentrant {
+        require(tokenId <= _tokenIds.current(), "Too big tokenId");
+        if(ticketAttr[tokenId].minted) {
+            require(this.balanceOf(address(this), tokenId) >= amount, "Not enough tokens");    
+            // else - > purchaser will mint it
+        }
         require(ticketAttr[tokenId].sold == false, "Ticket sold!");
         require(msg.value == (ticketAttr[tokenId].price * amount), "Too small value");
         if(!ticketAttr[tokenId].minted) { // possible only with nft
@@ -114,7 +118,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
             return; // no transfer -> return
         }
         orgCredits += msg.value;
-        if(this.balanceOf(address(this), tokenId) == 1) { // if it's last mark it as sold
+        if(this.balanceOf(address(this), tokenId) - amount == 0) { // if sb buy all - mark it as sold
             ticketAttr[tokenId].sold = true; 
             soldTokenIds[ticketAttr[tokenId].sectorName].push(tokenId);
         }
@@ -158,8 +162,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     function addSectors(string [] memory _sectors) external {
-        require(_sectors.length % 6 == 0, "Wrong data format" );
         require(msg.sender == orgAddress, "Only owner!");
+        require(_sectors.length % 6 == 0, "Wrong data format" );
         for(uint i=0; i < (_sectors.length - 1); i += 6 ){
             bool tmp_isNumberable;
             bool tmp_mintedByOrg;

@@ -25,7 +25,7 @@ export class MyOffersComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    // this.balance = await this.nftMarketplaceService.getBalance();
+    this.balance = await this.nftMarketplaceService.getBalance();
     this.sellerOffers = await this.nftMarketplaceService.getOffersBySeller();
 
     for(let offer of this.sellerOffers){
@@ -65,13 +65,8 @@ export class MyOffersComponent implements OnInit {
 
   async withdraw() {
     // TODO manage if transaction fail or not
-    const transaction = this.nftMarketplaceService.withdraw();
-    console.log(transaction)
-    //const tx = transaction.wait();
-    //console.log(tx)
-    //if(transaction.status) {
-      this.balance = 0;
-    //}
+    const transaction = await this.nftMarketplaceService.withdraw();
+    this.balance = 0;
   }
 
 }

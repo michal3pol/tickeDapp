@@ -1,10 +1,12 @@
 
 <div class="page-content">
-    <button mat-button
-        (click)="withdraw()">
-    Withdraw ETH
-    </button>
-
+    <div>
+        You own: {{ balance }} ETH
+        <button mat-button
+            (click)="withdraw()">
+        Withdraw ETH
+        </button>
+    </div>
     <ng-container *ngFor="let sellerTickets of sellerTicketsMap | keyvalue">
 
         <div>

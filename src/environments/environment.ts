@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  contractTickeDFactoryAddress: "0x60EC13e30b21890FbB79386BB12D5491148911dD",
-  contractNftMarketplaceAddress: "0xf3fA26E59157520193880CeF6915235AAe1DC9B0",
+  contractTickeDFactoryAddress: "0xcf49151725466e80D016144681f6551707358776",
+  contractNftMarketplaceAddress: "0xEA638434D14062C42aba7d1861EEfAdC59ee11fe",
   alchemyApi: "https://eth-goerli.g.alchemy.com/v2/9XMQ5x8fQjeWNnufjSXkhh5TMLnCnStG",
 };
 
