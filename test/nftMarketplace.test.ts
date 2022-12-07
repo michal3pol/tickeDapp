@@ -577,6 +577,202 @@ describe('TickeDFactory contract', function () {
     });
   });
 
+  describe('Buy tickets', function () {
+    it('Should buy ticket and transfer token', async function () {
+      const {
+        nftMarketplace,
+        reseller,
+        concertAddress,
+        concertgoer,
+        createdConcert,
+      } = await loadFixture(deployFactoryFixture);
+
+      const amount = 1;
+      const listing: Listing = {
+        tokenId: ticket1.tokenId,
+        amount: ticket1.amount,
+        price: BigNumber.from(ticket1.price),
+        seller: reseller.address,
+      };
+      await nftMarketplace
+        .connect(reseller)
+        ['insertOffer'](concertAddress, listing);
+
+      await nftMarketplace
+        .connect(concertgoer)
+        ['buyTicket'](concertAddress, reseller.address, ticket1.tokenId, 1, {
+          value: ethers.utils.parseUnits(
+            (ticket1.price * amount).toString(),
+            'wei'
+          ),
+        });
+
+      expect(
+        await createdConcert['balanceOf'](
+          nftMarketplace.address,
+          ticket1.tokenId
+        )
+      ).to.be.equal(ticket1.amount - amount);
+      expect(
+        await createdConcert['balanceOf'](concertgoer.address, ticket1.tokenId)
+      ).to.be.equal(amount);
+    });
+
+    it('Should update seller balance after buying', async function () {
+      const { nftMarketplace, reseller, concertAddress, concertgoer } =
+        await loadFixture(deployFactoryFixture);
+
+      const amount = 1;
+      const listing: Listing = {
+        tokenId: ticket1.tokenId,
+        amount: ticket1.amount,
+        price: BigNumber.from(ticket1.price),
+        seller: reseller.address,
+      };
+      await nftMarketplace
+        .connect(reseller)
+        ['insertOffer'](concertAddress, listing);
+
+      await nftMarketplace
+        .connect(concertgoer)
+        ['buyTicket'](concertAddress, reseller.address, ticket1.tokenId, 1, {
+          value: ethers.utils.parseUnits(
+            (ticket1.price * amount).toString(),
+            'wei'
+          ),
+        });
+
+      expect(await nftMarketplace['balance'](reseller.address)).to.be.equal(
+        ticket1.price * amount
+      );
+    });
+
+    it('Should delete offer after buying', async function () {
+      const { nftMarketplace, reseller, concertAddress, concertgoer } =
+        await loadFixture(deployFactoryFixture);
+
+      const amount = 1;
+      const listing: Listing = {
+        tokenId: ticket1.tokenId,
+        amount: ticket1.amount,
+        price: BigNumber.from(ticket1.price),
+        seller: reseller.address,
+      };
+      await nftMarketplace
+        .connect(reseller)
+        ['insertOffer'](concertAddress, listing);
+
+      await nftMarketplace
+        .connect(concertgoer)
+        ['buyTicket'](
+          concertAddress,
+          reseller.address,
+          ticket1.tokenId,
+          ticket1.amount,
+          {
+            value: ethers.utils.parseUnits(
+              (ticket1.price * ticket1.amount).toString(),
+              'wei'
+            ),
+          }
+        );
+
+      const newListing: Listing = await nftMarketplace['listing'](
+        concertAddress,
+        reseller.address
+          .concat(BigNumber.from(ticket1.tokenId).toHexString())
+          .toLowerCase()
+      );
+      expect(newListing.tokenId, 'Wrong ticket tokenId in listing').to.be.equal(
+        0
+      );
+      expect(newListing.amount, 'Wrong ticket amount in listing').to.be.equal(
+        0
+      );
+      expect(newListing.price, 'Wrong ticket price in listing').to.be.equal(0);
+      expect(newListing.seller, 'Wrong ticket seller in listing').to.be.equal(
+        '0x0000000000000000000000000000000000000000'
+      );
+    });
+
+    it('Should revert if ticket is not listed', async function () {
+      const { nftMarketplace, reseller, concertAddress, concertgoer } =
+        await loadFixture(deployFactoryFixture);
+
+      await expect(
+        nftMarketplace
+          .connect(concertgoer)
+          ['buyTicket'](concertAddress, reseller.address, ticket1.tokenId, 1, {
+            value: ethers.utils.parseUnits((10 * 1).toString(), 'wei'),
+          })
+      ).to.be.revertedWith('Not yet listed');
+    });
+
+    it('Should revert if someone try to buy more than available', async function () {
+      const { nftMarketplace, reseller, concertAddress, concertgoer } =
+        await loadFixture(deployFactoryFixture);
+
+      const amount = 1;
+      const listing: Listing = {
+        tokenId: ticket1.tokenId,
+        amount: ticket1.amount,
+        price: BigNumber.from(ticket1.price),
+        seller: reseller.address,
+      };
+      await nftMarketplace
+        .connect(reseller)
+        ['insertOffer'](concertAddress, listing);
+
+      await expect(
+        nftMarketplace.connect(concertgoer)['buyTicket'](
+          concertAddress,
+          reseller.address,
+          ticket1.tokenId,
+          ticket1.amount + 1, // amount + 1
+          {
+            value: ethers.utils.parseUnits(
+              (ticket1.price * ticket1.amount).toString(),
+              'wei'
+            ),
+          }
+        )
+      ).to.be.revertedWith('Invalid amount');
+    });
+
+    it('Should revert if someone try to pay less than should', async function () {
+      const { nftMarketplace, reseller, concertAddress, concertgoer } =
+        await loadFixture(deployFactoryFixture);
+
+      const amount = 1;
+      const listing: Listing = {
+        tokenId: ticket1.tokenId,
+        amount: ticket1.amount,
+        price: BigNumber.from(ticket1.price),
+        seller: reseller.address,
+      };
+      await nftMarketplace
+        .connect(reseller)
+        ['insertOffer'](concertAddress, listing);
+
+      await expect(
+        nftMarketplace
+          .connect(concertgoer)
+          ['buyTicket'](
+            concertAddress,
+            reseller.address,
+            ticket1.tokenId,
+            ticket1.amount,
+            {
+              value: ethers.utils.parseUnits(
+                (ticket1.price - 1 * ticket1.amount).toString(), // price - 1
+                'wei'
+              ),
+            }
+          )
+      ).to.be.revertedWith('Not enough ETH');
+    });
+  });
+
   describe('Withdraw', function () {
     it('Should withdraw credits - based on sellings', async function () {
       const {
