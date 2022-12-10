@@ -69,8 +69,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     function createAndMintTickets() public nonReentrant {
         require(msg.sender == orgAddress, "Only owner!");
         require(sectorPointer < sectors.length, "Add new sectors!");
-        sectorPointer++;
         for(uint256 i = sectorPointer; i < sectors.length; i++){
+            sectorPointer++;
             if(sectors[i].isNumerable) {
                 // create NFTs
                 if(sectors[i].mintedByOrg){
@@ -89,7 +89,6 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
                         _tokenIds.increment();             
                     }  
                 }
-            
             } else {
                 // create SFTs 
                 // don't check 'mintedByOrg' -> those tokens have to be minted earlier
