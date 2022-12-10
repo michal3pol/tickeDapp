@@ -44,6 +44,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     // !!! cant pass struct... -> pass table of strings
     constructor(address _owner, string memory _name, string memory _desc, uint256 _date, string memory _image, string [] memory _sectors) ERC1155("") { 
         require(_sectors.length % 6 == 0, "Wrong data format" );
+        require(_owner != address(0), "Owner is 0 address");
         orgAddress = _owner;
         name = _name;
         description = _desc;
@@ -65,19 +66,20 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     // Function for creating tickets attributes and minting if specified
-    function createAndMintTickets() public {
+    function createAndMintTickets() public nonReentrant {
         require(msg.sender == orgAddress, "Only owner!");
         require(sectorPointer < sectors.length, "Add new sectors!");
         for(uint256 i = sectorPointer; i < sectors.length; i++){
+            sectorPointer++;
             if(sectors[i].isNumerable) {
                 // create NFTs
                 if(sectors[i].mintedByOrg){
                    for(uint256 j=sectors[i].seatStart; j <= sectors[i].seatStop; j++) {
                         uint256 newTokenId = _tokenIds.current();
-                        _mint(address(this), newTokenId, 1, ""); // contract -> owner of the nft
                         ticketAttr[newTokenId] = Ticket(sectors[i].name, j, sectors[i].mintedByOrg, sectors[i].price, false); // j -> seatNumber
                         sectors[i].availableTokenIds.push(newTokenId);
                         _tokenIds.increment();             
+                        _mint(address(this), newTokenId, 1, ""); // contract -> owner of the nft
                     }
                 } else {
                    for(uint256 j=sectors[i].seatStart; j <= sectors[i].seatStop; j++) {
@@ -87,17 +89,15 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
                         _tokenIds.increment();             
                     }  
                 }
-            
             } else {
                 // create SFTs 
                 // don't check 'mintedByOrg' -> those tokens have to be minted earlier
                 uint256 newTokenId = _tokenIds.current();
                 ticketAttr[newTokenId] = Ticket(sectors[i].name, 0, sectors[i].mintedByOrg, sectors[i].price, false); // 0 -> seatNumber not numerated
-                _mint(address(this), newTokenId, sectors[i].seatStop, ""); // contract -> owner of the nft
                 sectors[i].availableTokenIds.push(newTokenId);
                 _tokenIds.increment();
+                _mint(address(this), newTokenId, sectors[i].seatStop, ""); // contract -> owner of the nft
             }
-            sectorPointer++;
         }
     }
 
@@ -110,11 +110,11 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         require(ticketAttr[tokenId].sold == false, "Ticket sold!");
         require(msg.value == (ticketAttr[tokenId].price * amount), "Too small value");
         if(!ticketAttr[tokenId].minted) { // possible only with nft
-            _mint(msg.sender, tokenId, 1, "");
             ticketAttr[tokenId].minted = true;
             ticketAttr[tokenId].sold = true;
             soldTokenIds[ticketAttr[tokenId].sectorName].push(tokenId);
             orgCredits += msg.value;
+            _mint(msg.sender, tokenId, 1, "");
             return; // no transfer -> return
         }
         orgCredits += msg.value;

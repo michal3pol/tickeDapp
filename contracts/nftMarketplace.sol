@@ -67,13 +67,13 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         require(params.price > 0, "Invalid price");
         tickeD1155 concert = tickeD1155(concertAddr);
         require(concert.isApprovedForAll(msg.sender, address(this)), "Not approved");
-        tickeD1155(concertAddr).safeTransferFrom(
-            msg.sender, address(this), params.tokenId, params.amount, ""); // address(this) -> contract is nft's owner
         string memory sellerId = string.concat(
                 Strings.toHexString(uint256(uint160(msg.sender)), 20), Strings.toHexString(params.tokenId));
         listing[concertAddr][sellerId] = (params);
         sellerIds[concertAddr].push(sellerId);
         sellerOffers[msg.sender].push(SellerOffer(concertAddr, sellerId));
+        tickeD1155(concertAddr).safeTransferFrom(
+            msg.sender, address(this), params.tokenId, params.amount, ""); // address(this) -> contract is nft's owner
     }
 
     // dont need to check isOwner (marketplace holds tokens) 
