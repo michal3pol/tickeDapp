@@ -32,4 +32,7 @@ export class MyConcertsComponent implements OnInit {
     this.ticked1155Service.addSectors(address, sectors)
   }
 
+  withdraw(concertAddress: string) {
+    this.ticked1155Service.withdraw(concertAddress);
+  }
 }

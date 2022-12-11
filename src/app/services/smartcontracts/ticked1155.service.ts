@@ -3,13 +3,16 @@ import { Injectable } from '@angular/core';
 import { BigNumber, ethers } from "ethers";
 import { Sector, Ticket } from 'src/types/concert.model';
 import ticked1155 from '../../../../artifacts/contracts/tickeD1155.sol/tickeD1155.json'
+import { WalletService } from '../wallet.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Ticked1155Service {
 
-  constructor() { }
+  constructor(
+    private walletService: WalletService,
+  ) { }
 
 
   public async createAndMintTickets(address: string) {
@@ -65,6 +68,16 @@ export class Ticked1155Service {
     const contract = await Ticked1155Service.getContract(address, true)
     contract['setApprovalForAll'](operator, approved)
   }
+
+  public async withdraw(address: string){
+    const contract = await Ticked1155Service.getContract(address, true)
+    try {
+      return await contract['withdrawOrgCredits'](this.walletService.getWalletAddress())
+    } catch(e: any) {
+      console.log(e.error.message )
+    }
+  }
+  
 
   private static async getContract(address: string, bySigner= false) {
     const provider = new ethers.providers.Web3Provider(<any>window.ethereum)
