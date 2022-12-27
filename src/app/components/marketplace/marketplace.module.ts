@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ResellComponent } from './resell/resell.component';
 import { ConcertSellComponent } from './concert-sell/concert-sell.component';
 import { ConcertSectorsComponent } from './concert-sectors/concert-sectors.component';
 import { SwiperModule } from "swiper/angular";
@@ -23,7 +22,6 @@ import { ReselledTicketComponent } from './reselled-ticket/reselled-ticket.compo
 @NgModule({
   declarations: [
     MarketplaceComponent,
-    ResellComponent,
     ConcertSellComponent,
     ConcertSectorsComponent,
     AudienceLayoutComponent,

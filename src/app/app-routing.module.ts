@@ -6,7 +6,6 @@ import { MyConcertsComponent } from './components/concert-management/my-concerts
 import { WhitelistComponent } from './components/concert-management/whitelist/whitelist.component';
 import { ConcertSectorsComponent } from './components/marketplace/concert-sectors/concert-sectors.component';
 import { MarketplaceComponent } from './components/marketplace/marketplace-comp/marketplace.component';
-import { ResellComponent } from './components/marketplace/resell/resell.component';
 import { ConcertSellComponent } from './components/marketplace/concert-sell/concert-sell.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthOrganizatorGuard } from './services/auth-organizator.guard';
@@ -25,10 +24,6 @@ const routes: Routes = [
         path:'sell/:address',
         component: ConcertSectorsComponent
       },
-      {
-        path:'resell',
-        component: ResellComponent
-      }
     ] 
   },
   { path: 'create-concert', canActivate:[AuthOrganizatorGuard], component: CreateConcertComponent },
