@@ -32,10 +32,13 @@
                 </div>
                 <div>
                     <mat-form-field>
-                        <mat-label>Price (1 token)</mat-label>
+                        <mat-label>Price* (1 token)</mat-label>
                         <input matInput type="number" [(ngModel)]="price">
                         <span matSuffix>  ETH</span>
                     </mat-form-field>
+                </div>
+                <div>
+                    *price contains 5% fee that will be charged for organizator
                 </div>
             </mat-card-content>
             <mat-card-actions>

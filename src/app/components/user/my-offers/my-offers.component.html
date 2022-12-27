@@ -67,11 +67,14 @@
                                 </div>
                                 <div>
                                     <mat-form-field>
-                                        <mat-label>Price (1 token)</mat-label>
+                                        <mat-label>Price* (1 token)</mat-label>
                                         <input matInput type="number" [(ngModel)]="price"
                                                 min="0">
                                         <span matSuffix>  ETH</span>
                                     </mat-form-field>
+                                    <div>
+                                        *price contains 5% fee that will be charged for organizator
+                                    </div>
                                 </div>
                                 
                                 <button mat-raised-button color="primary"
@@ -125,11 +128,14 @@
                             <ng-container *ngIf="openUpdateForm">
                                 <div>
                                     <mat-form-field>
-                                        <mat-label>Price (1 token)</mat-label>
+                                        <mat-label>Price* (1 token)</mat-label>
                                         <input matInput type="number" [(ngModel)]="price"
                                                 min="0">
                                         <span matSuffix>  ETH</span>
                                     </mat-form-field>
+                                    <div>
+                                        *price contains 5% fee that will be charged for organizator
+                                    </div>
                                 </div>
                                 
                                 <button mat-raised-button color="primary"
