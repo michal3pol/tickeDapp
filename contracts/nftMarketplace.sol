@@ -113,7 +113,8 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         Listing memory ticket = listing[concertAddr][sellerId];
         require(ticket.amount >= amount, "Invalid amount");
         require(msg.value == (ticket.price * amount), "Not enough ETH");
-        balance[ticket.seller] += msg.value;
+        uint256 resellFee = msg.value * 5/ 100; // 5% fee for organizator
+        balance[ticket.seller] += msg.value - resellFee;
         if(ticket.amount == amount){
             delete listing[concertAddr][sellerId];
         } else {
@@ -121,6 +122,7 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         }
         tickeD1155(concertAddr).safeTransferFrom(
             address(this), msg.sender, tokenId, amount, "");
+        tickeD1155(concertAddr).addResellFee(resellFee);
     }
 
     function withdraw(address payable destAddr) public {

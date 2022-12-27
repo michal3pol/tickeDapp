@@ -8,6 +8,9 @@
         <mat-card-title>{{concert.name}}</mat-card-title>
         <mat-card-subtitle>{{concert.contractAddress}}</mat-card-subtitle>
         </mat-card-header>
+        <button mat-raised-button color="primary" class="btn-withdraw" (click)="withdraw(concert.contractAddress)">
+            Withdraw
+        </button>
         <mat-card-content class="concert-content">
             <mat-card-actions>
             <button mat-raised-button color="primary" class="btn-log-in" 

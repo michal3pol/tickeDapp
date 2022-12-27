@@ -32,7 +32,7 @@ const ticket3 = {
   amount: 1,
 };
 
-describe('TickeDFactory contract', function () {
+describe('Nft Marketplace contract', function () {
   // fixture runs once but state is restored in each test
   async function deployFactoryFixture() {
     // wallets:
@@ -632,7 +632,7 @@ describe('TickeDFactory contract', function () {
       await nftMarketplace
         .connect(reseller)
         ['insertOffer'](concertAddress, listing);
-
+      const resellFee = (ticket1.price * amount) * 0.05;
       await nftMarketplace
         .connect(concertgoer)
         ['buyTicket'](concertAddress, reseller.address, ticket1.tokenId, 1, {
@@ -643,7 +643,7 @@ describe('TickeDFactory contract', function () {
         });
 
       expect(await nftMarketplace['balance'](reseller.address)).to.be.equal(
-        ticket1.price * amount
+        (ticket1.price * amount) - resellFee
       );
     });
 
@@ -783,7 +783,7 @@ describe('TickeDFactory contract', function () {
         walletAccount,
       } = await loadFixture(deployFactoryFixture);
 
-      const credits = ticket1.price * 1;
+      const credits = ticket1.price * 0.95;
       const listing: Listing = {
         tokenId: ticket1.tokenId,
         amount: ticket1.amount,

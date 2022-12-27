@@ -186,6 +186,10 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         destAddr.transfer(proceeds);
     }
 
+    function addResellFee(uint256 fee) external {
+        orgCredits += fee;
+    }
+
     // generated getter returns values from specified index, this returns entire array
     function getSectors() public view returns (Sector [] memory){
         return sectors;
