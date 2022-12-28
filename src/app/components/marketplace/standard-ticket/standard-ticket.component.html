@@ -20,9 +20,11 @@
                     <div>
                         Minted by organizator: 
                         <ng-container *ngIf="ticket.value.minted === false; else minted"
-                            > NOPE! </ng-container>
-                        <ng-template #minted>
-                            YASS!
+                            > 
+                            <mat-icon class="red-icon">highlight_off</mat-icon>
+                        </ng-container>
+                        <ng-template #minted><mat-icon>highlight_off</mat-icon>
+                            <mat-icon class="green-icon">check_circle_outline</mat-icon> 
                         </ng-template>
                     </div>
 
@@ -33,12 +35,13 @@
                             <input matInput type="number" min="1" 
                                 [(ngModel)]="amount">
                         </mat-form-field>
-
+                    <div>
                         <button mat-raised-button color="primary"
                             class="btn-details"
                             (click)="buyTicket(ticket.key, ticket.value.price, amount)">
                             BUY
                         </button>
+                    </div>
                     </mat-card-actions>
                 </mat-card-content>
 
@@ -62,9 +65,11 @@
                     <div>
                         Minted by organizator: 
                         <ng-container *ngIf="ticket.value.minted === false; else minted"
-                            > NOPE! </ng-container>
+                            > 
+                            <mat-icon class="red-icon">highlight_off</mat-icon>
+                        </ng-container>
                         <ng-template #minted>
-                            YASS!
+                            <mat-icon class="green-icon">check_circle_outline</mat-icon> 
                         </ng-template>
                     </div>
 

@@ -34,8 +34,6 @@
 
 .swiper-slide img {
   display: block;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
@@ -47,11 +45,13 @@
 }
 
 .sector {
-    padding: 10px;
-    margin: 10px;
-    background-color: rgb(250, 250, 250);
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(250, 250, 250);
+  height: 100px;
+  width: 220px;
 }
-
+    
 .btn-details {
     float: right;
 }
@@ -76,4 +76,17 @@ a {
 
 .concert-description {
   padding: 10px;
+}
+
+.sector-header {
+  ::ng-deep {
+    .mat-card-title {
+      margin: auto;
+      text-align: center;
+    }
+  }
+}
+
+.sector-content {
+  text-align: center;
 }
