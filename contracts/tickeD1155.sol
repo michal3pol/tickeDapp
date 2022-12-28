@@ -93,7 +93,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
                 // create SFTs 
                 // don't check 'mintedByOrg' -> those tokens have to be minted earlier
                 uint256 newTokenId = _tokenIds.current();
-                ticketAttr[newTokenId] = Ticket(sectors[i].name, 0, sectors[i].mintedByOrg, sectors[i].price, false); // 0 -> seatNumber not numerated
+                ticketAttr[newTokenId] = Ticket(sectors[i].name, 0, true, sectors[i].price, false); // 0 -> seatNumber not numerated
                 sectors[i].availableTokenIds.push(newTokenId);
                 _tokenIds.increment();
                 _mint(address(this), newTokenId, sectors[i].seatStop, ""); // contract -> owner of the nft
@@ -188,6 +188,11 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
 
     function addResellFee(uint256 fee) external {
         orgCredits += fee;
+    }
+
+    function setDate(uint256 newDate) external {
+        require(msg.sender == orgAddress, "Only owner!");
+        date = newDate;
     }
 
     // generated getter returns values from specified index, this returns entire array
