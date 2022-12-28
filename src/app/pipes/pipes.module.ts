@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeiToEthPipe } from './wei-to-eth.pipe';
+import { FilterConcertsPipe } from './filter-concerts.pipe';
 
 
 
 @NgModule({
   declarations: [
-    WeiToEthPipe
+    WeiToEthPipe,
+    FilterConcertsPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    WeiToEthPipe
+    WeiToEthPipe,
+    FilterConcertsPipe
   ]
 })
 export class PipesModule { }

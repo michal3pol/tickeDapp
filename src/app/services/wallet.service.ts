@@ -11,7 +11,6 @@ export class WalletService {
 
   async logIn(): Promise<boolean> {
 
-    // TODO check if user is connected or not on proper account!
     if(window.ethereum) {
       this.accounts = await window?.ethereum.request({ method: 'eth_requestAccounts' })  
       this.wallet = this.accounts[0]

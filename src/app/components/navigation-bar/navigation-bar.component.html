@@ -1,41 +1,56 @@
 <div class="nav-container">
-    <button mat-button [matMenuTriggerFor]="concerts"
-        >Concert Management</button>
+    <button mat-raised-button [matMenuTriggerFor]="concerts" color="primary">
+        <mat-icon>perm_data_setting</mat-icon>
+        Concert Management
+    </button>
 
     <mat-menu #concerts="matMenu">
         <button mat-menu-item
         (click)="goToConcertForm()"
-            >Create Concert</button>
+            >
+            <mat-icon>library_add</mat-icon>
+            Create Concert</button>
         <button mat-menu-item
         (click)="goToMyConcerts()"
-            >My Concerts</button>
+            >
+            <mat-icon>event</mat-icon>
+            My Concerts</button>
             <button mat-menu-item
         (click)="goToAdminPanel()"
-            >Admin Panel</button>
+            >
+            <mat-icon>lock</mat-icon>
+            Admin Panel</button>
     </mat-menu>
 
     <button mat-button
         class="btn-marketplace"
         (click)="goToMarketplace()">
+        <mat-icon>home</mat-icon>
         tickeD MARKETPLACE
     </button>
 
     <button mat-raised-button [matMenuTriggerFor]="myAccount"
-        class="my-account" >
+        color="primary">
         My Account
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon>account_circle</mat-icon>
     </button>
 
     <mat-menu #myAccount="matMenu">
         <button mat-menu-item color="primary"
         (click)="connectWallet()"
-        >Connect wallet</button>
+        >
+        <mat-icon>account_balance_wallet</mat-icon>
+        Connect wallet</button>
         <button mat-menu-item color="primary"
         (click)="goToMyNfts()"
-        >My NFTs</button>        
+        >
+        <mat-icon> local_offer</mat-icon>
+        My NFTs</button>        
         <button mat-menu-item color="primary"
         (click)="goToMyOffers()"
-        >My Offers</button>
+        >
+        <mat-icon>shopping_cart</mat-icon>
+        My Offers</button>
     </mat-menu>
 
 </div>

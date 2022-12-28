@@ -57,10 +57,8 @@ export class SectorComponent {
       } else {
         sectorsArray.push("0")
       }
-      // TODO - check if works (now Ether returns BigNumber)
       sectorsArray.push(EtherUnitConverter.etherToWei(sector.price).toString())
     }
-    console.log(sectorsArray);
     this.sectorsEvent.emit(sectorsArray);
   }
 

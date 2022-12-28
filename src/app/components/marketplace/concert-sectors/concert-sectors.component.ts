@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { BigNumber } from 'ethers';
 import { Ticked1155Service } from 'src/app/services/smartcontracts/ticked1155.service';
 import { Sector, Ticket } from 'src/types/concert.model';
 import { AudienceLayoutComponent } from '../audience-layout/audience-layout.component';
@@ -16,6 +15,10 @@ export class ConcertSectorsComponent implements OnInit {
 
   concertAddress!: string;
   sectors: Sector[] = [];
+  concertName: string = '';
+  concertDescription: string = '';
+  concertDate!: number;
+
   selectedSector!: Sector;
   ticketsMap: Map<number, Ticket> = new Map<number, Ticket>;
   amount = 1;
@@ -32,6 +35,9 @@ export class ConcertSectorsComponent implements OnInit {
     this.concertAddress = this.route.snapshot.paramMap.get('address')!;
     
     this.sectors = await this.ticked1155Service.getSectors(this.concertAddress);
+    this.concertName = await this.ticked1155Service.getName(this.concertAddress);
+    this.concertDescription = await this.ticked1155Service.getDescription(this.concertAddress);
+    this.concertDate = await this.ticked1155Service.getDate(this.concertAddress);
   }
 
   selectSector(index: number) {

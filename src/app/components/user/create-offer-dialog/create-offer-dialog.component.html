@@ -42,15 +42,16 @@
                 </div>
             </mat-card-content>
             <mat-card-actions>
-                <div>
-                    When you confirm your offer everyone will be able to buy your ticket
-                </div>
-                <button mat-button
+                <button mat-raised-button color="primary"
                     (click)="createOffer()">
-                    Create offer
+                    CONFIRM
                 </button>
-                <div>
-                    You can cancel your offer in 'My offers' tab
+                <div class="info">
+                    <mat-icon class="red-icon">warning</mat-icon>
+                    <br>
+                    If you confirm everyone will be able to <b>buy your ticket </b>
+                    <br>
+                    You can <b>cancel</b> your offer in <i>My offers</i>
                 </div>
             </mat-card-actions>
 

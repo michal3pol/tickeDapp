@@ -13,7 +13,7 @@ import { MyNftComponent } from './components/user/my-nft/my-nft.component';
 import { MyOffersComponent } from './components/user/my-offers/my-offers.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/marketplace', pathMatch: 'full' },
+  { path: '', redirectTo: '/marketplace/sell', pathMatch: 'full' },
   { path: 'marketplace', component: MarketplaceComponent,
     children:[
       {
