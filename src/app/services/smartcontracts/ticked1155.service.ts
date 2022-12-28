@@ -74,6 +74,11 @@ export class Ticked1155Service {
     return contract['date']()
   }
 
+  public async setDate(address: string, newDate: number) {
+    const contract = await Ticked1155Service.getContract(address, true)
+    await contract['setDate'](newDate)
+  }
+
   public async isApprovedForAll(address: string, account: string, operator: string): Promise<boolean>{
     const contract = await Ticked1155Service.getContract(address)
     return contract['isApprovedForAll'](account, operator)

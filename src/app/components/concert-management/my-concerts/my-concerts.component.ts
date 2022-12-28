@@ -18,6 +18,7 @@ export class MyConcertsComponent implements OnInit {
   ) { }
 
   public deployedConcerts: DepConcert[] = [];
+  public newDate!: Date;
 
   async ngOnInit() {
     this.deployedConcerts = await this.tickedFactoryService.getDepContracts(
@@ -34,5 +35,12 @@ export class MyConcertsComponent implements OnInit {
 
   withdraw(concertAddress: string) {
     this.ticked1155Service.withdraw(concertAddress);
+  }
+
+  changeDate(concertAddress: string) {
+    if(this.newDate != undefined) {
+      const newDateUnix = (new Date(this.newDate!)).getTime() / 1000;
+      this.ticked1155Service.setDate(concertAddress, newDateUnix);
+    }
   }
 }
