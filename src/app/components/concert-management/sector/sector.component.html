@@ -1,4 +1,4 @@
-<div>Provide details of each sector:</div>
+<h3>Provide details of each sector:</h3>
 <div [formGroup]="form">
 
     <ng-container formArrayName="sectors">
@@ -77,7 +77,7 @@
             <mat-icon>add</mat-icon>
         </button>
 
-        <div>
+        <div class="sectors-btn">
             <button *ngIf="createConcertForm == true; else confirmButton"
                 mat-button matStepperNext
                 (click)="confirmSectors()"
@@ -91,7 +91,7 @@
                 mat-button
                 (click)="confirmSectors()"
             >
-                Confirm sectors
+                Confirm new sectors
             </button>
         </ng-template>
     </div>      

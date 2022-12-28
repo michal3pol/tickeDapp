@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MyOffersComponent } from './my-offers/my-offers.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -30,6 +31,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     FormsModule,
     PipesModule
   ]
