@@ -59,6 +59,21 @@ export class Ticked1155Service {
     return contract['image']()
   }
 
+  public async getName(address: string): Promise<string> {
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['name']()
+  }
+
+  public async getDescription(address: string): Promise<string> {
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['description']()
+  }
+
+  public async getDate(address: string): Promise<number> {
+    const contract = await Ticked1155Service.getContract(address)
+    return contract['date']()
+  }
+
   public async isApprovedForAll(address: string, account: string, operator: string): Promise<boolean>{
     const contract = await Ticked1155Service.getContract(address)
     return contract['isApprovedForAll'](account, operator)

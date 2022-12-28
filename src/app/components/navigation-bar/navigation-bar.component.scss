@@ -10,4 +10,12 @@
 .btn-marketplace {
     margin: auto;
     flex-grow: 3;
+    background-color: #683ab72e;
+    
+    }
+    
+    .btn-marketplace:hover {
+        transform: scale(1.02);
+        background-color: #673AB7;
+        color: white;
 }

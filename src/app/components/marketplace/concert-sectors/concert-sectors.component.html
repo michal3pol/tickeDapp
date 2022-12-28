@@ -1,3 +1,15 @@
+<div class="info">
+    <h2 class="concert-name">
+        {{ concertName }}
+        <span class="concert-date">
+            <mat-icon>today</mat-icon>
+            {{ concertDate * 1000 | date:'medium' }}
+        </span>
+    </h2>
+    <h4 class="concert-description">
+        {{ concertDescription }}
+    </h4>
+</div>
 <swiper
     [slidesPerView]="5"
     [spaceBetween]="20"
