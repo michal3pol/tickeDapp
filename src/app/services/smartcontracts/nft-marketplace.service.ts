@@ -68,7 +68,7 @@ export class NftMarketplaceService {
     return contract['getListedTicket'](concertAddr, sellerId)
   }
 
-  public async getBalance(): Promise<number>{
+  public async getBalance(): Promise<BigNumber>{
     const contract = await NftMarketplaceService.getContract()
     return contract['balance'](
       await this.walletService.getWalletAddress()

@@ -11,7 +11,7 @@ import { ListedTicket, Listing, SellerOffer } from 'src/types/marketplace.model'
 })
 export class MyOffersComponent implements OnInit {
 
-  public balance: number = 0;
+  public balance: BigNumber = BigNumber.from(0);
   private sellerOffers: SellerOffer[] = [];
   // concert address -> offers for this concert
   public sellerTicketsMap: Map<string, ListedTicket[]> = new Map<string, ListedTicket[]>;
@@ -64,9 +64,8 @@ export class MyOffersComponent implements OnInit {
   }
 
   async withdraw() {
-    // TODO manage if transaction fail or not
     const transaction = await this.nftMarketplaceService.withdraw();
-    this.balance = 0;
+    this.balance = BigNumber.from(0);
   }
 
 }

@@ -23,9 +23,7 @@ export class MyNftComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.nft$ = await (await this.alchemyApiService.getUserNfts()).pipe(
-      tap(t => console.log(t))
-    );
+    this.nft$ = await (await this.alchemyApiService.getUserNfts())
   }
 
   sellTicket(_nft: NFT) {

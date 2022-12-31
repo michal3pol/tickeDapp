@@ -1,7 +1,7 @@
 
 <div class="page-content">
     <h4>
-        You own: {{ balance }} ETH on martketplace <br>
+        You own: {{ balance | weiToEth }} ETH on martketplace <br>
         <button mat-raised-button color="primary"
             (click)="withdraw()">
         Withdraw ETH
@@ -10,9 +10,9 @@
     <h2> Your offers: </h2>
     <ng-container *ngFor="let sellerTickets of sellerTicketsMap | keyvalue">
 
-        <div>
+        <h3>
             Your ticket offers for concert: {{ sellerTickets.key }}
-        </div>
+        </h3>
 
         <div class="tickets">
             <ng-container 

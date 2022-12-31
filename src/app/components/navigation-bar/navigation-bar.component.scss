@@ -5,17 +5,22 @@
 .nav-container {
     display: flex;
     gap: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9990;
 }
 
 .btn-marketplace {
     margin: auto;
     flex-grow: 3;
     background-color: #683ab72e;
+    position: sticky;
+}
     
-    }
-    
-    .btn-marketplace:hover {
-        transform: scale(1.02);
-        background-color: #673AB7;
-        color: white;
+.btn-marketplace:hover {
+    transform: scale(1.02);
+    background-color: #673AB7;
+    color: white;
+    position: sticky;
 }
