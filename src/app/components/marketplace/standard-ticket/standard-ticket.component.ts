@@ -53,7 +53,14 @@ export class StandardTicketComponent implements OnChanges {
       return resultArray;
   }
 
-
+  /**
+   * Function that fires transaction for buying ticket 
+   *
+   * @param tokenId - Token ID 
+   * @param price - Token price
+   * @param amount - Amount of tokens to buy (by default sets to 1)
+   * 
+   */
   buyTicket(tokenId: number, price: BigNumber, amount = 1) {
     this.ticked1155Service.buyTicket(
       this.concertAddress, tokenId, price, amount)

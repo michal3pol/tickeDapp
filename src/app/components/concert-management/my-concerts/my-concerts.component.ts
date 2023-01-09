@@ -25,18 +25,43 @@ export class MyConcertsComponent implements OnInit {
       await this.walletService.getWalletAddress() )
   }
 
+  /**
+   * Fires transaction that mint tickets for specified contract
+   *
+   * @param contractAddress - Address of concert contract 
+   * 
+   */
   public async mintTickets(contractAddress: string) {
     this.ticked1155Service.createAndMintTickets(contractAddress)
   }
 
+  /**
+   * Add sectors for specified contract
+   *
+   * @param address - Address of concert contract
+   * @param sectors - list of new sectors
+   * 
+   */
   addSectors(sectors: string[], address: string) {
     this.ticked1155Service.addSectors(address, sectors)
   }
 
+   /**
+   * Withdraws money for specified contract
+   *
+   * @param contractAddress - Address of concert contract 
+   * 
+   */
   withdraw(concertAddress: string) {
     this.ticked1155Service.withdraw(concertAddress);
   }
 
+   /**
+   * Changes date of concert for specified contract
+   *
+   * @param contractAddress - Address of concert contract
+   *  
+   */
   changeDate(concertAddress: string) {
     if(this.newDate != undefined) {
       const newDateUnix = (new Date(this.newDate!)).getTime() / 1000;

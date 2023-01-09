@@ -45,10 +45,21 @@ export class MyOffersComponent implements OnInit {
     }
   }
 
+  /**
+   * Function opens form for editing offer 
+   * 
+   */
   openEditForm() {
     this.openUpdateForm = true;
   }
   
+  /**
+   * Function updates offer based on input forms
+   *
+   * @param concertAddr - Address of concert contract 
+   * @param currentListing - Current offer 
+   * 
+   */
   updateOffer(concertAddr: string, currentListing: Listing) {
     const newListing = {
       tokenId: currentListing.tokenId,
@@ -59,10 +70,21 @@ export class MyOffersComponent implements OnInit {
     this.nftMarketplaceService.updateOffer(concertAddr, newListing)
   }
 
+  /**
+   * Function deletes offer 
+   *
+   * @param concertAddr - Address of concert contract 
+   * @param tokenId - ID of Token to delete 
+   * 
+   */
   deleteOffer(concertAddr: string, tokenId: number) {
     this.nftMarketplaceService.deleteOffer(concertAddr, tokenId)
   }
 
+  /**
+   * Withdraws money for owner
+   *
+   */
   async withdraw() {
     const transaction = await this.nftMarketplaceService.withdraw();
     this.balance = BigNumber.from(0);

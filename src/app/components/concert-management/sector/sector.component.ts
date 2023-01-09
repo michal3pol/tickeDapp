@@ -26,6 +26,9 @@ export class SectorComponent {
     return this.form.controls['sectors'] as FormArray
   }
 
+  /**
+   * Function that adds new forms for sectors
+   */
   addSector() {
     const sectorForm = this.formBuilder.group({
       sectorName: ['', Validators.required],
@@ -39,10 +42,17 @@ export class SectorComponent {
     this.sectors.push(sectorForm)
   }
 
+  /**
+   * Function that deletes sector from structure
+   */
   deleteSector(sectorIndex: number) {
     this.sectors.removeAt(sectorIndex)
   }
 
+  
+  /**
+   * Function that creates structure of information based on provided data in forms
+   */
   confirmSectors() {
     let sectorsArray: string [] =[];
     for(let sector of this.sectors.value){

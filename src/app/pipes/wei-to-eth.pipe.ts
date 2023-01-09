@@ -6,9 +6,15 @@ import { BigNumber, ethers } from 'ethers';
 })
 export class WeiToEthPipe implements PipeTransform {
 
+  /**
+   * Function converts price in BigNumber to string
+   * 
+   * @param price - Price in BigNumber
+   * @returns Price in string
+   *
+   */
   transform(price: BigNumber): string {
     return ethers.utils.formatEther(price)
-    //return EtherUnitConverter.weiToEther(price).toString();
   }
 
 }

@@ -40,11 +40,19 @@ export class ConcertSectorsComponent implements OnInit {
     this.concertDate = await this.ticked1155Service.getDate(this.concertAddress);
   }
 
+  /**
+   * Function that changes currently chosen sector 
+   * 
+   * @param index - Index of sector 
+   */
   selectSector(index: number) {
     this.selectedStandardTickets = true;
     this.selectedSector = this.sectors[index];
   }
 
+  /**
+   * Function that shows dialog with layout  
+   */
   async showLayout(){
     const _image = await this.ticked1155Service.getImage(this.concertAddress);
     let dialogRef = this.matDialog.open(AudienceLayoutComponent, {
@@ -55,6 +63,9 @@ export class ConcertSectorsComponent implements OnInit {
   }
 
   // resells
+  /**
+   * Function that toggles for resellers offers  
+   */
   resellersOffers() {
     this.selectedStandardTickets = false;
   }

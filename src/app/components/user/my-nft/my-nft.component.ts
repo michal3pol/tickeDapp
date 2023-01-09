@@ -26,6 +26,10 @@ export class MyNftComponent implements OnInit {
     this.nft$ = await (await this.alchemyApiService.getUserNfts())
   }
 
+  /**
+   * Function opens dialog for selling NFT 
+   * 
+   */
   sellTicket(_nft: NFT) {
     this.matDialog.open(CreateOfferDialogComponent, {
       maxHeight: '80%',

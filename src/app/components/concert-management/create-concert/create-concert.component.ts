@@ -29,6 +29,10 @@ export class CreateConcertComponent implements OnInit {
 
   public contractsAddress: string[] = [];
 
+
+  /**
+   * Function that creates structure of information based on provided data in forms
+   */
   public async createConcert() {
     let stringTime = this.commonInf.get('concertDate')?.getRawValue().toString();
     let unixTimestamp = (new Date(stringTime!)).getTime() / 1000;
@@ -41,6 +45,9 @@ export class CreateConcertComponent implements OnInit {
     )
   }
 
+  /**
+   * Function that add sectors to concert informations
+   */
   addSectors(sectors: string[]) {
     this.concertSectors = sectors
   }

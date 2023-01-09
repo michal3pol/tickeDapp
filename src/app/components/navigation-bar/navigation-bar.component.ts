@@ -18,6 +18,10 @@ export class NavigationBarComponent {
     private snackbarService: SnackbarService,
   ) { }
 
+  /**
+   * Function that connects wallet
+   *
+   */
   async connectWallet() {
     let isLogged = await this.walletService.logIn();
     if(isLogged){
@@ -25,6 +29,10 @@ export class NavigationBarComponent {
     }
   }
 
+  /**
+   * Function that redirects to concert-form page
+   *
+   */
   async goToConcertForm() {
     const authorization: boolean = await this.tickedFactoryService.authorizeAccess(
       await this.walletService.getWalletAddress()
@@ -39,6 +47,10 @@ export class NavigationBarComponent {
     }
   }
 
+  /**
+   * Function that redirects to my-concerts page
+   *
+   */
   async goToMyConcerts() {
     const authorization: boolean = await this.tickedFactoryService.authorizeAccess(
       await this.walletService.getWalletAddress()
@@ -53,6 +65,10 @@ export class NavigationBarComponent {
     }
   }
 
+  /**
+   * Function that redirects to admin panel page
+   *
+   */
   async goToAdminPanel() {
     const isOwner: boolean = await this.tickedFactoryService.validateOwner(
       await this.walletService.getWalletAddress()
@@ -66,16 +82,28 @@ export class NavigationBarComponent {
     }
   }
 
+  /**
+   * Function that redirects to marketplace page
+   *
+   */
   goToMarketplace() {
     const navigationDetails: string[] = ['/marketplace/sell'];
     this.router.navigate(navigationDetails);
   }
 
+  /**
+   * Function that redirects to my-nfts page
+   *
+   */
   goToMyNfts() {
     const navigationDetails: string[] = ['/my-nft'];
     this.router.navigate(navigationDetails);
   }
 
+  /**
+   * Function that redirects to my-offers page
+   *
+   */
   goToMyOffers() {
     const navigationDetails: string[] = ['/my-offers'];
     this.router.navigate(navigationDetails);

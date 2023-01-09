@@ -15,6 +15,9 @@ export class AudienceLayoutComponent {
     @Inject(MAT_DIALOG_DATA) public data: AudienceDialogData,
   ) { }
 
+  /**
+   * Function closes dialog 
+   */
   close(): void {
     this.dialogRef.close();
   }
