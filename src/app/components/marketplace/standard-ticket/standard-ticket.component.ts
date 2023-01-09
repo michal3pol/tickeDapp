@@ -42,6 +42,14 @@ export class StandardTicketComponent implements OnChanges {
     }
   }
 
+  /**
+   * Function that calculate tokens availabilty 
+   *
+   * @param allTickets - List of all possible tokens 
+   * @param soldTickets - List of already sold tickets
+   * @returns List of currently available tokens
+   * 
+   */
   validateAvailability(allTickets: BigNumber[], soldTickets: BigNumber[]): number[] {
       let resultArray: number[] = [];
       for(let ticketId of allTickets){
