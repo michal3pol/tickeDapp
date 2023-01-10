@@ -28,6 +28,10 @@
     "paths": {
       "swiper_angular": ["node_modules/swiper/angular"],
     }
+  },    
+  "typedocOptions": {
+    "out": "docs",
+    "entryPointStrategy": "expand"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
