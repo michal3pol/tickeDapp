@@ -13,6 +13,8 @@ import "./libraries/Base64.sol";
 import "./libraries/Cast.sol";
 import "hardhat/console.sol";
 
+/// @title tickeD1155 - contract respresenting concert, creates collection of NFTs  
+/// @author Michał Foks
 contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     
     uint256 private orgCredits;
@@ -42,6 +44,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     // !!! cant pass struct... -> pass table of strings
+    /// @notice - Constructor initialize basic properties and creates structure of sectors
     constructor(address _owner, string memory _name, string memory _desc, uint256 _date, string memory _image, string [] memory _sectors) ERC1155("") { 
         require(_sectors.length % 6 == 0, "Wrong data format" );
         require(_owner != address(0), "Owner is 0 address");
@@ -65,7 +68,7 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         }
     }
 
-    // Function for creating tickets attributes and minting if specified
+    /// @notice Function for creating tickets attributes and minting if specified. This function publish tickets
     function createAndMintTickets() public nonReentrant {
         require(msg.sender == orgAddress, "Only owner!");
         require(sectorPointer < sectors.length, "Add new sectors!");
@@ -101,6 +104,9 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         }
     }
 
+    /// @notice Function for buying ticket (token) for concert
+    /// @param tokenId - ID of  token
+    /// @param amount - Amount of tokens to buy 
     function buyTicket(uint256 tokenId, uint256 amount) external payable nonReentrant {
         require(tokenId <= _tokenIds.current(), "Too big tokenId");
         if(ticketAttr[tokenId].minted) {
@@ -126,6 +132,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }    
 
     // openSea can read SFT metadata
+    /// @notice Function for compatibility with openSea way of displaying SFT properties
+    /// @param tokenId - ID of  token
     function uri(uint256 tokenId) override public view returns (string memory) {
         require(exists(tokenId), "Invalid tokenId");
         return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
@@ -144,6 +152,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
     }
 
     // openSea can read NFT metadata
+    /// @notice Function for compatibility with openSea way of displaying NFT properties
+    /// @param tokenId - ID of  token
     function tokenURI(uint256 tokenId) public view returns (string memory) {
         require(exists(tokenId), "Invalid tokenId");
         return string(abi.encodePacked('data:application/json;base64,', Base64.encode(
@@ -161,6 +171,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         )));
     }
 
+    /// @notice Function adds new sectors to concert
+    /// @param _sectors - Structure of sectors at audience
     function addSectors(string [] memory _sectors) external {
         require(msg.sender == orgAddress, "Only owner!");
         require(_sectors.length % 6 == 0, "Wrong data format" );
@@ -178,6 +190,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         }
     }
 
+    /// @notice Function withdraws organizator credits
+    /// @param destAddr - Addres to send money
     function withdrawOrgCredits(address payable destAddr) public {
         require(msg.sender == orgAddress, "Only owner!");
         require(orgCredits > 0, "0 credits");
@@ -186,6 +200,8 @@ contract tickeD1155 is ERC1155Supply, ERC1155Holder, Ownable, ReentrancyGuard {
         destAddr.transfer(proceeds);
     }
 
+    /// @notice Function adds fee for each sale on marketplace for organizer
+    /// @param fee - Credits
     function addResellFee(uint256 fee) external {
         orgCredits += fee;
     }
