@@ -1,0 +1,1137 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ticke-dapp documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ticke-dapp documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ConcertSectorsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/marketplace/concert-sectors/concert-sectors.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-concert-sectors</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./concert-sectors.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./concert-sectors.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#amount" >amount</a>
+                            </li>
+                            <li>
+                                <a href="#concertAddress" >concertAddress</a>
+                            </li>
+                            <li>
+                                <a href="#concertDate" >concertDate</a>
+                            </li>
+                            <li>
+                                <a href="#concertDescription" >concertDescription</a>
+                            </li>
+                            <li>
+                                <a href="#concertName" >concertName</a>
+                            </li>
+                            <li>
+                                <a href="#sectors" >sectors</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSector" >selectedSector</a>
+                            </li>
+                            <li>
+                                <a href="#selectedStandardTickets" >selectedStandardTickets</a>
+                            </li>
+                            <li>
+                                <a href="#ticketsMap" >ticketsMap</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#resellersOffers" >resellersOffers</a>
+                            </li>
+                            <li>
+                                <a href="#selectSector" >selectSector</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#showLayout" >showLayout</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, ticked1155Service: <a href="../injectables/Ticked1155Service.html" target="_self">Ticked1155Service</a>, matDialog: MatDialog)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ticked1155Service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/Ticked1155Service.html" target="_self" >Ticked1155Service</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>matDialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resellersOffers"></a>
+                    <span class="name">
+                        <span ><b>resellersOffers</b></span>
+                        <a href="#resellersOffers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resellersOffers()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:69</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that toggles for resellers offers</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectSector"></a>
+                    <span class="name">
+                        <span ><b>selectSector</b></span>
+                        <a href="#selectSector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectSector(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that changes currently chosen sector</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>Index of sector</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showLayout"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>showLayout</b></span>
+                        <a href="#showLayout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showLayout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that shows dialog with layout</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="amount"></a>
+                    <span class="name">
+                        <span ><b>amount</b></span>
+                        <a href="#amount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="concertAddress"></a>
+                    <span class="name">
+                        <span ><b>concertAddress</b></span>
+                        <a href="#concertAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="concertDate"></a>
+                    <span class="name">
+                        <span ><b>concertDate</b></span>
+                        <a href="#concertDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="concertDescription"></a>
+                    <span class="name">
+                        <span ><b>concertDescription</b></span>
+                        <a href="#concertDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="concertName"></a>
+                    <span class="name">
+                        <span ><b>concertName</b></span>
+                        <a href="#concertName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sectors"></a>
+                    <span class="name">
+                        <span ><b>sectors</b></span>
+                        <a href="#sectors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Sector.html" target="_self" >Sector[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSector"></a>
+                    <span class="name">
+                        <span ><b>selectedSector</b></span>
+                        <a href="#selectedSector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Sector.html" target="_self" >Sector</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedStandardTickets"></a>
+                    <span class="name">
+                        <span ><b>selectedStandardTickets</b></span>
+                        <a href="#selectedStandardTickets"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ticketsMap"></a>
+                    <span class="name">
+                        <span ><b>ticketsMap</b></span>
+                        <a href="#ticketsMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Ticket.html" target="_self" >Map&lt;number | Ticket&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;number, Ticket&gt;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/marketplace/concert-sectors/concert-sectors.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewEncapsulation } from &#x27;@angular/core&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { Ticked1155Service } from &#x27;src/app/services/smartcontracts/ticked1155.service&#x27;;
+import { Sector, Ticket } from &#x27;src/types/concert.model&#x27;;
+import { AudienceLayoutComponent } from &#x27;../audience-layout/audience-layout.component&#x27;;
+
+@Component({
+  selector: &#x27;app-concert-sectors&#x27;,
+  templateUrl: &#x27;./concert-sectors.component.html&#x27;,
+  styleUrls: [&#x27;./concert-sectors.component.scss&#x27;],
+  encapsulation: ViewEncapsulation.None,
+})
+export class ConcertSectorsComponent implements OnInit {
+
+  concertAddress!: string;
+  sectors: Sector[] &#x3D; [];
+  concertName: string &#x3D; &#x27;&#x27;;
+  concertDescription: string &#x3D; &#x27;&#x27;;
+  concertDate!: number;
+
+  selectedSector!: Sector;
+  ticketsMap: Map&lt;number, Ticket&gt; &#x3D; new Map&lt;number, Ticket&gt;;
+  amount &#x3D; 1;
+  selectedStandardTickets: boolean &#x3D; true;
+
+  constructor(
+    private route: ActivatedRoute,
+    private ticked1155Service: Ticked1155Service,
+    private matDialog: MatDialog,
+  ) { }
+
+
+  async ngOnInit() {
+    this.concertAddress &#x3D; this.route.snapshot.paramMap.get(&#x27;address&#x27;)!;
+    
+    this.sectors &#x3D; await this.ticked1155Service.getSectors(this.concertAddress);
+    this.concertName &#x3D; await this.ticked1155Service.getName(this.concertAddress);
+    this.concertDescription &#x3D; await this.ticked1155Service.getDescription(this.concertAddress);
+    this.concertDate &#x3D; await this.ticked1155Service.getDate(this.concertAddress);
+  }
+
+  /**
+   * Function that changes currently chosen sector 
+   * 
+   * @param index - Index of sector 
+   */
+  selectSector(index: number) {
+    this.selectedStandardTickets &#x3D; true;
+    this.selectedSector &#x3D; this.sectors[index];
+  }
+
+  /**
+   * Function that shows dialog with layout  
+   */
+  async showLayout(){
+    const _image &#x3D; await this.ticked1155Service.getImage(this.concertAddress);
+    let dialogRef &#x3D; this.matDialog.open(AudienceLayoutComponent, {
+      maxHeight: &#x27;80%&#x27;,
+      maxWidth: &#x27;80%&#x27;,
+      data: { image: _image }
+    });
+  }
+
+  // resells
+  /**
+   * Function that toggles for resellers offers  
+   */
+  resellersOffers() {
+    this.selectedStandardTickets &#x3D; false;
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;info&quot;&gt;
+    &lt;h2 class&#x3D;&quot;concert-name&quot;&gt;
+        {{ concertName }}
+        &lt;span class&#x3D;&quot;concert-date&quot;&gt;
+            &lt;mat-icon&gt;today&lt;/mat-icon&gt;
+            {{ concertDate * 1000 | date:&#x27;medium&#x27; }}
+        &lt;/span&gt;
+    &lt;/h2&gt;
+    &lt;h4 class&#x3D;&quot;concert-description&quot;&gt;
+        {{ concertDescription }}
+    &lt;/h4&gt;
+&lt;/div&gt;
+&lt;swiper
+    [slidesPerView]&#x3D;&quot;5&quot;
+    [spaceBetween]&#x3D;&quot;20&quot;
+    [navigation]&#x3D;&quot;true&quot;
+    [pagination]&#x3D;&quot;{
+      clickable: true
+    }&quot;
+    [scrollbar]&#x3D;&quot;{
+        hide: true
+    }&quot;
+    class&#x3D;&quot;mySwiper&quot;
+    &gt;
+    &lt;ng-template swiperSlide 
+        *ngFor&#x3D;&quot;let sector of sectors; let i&#x3D;index&quot;&gt;
+        &lt;mat-card class&#x3D;&quot;sector&quot;
+            (click)&#x3D;&quot;selectSector(i)&quot;&gt;
+            &lt;div class&#x3D;&quot;sector-header&quot;&gt;
+                &lt;mat-card-title&gt;{{sector.name}}&lt;/mat-card-title&gt;
+                &lt;mat-card-subtitle&gt;
+                    &lt;ng-container *ngIf&#x3D;&quot;sector.isNumerable; else notNumerated&quot;&gt;
+                        &lt;div&gt; Capacity: {{sector.availableTokenIds.length}} &lt;/div&gt;
+                    &lt;/ng-container&gt;
+                    &lt;ng-template #notNumerated&gt;
+                        &lt;div&gt; Capacity: {{ sector.seatStop }} &lt;/div&gt;
+                    &lt;/ng-template&gt;
+                &lt;/mat-card-subtitle&gt;
+            &lt;/div&gt;
+            &lt;mat-card-content class&#x3D;&quot;sector-content&quot;&gt;
+                &lt;div&gt; Ticket price: {{ sector.price | weiToEth }} ETH &lt;/div&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;sector.isNumerable; else notNumerated&quot;&gt;
+                    &lt;div&gt; Seats from {{ sector.seatStart }} to {{ sector.seatStop }} &lt;/div&gt;
+                &lt;/ng-container&gt;
+                &lt;ng-template #notNumerated&gt;
+                    &lt;div&gt; Capacity: {{ sector.seatStop }} &lt;/div&gt;
+                &lt;/ng-template&gt;
+            &lt;!-- 
+                &lt;mat-card-actions&gt;
+                    &lt;button mat-raised-button color&#x3D;&quot;primary&quot;
+                        class&#x3D;&quot;btn-details&quot;
+                    &gt; Tickets &amp;#8595;&lt;/button&gt;
+                &lt;/mat-card-actions&gt; 
+            --&gt;
+            &lt;/mat-card-content&gt;
+        &lt;/mat-card&gt;
+    &lt;/ng-template&gt; 
+    &lt;!-- RESELLER OFFERS --&gt;
+    &lt;ng-template swiperSlide&gt;
+        &lt;mat-card class&#x3D;&quot;sector&quot;
+            (click)&#x3D;&quot;resellersOffers()&quot;&gt;
+            &lt;div class&#x3D;&quot;sector-header&quot;&gt;
+                &lt;mat-card-title&gt;
+                    RESELLERS OFFERS
+                &lt;/mat-card-title&gt;
+            &lt;/div&gt;
+            &lt;mat-card-content class&#x3D;&quot;sector-content&quot;&gt;
+                Check offers from other people
+            &lt;/mat-card-content&gt;
+        &lt;/mat-card&gt;
+    &lt;/ng-template&gt;
+
+
+&lt;/swiper&gt;
+
+&lt;button mat-button
+    (click)&#x3D;&quot;showLayout()&quot;&gt;
+    Audience layout 
+&lt;/button&gt;
+
+&lt;ng-container *ngIf&#x3D;&quot;selectedStandardTickets; else reselled&quot;&gt;
+    &lt;app-standard-ticket
+    [concertAddress]&#x3D;&quot;concertAddress&quot;
+    [sector]&#x3D;&quot;selectedSector&quot;&gt;
+
+    &lt;/app-standard-ticket&gt;
+&lt;/ng-container&gt;
+&lt;ng-template #reselled&gt;
+    &lt;app-reselled-ticket
+    [concertAddress]&#x3D;&quot;concertAddress&quot;&gt;
+
+    &lt;/app-reselled-ticket&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./concert-sectors.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &quot;~swiper/css&quot;;
+@import &quot;~swiper/css/pagination&quot;;
+@import &quot;~swiper/css/bundle&quot;;
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide:hover {
+    transform: scale(1.02);
+}
+
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
+}
+
+.swiper-button-prev {
+  color: grey;
+}
+.swiper-button-next {
+  color: grey;
+}
+
+.sector {
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(250, 250, 250);
+  height: 100px;
+  width: 220px;
+}
+    
+.btn-details {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+.info {
+  background-color: #683ab74e;
+  border-radius: 25px;
+}
+
+.concert-date {
+  float: right;
+  padding: 5px;
+}
+
+.concert-name {
+  padding: 10px;
+}
+
+.concert-description {
+  padding: 10px;
+}
+
+.sector-header {
+  ::ng-deep {
+    .mat-card-title {
+      margin: auto;
+      text-align: center;
+    }
+  }
+}
+
+.sector-content {
+  text-align: center;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="info">    <h2 class="concert-name">        {{ concertName }}        <span class="concert-date">            <mat-icon>today</mat-icon>            {{ concertDate * 1000 | date:\'medium\' }}        </span>    </h2>    <h4 class="concert-description">        {{ concertDescription }}    </h4></div><swiper    [slidesPerView]="5"    [spaceBetween]="20"    [navigation]="true"    [pagination]="{      clickable: true    }"    [scrollbar]="{        hide: true    }"    class="mySwiper"    >    <ng-template swiperSlide         *ngFor="let sector of sectors; let i=index">        <mat-card class="sector"            (click)="selectSector(i)">            <div class="sector-header">                <mat-card-title>{{sector.name}}</mat-card-title>                <mat-card-subtitle>                    <ng-container *ngIf="sector.isNumerable; else notNumerated">                        <div> Capacity: {{sector.availableTokenIds.length}} </div>                    </ng-container>                    <ng-template #notNumerated>                        <div> Capacity: {{ sector.seatStop }} </div>                    </ng-template>                </mat-card-subtitle>            </div>            <mat-card-content class="sector-content">                <div> Ticket price: {{ sector.price | weiToEth }} ETH </div>                <ng-container *ngIf="sector.isNumerable; else notNumerated">                    <div> Seats from {{ sector.seatStart }} to {{ sector.seatStop }} </div>                </ng-container>                <ng-template #notNumerated>                    <div> Capacity: {{ sector.seatStop }} </div>                </ng-template>            <!--                 <mat-card-actions>                    <button mat-raised-button color="primary"                        class="btn-details"                    > Tickets &#8595;</button>                </mat-card-actions>             -->            </mat-card-content>        </mat-card>    </ng-template>     <!-- RESELLER OFFERS -->    <ng-template swiperSlide>        <mat-card class="sector"            (click)="resellersOffers()">            <div class="sector-header">                <mat-card-title>                    RESELLERS OFFERS                </mat-card-title>            </div>            <mat-card-content class="sector-content">                Check offers from other people            </mat-card-content>        </mat-card>    </ng-template></swiper><button mat-button    (click)="showLayout()">    Audience layout </button><ng-container *ngIf="selectedStandardTickets; else reselled">    <app-standard-ticket    [concertAddress]="concertAddress"    [sector]="selectedSector">    </app-standard-ticket></ng-container><ng-template #reselled>    <app-reselled-ticket    [concertAddress]="concertAddress">    </app-reselled-ticket></ng-template></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AudienceLayoutComponent', 'selector': 'app-audience-layout'},{'name': 'ConcertSectorsComponent', 'selector': 'app-concert-sectors'},{'name': 'ConcertSellComponent', 'selector': 'app-concert-sell'},{'name': 'CreateConcertComponent', 'selector': 'app-create-concert'},{'name': 'CreateOfferDialogComponent', 'selector': 'app-create-offer-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'MarketplaceComponent', 'selector': 'app-marketplace'},{'name': 'MyConcertsComponent', 'selector': 'app-my-concerts'},{'name': 'MyNftComponent', 'selector': 'app-my-nft'},{'name': 'MyOffersComponent', 'selector': 'app-my-offers'},{'name': 'NavigationBarComponent', 'selector': 'app-navigation-bar'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'ReselledTicketComponent', 'selector': 'app-reselled-ticket'},{'name': 'SectorComponent', 'selector': 'app-sector'},{'name': 'StandardTicketComponent', 'selector': 'app-standard-ticket'},{'name': 'WhitelistComponent', 'selector': 'app-whitelist'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ConcertSectorsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConcertSectorsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
