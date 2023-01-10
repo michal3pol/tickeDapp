@@ -33,6 +33,14 @@ export class ReselledTicketComponent implements OnInit {
     }
   }
 
+  /**
+   * Function that fires transaction for buying ticket 
+   *
+   * @param owner - Address of token owner 
+   * @param tokenId - Token ID 
+   * @param price - Token price
+   * 
+   */
   buyTicket(owner: string, tokenId: number, price: BigNumber){
     this.nftMarketplaceService.buyTicket(
                                 this.concertAddress,

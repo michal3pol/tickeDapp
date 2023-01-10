@@ -26,6 +26,12 @@ export class ConcertSellComponent implements OnInit {
     }
   }
 
+  /**
+   * Function that redirects to chosen concert
+   *
+   * @param contractAddress - Address of concert contract 
+   * 
+   */
   goToConcert(concertAddress: string) {
     this.router.navigate(['sell', concertAddress]);
   }

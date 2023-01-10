@@ -15,6 +15,10 @@ export class NftMarketplaceService {
     private walletService: WalletService,
   ) { }
 
+  /**
+   * Withdraws money for currently logged wallet
+   * 
+   */
   public async withdraw(){
     const contract = await NftMarketplaceService.getContract(true)
     try {
@@ -24,6 +28,16 @@ export class NftMarketplaceService {
     }
   }
 
+  /**
+   * Function interacts with smartcontract and fires transaction to buy ticket
+   *
+   * @param concertAddr - Address of concert contract 
+   * @param owner - Owner of smartcontract
+   * @param tokenId - ID of token to buy 
+   * @param price - ID of token to buy 
+   * @param amount - amount of tokens to buy (by default = 1)
+   * 
+   */
   public async buyTicket(
     concertAddr: string, 
     owner: string, 
@@ -36,16 +50,37 @@ export class NftMarketplaceService {
     })
   }
 
+  /**
+   * Function interacts with smartcontract and fires transaction to delete ticket offer
+   *
+   * @param concertAddr - Address of concert contract 
+   * @param tokenId - ID of token to delete 
+   * 
+   */
   public async deleteOffer(concertAddr: string, tokenId: number) {
     const contract = await NftMarketplaceService.getContract(true)
     contract['deleteOffer'](concertAddr, tokenId)
   }
 
+  /**
+   * Function interacts with smartcontract and fires transaction to update ticket offer
+   *
+   * @param concertAddr - Address of concert contract 
+   * @param listing - New offer details
+   * 
+   */
   public async updateOffer(concertAddr: string, listing: Listing) {
     const contract = await NftMarketplaceService.getContract(true)
     contract['updateOffer'](concertAddr, listing)
   }
 
+  /**
+   * Function interacts with smartcontract and fires transaction to insert ticket offer
+   *
+   * @param concertAddr - Address of concert contract 
+   * @param listing - New offer details
+   * 
+   */
   public async insertOffer(concertAddr: string, listing: Listing) {
     const contract = await NftMarketplaceService.getContract(true)
     contract['insertOffer'](concertAddr, listing)
@@ -68,7 +103,7 @@ export class NftMarketplaceService {
     return contract['getListedTicket'](concertAddr, sellerId)
   }
 
-  public async getBalance(): Promise<number>{
+  public async getBalance(): Promise<BigNumber>{
     const contract = await NftMarketplaceService.getContract()
     return contract['balance'](
       await this.walletService.getWalletAddress()

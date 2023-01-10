@@ -42,6 +42,14 @@ export class StandardTicketComponent implements OnChanges {
     }
   }
 
+  /**
+   * Function that calculate tokens availabilty 
+   *
+   * @param allTickets - List of all possible tokens 
+   * @param soldTickets - List of already sold tickets
+   * @returns List of currently available tokens
+   * 
+   */
   validateAvailability(allTickets: BigNumber[], soldTickets: BigNumber[]): number[] {
       let resultArray: number[] = [];
       for(let ticketId of allTickets){
@@ -53,7 +61,14 @@ export class StandardTicketComponent implements OnChanges {
       return resultArray;
   }
 
-
+  /**
+   * Function that fires transaction for buying ticket 
+   *
+   * @param tokenId - Token ID 
+   * @param price - Token price
+   * @param amount - Amount of tokens to buy (by default sets to 1)
+   * 
+   */
   buyTicket(tokenId: number, price: BigNumber, amount = 1) {
     this.ticked1155Service.buyTicket(
       this.concertAddress, tokenId, price, amount)

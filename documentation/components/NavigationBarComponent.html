@@ -1,0 +1,861 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ticke-dapp documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ticke-dapp documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  NavigationBarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/navigation-bar/navigation-bar.component.ts</code>
+</p>
+
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-navigation-bar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./navigation-bar.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./navigation-bar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#connectWallet" >connectWallet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#goToAdminPanel" >goToAdminPanel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#goToConcertForm" >goToConcertForm</a>
+                            </li>
+                            <li>
+                                <a href="#goToMarketplace" >goToMarketplace</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#goToMyConcerts" >goToMyConcerts</a>
+                            </li>
+                            <li>
+                                <a href="#goToMyNfts" >goToMyNfts</a>
+                            </li>
+                            <li>
+                                <a href="#goToMyOffers" >goToMyOffers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(walletService: <a href="../injectables/WalletService.html" target="_self">WalletService</a>, tickedFactoryService: <a href="../injectables/TickedFactoryService.html" target="_self">TickedFactoryService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackbarService: <a href="../injectables/SnackbarService.html" target="_self">SnackbarService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>walletService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WalletService.html" target="_self" >WalletService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>tickedFactoryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TickedFactoryService.html" target="_self" >TickedFactoryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackbarService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SnackbarService.html" target="_self" >SnackbarService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectWallet"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>connectWallet</b></span>
+                        <a href="#connectWallet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>connectWallet()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that connects wallet</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToAdminPanel"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>goToAdminPanel</b></span>
+                        <a href="#goToAdminPanel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>goToAdminPanel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that redirects to admin panel page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToConcertForm"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>goToConcertForm</b></span>
+                        <a href="#goToConcertForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>goToConcertForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that redirects to concert-form page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToMarketplace"></a>
+                    <span class="name">
+                        <span ><b>goToMarketplace</b></span>
+                        <a href="#goToMarketplace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToMarketplace()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:89</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that redirects to marketplace page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToMyConcerts"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>goToMyConcerts</b></span>
+                        <a href="#goToMyConcerts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>goToMyConcerts()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that redirects to my-concerts page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToMyNfts"></a>
+                    <span class="name">
+                        <span ><b>goToMyNfts</b></span>
+                        <a href="#goToMyNfts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToMyNfts()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:98</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that redirects to my-nfts page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToMyOffers"></a>
+                    <span class="name">
+                        <span ><b>goToMyOffers</b></span>
+                        <a href="#goToMyOffers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToMyOffers()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/components/navigation-bar/navigation-bar.component.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Function that redirects to my-offers page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { SnackbarService } from &#x27;src/app/services/snackbar.service&#x27;;
+import { TickedFactoryService } from &#x27;src/app/services/smartcontracts/ticked-factory.service&#x27;;
+import { WalletService } from &#x27;src/app/services/wallet.service&#x27;;
+
+@Component({
+  selector: &#x27;app-navigation-bar&#x27;,
+  templateUrl: &#x27;./navigation-bar.component.html&#x27;,
+  styleUrls: [&#x27;./navigation-bar.component.scss&#x27;]
+})
+export class NavigationBarComponent {
+
+  constructor(
+    private walletService: WalletService,
+    private tickedFactoryService: TickedFactoryService,
+    private router: Router,
+    private snackbarService: SnackbarService,
+  ) { }
+
+  /**
+   * Function that connects wallet
+   *
+   */
+  async connectWallet() {
+    let isLogged &#x3D; await this.walletService.logIn();
+    if(isLogged){
+      this.snackbarService.info(&quot;You are already connected&quot;)
+    }
+  }
+
+  /**
+   * Function that redirects to concert-form page
+   *
+   */
+  async goToConcertForm() {
+    const authorization: boolean &#x3D; await this.tickedFactoryService.authorizeAccess(
+      await this.walletService.getWalletAddress()
+      );
+
+    if(authorization) {
+      const navigationDetails: string[] &#x3D; [&#x27;/create-concert&#x27;];
+      this.router.navigate(navigationDetails);
+    } else {
+      this.snackbarService.error(&quot;Access not authorized!&quot;)
+      return;
+    }
+  }
+
+  /**
+   * Function that redirects to my-concerts page
+   *
+   */
+  async goToMyConcerts() {
+    const authorization: boolean &#x3D; await this.tickedFactoryService.authorizeAccess(
+      await this.walletService.getWalletAddress()
+      );
+
+    if(authorization) {
+      const navigationDetails: string[] &#x3D; [&#x27;/my-concerts&#x27;];
+      this.router.navigate(navigationDetails);
+    } else {
+      this.snackbarService.error(&quot;Access not authorized!&quot;)
+      return;
+    }
+  }
+
+  /**
+   * Function that redirects to admin panel page
+   *
+   */
+  async goToAdminPanel() {
+    const isOwner: boolean &#x3D; await this.tickedFactoryService.validateOwner(
+      await this.walletService.getWalletAddress()
+    )
+    
+    if(isOwner){
+      const navigationDetails: string[] &#x3D; [&#x27;/whitelist&#x27;];
+      this.router.navigate(navigationDetails);
+    } else {
+      this.snackbarService.error(&quot;Access not authorized!&quot;)
+    }
+  }
+
+  /**
+   * Function that redirects to marketplace page
+   *
+   */
+  goToMarketplace() {
+    const navigationDetails: string[] &#x3D; [&#x27;/marketplace/sell&#x27;];
+    this.router.navigate(navigationDetails);
+  }
+
+  /**
+   * Function that redirects to my-nfts page
+   *
+   */
+  goToMyNfts() {
+    const navigationDetails: string[] &#x3D; [&#x27;/my-nft&#x27;];
+    this.router.navigate(navigationDetails);
+  }
+
+  /**
+   * Function that redirects to my-offers page
+   *
+   */
+  goToMyOffers() {
+    const navigationDetails: string[] &#x3D; [&#x27;/my-offers&#x27;];
+    this.router.navigate(navigationDetails);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;nav-container&quot;&gt;
+    &lt;button mat-raised-button [matMenuTriggerFor]&#x3D;&quot;concerts&quot; color&#x3D;&quot;primary&quot;&gt;
+        &lt;mat-icon&gt;perm_data_setting&lt;/mat-icon&gt;
+        Concert Management
+    &lt;/button&gt;
+
+    &lt;mat-menu #concerts&#x3D;&quot;matMenu&quot;&gt;
+        &lt;button mat-menu-item
+        (click)&#x3D;&quot;goToConcertForm()&quot;
+            &gt;
+            &lt;mat-icon&gt;library_add&lt;/mat-icon&gt;
+            Create Concert&lt;/button&gt;
+        &lt;button mat-menu-item
+        (click)&#x3D;&quot;goToMyConcerts()&quot;
+            &gt;
+            &lt;mat-icon&gt;event&lt;/mat-icon&gt;
+            My Concerts&lt;/button&gt;
+            &lt;button mat-menu-item
+        (click)&#x3D;&quot;goToAdminPanel()&quot;
+            &gt;
+            &lt;mat-icon&gt;lock&lt;/mat-icon&gt;
+            Admin Panel&lt;/button&gt;
+    &lt;/mat-menu&gt;
+
+    &lt;button mat-button
+        class&#x3D;&quot;btn-marketplace&quot;
+        (click)&#x3D;&quot;goToMarketplace()&quot;&gt;
+        &lt;mat-icon&gt;home&lt;/mat-icon&gt;
+        tickeD MARKETPLACE
+    &lt;/button&gt;
+
+    &lt;button mat-raised-button [matMenuTriggerFor]&#x3D;&quot;myAccount&quot;
+        color&#x3D;&quot;primary&quot;&gt;
+        My Account
+        &lt;mat-icon&gt;account_circle&lt;/mat-icon&gt;
+    &lt;/button&gt;
+
+    &lt;mat-menu #myAccount&#x3D;&quot;matMenu&quot;&gt;
+        &lt;button mat-menu-item color&#x3D;&quot;primary&quot;
+        (click)&#x3D;&quot;connectWallet()&quot;
+        &gt;
+        &lt;mat-icon&gt;account_balance_wallet&lt;/mat-icon&gt;
+        Connect wallet&lt;/button&gt;
+        &lt;button mat-menu-item color&#x3D;&quot;primary&quot;
+        (click)&#x3D;&quot;goToMyNfts()&quot;
+        &gt;
+        &lt;mat-icon&gt; local_offer&lt;/mat-icon&gt;
+        My NFTs&lt;/button&gt;        
+        &lt;button mat-menu-item color&#x3D;&quot;primary&quot;
+        (click)&#x3D;&quot;goToMyOffers()&quot;
+        &gt;
+        &lt;mat-icon&gt;shopping_cart&lt;/mat-icon&gt;
+        My Offers&lt;/button&gt;
+    &lt;/mat-menu&gt;
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./navigation-bar.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.btn-log-in {
+    float: right;
+}
+
+.nav-container {
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9990;
+}
+
+.btn-marketplace {
+    margin: auto;
+    flex-grow: 3;
+    background-color: #683ab72e;
+    position: sticky;
+}
+    
+.btn-marketplace:hover {
+    transform: scale(1.02);
+    background-color: #673AB7;
+    color: white;
+    position: sticky;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="nav-container">    <button mat-raised-button [matMenuTriggerFor]="concerts" color="primary">        <mat-icon>perm_data_setting</mat-icon>        Concert Management    </button>    <mat-menu #concerts="matMenu">        <button mat-menu-item        (click)="goToConcertForm()"            >            <mat-icon>library_add</mat-icon>            Create Concert</button>        <button mat-menu-item        (click)="goToMyConcerts()"            >            <mat-icon>event</mat-icon>            My Concerts</button>            <button mat-menu-item        (click)="goToAdminPanel()"            >            <mat-icon>lock</mat-icon>            Admin Panel</button>    </mat-menu>    <button mat-button        class="btn-marketplace"        (click)="goToMarketplace()">        <mat-icon>home</mat-icon>        tickeD MARKETPLACE    </button>    <button mat-raised-button [matMenuTriggerFor]="myAccount"        color="primary">        My Account        <mat-icon>account_circle</mat-icon>    </button>    <mat-menu #myAccount="matMenu">        <button mat-menu-item color="primary"        (click)="connectWallet()"        >        <mat-icon>account_balance_wallet</mat-icon>        Connect wallet</button>        <button mat-menu-item color="primary"        (click)="goToMyNfts()"        >        <mat-icon> local_offer</mat-icon>        My NFTs</button>                <button mat-menu-item color="primary"        (click)="goToMyOffers()"        >        <mat-icon>shopping_cart</mat-icon>        My Offers</button>    </mat-menu></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AudienceLayoutComponent', 'selector': 'app-audience-layout'},{'name': 'ConcertSectorsComponent', 'selector': 'app-concert-sectors'},{'name': 'ConcertSellComponent', 'selector': 'app-concert-sell'},{'name': 'CreateConcertComponent', 'selector': 'app-create-concert'},{'name': 'CreateOfferDialogComponent', 'selector': 'app-create-offer-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'MarketplaceComponent', 'selector': 'app-marketplace'},{'name': 'MyConcertsComponent', 'selector': 'app-my-concerts'},{'name': 'MyNftComponent', 'selector': 'app-my-nft'},{'name': 'MyOffersComponent', 'selector': 'app-my-offers'},{'name': 'NavigationBarComponent', 'selector': 'app-navigation-bar'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'ReselledTicketComponent', 'selector': 'app-reselled-ticket'},{'name': 'SectorComponent', 'selector': 'app-sector'},{'name': 'StandardTicketComponent', 'selector': 'app-standard-ticket'},{'name': 'WhitelistComponent', 'selector': 'app-whitelist'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NavigationBarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NavigationBarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

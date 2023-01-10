@@ -9,6 +9,8 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 
 // marketplace holds nfts that are available to sell to prevent selling on other market
+/// @title nftMarketplace - contract for trading nft's  
+/// @author Michał Foks
 contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
 
     mapping(address => uint256) public balance;
@@ -26,6 +28,10 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
     mapping(address => SellerOffer[]) public sellerOffers;
 
     // MODIFIERS
+    /// @notice Modifier checks if sender is owner of proper amount tokens
+    /// @param concertAddr - Address of concert 
+    /// @param tokenId - Token ID
+    /// @param amount - Amount of tokens   
     modifier isOwner(
         address concertAddr,
         uint256 tokenId,
@@ -37,6 +43,9 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         _;
     }
 
+    /// @notice Modifier checks if token is not yet listed
+    /// @param concertAddr - Address of concert 
+    /// @param tokenId - Token ID
     modifier isNotListed(
         address concertAddr,
         uint256 tokenId
@@ -47,6 +56,10 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         _;
     }
 
+    /// @notice Modifier checks if token is listed
+    /// @param concertAddr - Address of concert 
+    /// @param owner - Owner of token
+    /// @param tokenId - Token ID
     modifier isListed(
         address concertAddr,
         address owner,
@@ -59,6 +72,9 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
     }
 
     // FUNCTIONS
+    /// @notice Function adds offer on marketplace 
+    /// @param concertAddr - Address of concert 
+    /// @param params - Offer details
     function insertOffer(address concertAddr, Listing memory params) 
         external
         isOwner(concertAddr, params.tokenId, params.amount)
@@ -78,6 +94,9 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
 
     // dont need to check isOwner (marketplace holds tokens) 
     // isListed is enough since we use msg.sender as param - it checks if msg.sender listed this tokenId
+    /// @notice Function updates offer on marketplace 
+    /// @param concertAddr - Address of concert 
+    /// @param params - Offer details
     function updateOffer(address concertAddr, Listing memory params) 
         external
         isListed(concertAddr, msg.sender, params.tokenId)
@@ -91,6 +110,9 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
     }
 
     // same as above
+    /// @notice Function deletes offer on marketplace 
+    /// @param concertAddr - Address of concert 
+    /// @param tokenId - Token ID
     function deleteOffer(address concertAddr, uint256 tokenId) 
         external
         isListed(concertAddr, msg.sender, tokenId)
@@ -102,6 +124,11 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         delete listing[concertAddr][sellerId];
     }
 
+    /// @notice Function for buying ticket (token) from marketplace
+    /// @param concertAddr - Address of concert 
+    /// @param owner - Current owner of token  
+    /// @param tokenId - Token ID
+    /// @param amount - Amount of tokens to buy 
     function buyTicket(address concertAddr, address owner, uint256 tokenId, uint256 amount)
         external
         payable
@@ -125,6 +152,8 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         tickeD1155(concertAddr).addResellFee(resellFee);
     }
 
+    /// @notice Function withdraws organizator credits
+    /// @param destAddr - Addres to send money
     function withdraw(address payable destAddr) public {
         require(balance[msg.sender] > 0, "0 credits");
         uint256 proceeds = balance[msg.sender];

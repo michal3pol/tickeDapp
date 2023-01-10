@@ -1,6 +1,7 @@
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import { default as dotenv } from 'dotenv';
+import 'solidity-docgen';
 
 dotenv.config();
 
@@ -31,12 +32,9 @@ const config: HardhatUserConfig = {
       chainId: 31337,
     },
   },
-  // settings: {
-  //   optimizer: {
-  //     enabled: true,
-  //     runs: 1
-  //   }
-  // }
+  docgen: { 
+    outputDir: "./documentation-solidity"
+  } // if necessary to customize config
 };
 
 export default config;

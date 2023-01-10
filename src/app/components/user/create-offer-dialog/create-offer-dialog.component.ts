@@ -39,7 +39,11 @@ export class CreateOfferDialogComponent implements OnInit {
       environment.contractNftMarketplaceAddress,
     )
   }
-
+  
+  /**
+   * Function that approves marketplace contract for all tokens
+   *
+   */
   approveMarketplace() {
     this.ticked1155Service.setApprovalForAll(
       this.nft.contract.address,
@@ -48,6 +52,10 @@ export class CreateOfferDialogComponent implements OnInit {
     )
   }
 
+  /**
+   * Function that revokes approval for all tokens for marketplace contract
+   *
+   */
   revokeMarketplaceApproval() {
     this.ticked1155Service.setApprovalForAll(
       this.nft.contract.address,
@@ -56,6 +64,10 @@ export class CreateOfferDialogComponent implements OnInit {
     )
   }
 
+  /**
+   * Function that creates offer based on form input
+   *
+   */
   async createOffer() {
     this.nftMarketplaceService.insertOffer(
       this.nft.contract.address,
@@ -66,6 +78,10 @@ export class CreateOfferDialogComponent implements OnInit {
     )
   }
 
+  /**
+   * Function checks if marketplace is approved for token
+   *
+   */
   async refresh() {
     this.isMarketplaceApproved = await this.ticked1155Service.isApprovedForAll(
       this.nft.contract.address,

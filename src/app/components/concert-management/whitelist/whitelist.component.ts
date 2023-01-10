@@ -18,6 +18,10 @@ export class WhitelistComponent {
     private snackbarService: SnackbarService,
   ) { }
 
+  
+  /**
+   * Function that changes permission based on form 
+   */
   changePermissions() {
     if(this.permission === undefined || this.address === undefined){
       this.snackbarService.error("Specify arguments!")
@@ -27,6 +31,9 @@ export class WhitelistComponent {
     this.tickedFactoryService.setOrganizatorPermission(this.address, toggle);
   }
 
+  /**
+   * Function that checks permission based on form 
+   */
   async checkPermissions() {
     if(this.checkAddress === undefined) {
       this.snackbarService.error("Specify arguments!")
