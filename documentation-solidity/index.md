@@ -19,7 +19,21 @@ function encode(bytes data) public pure returns (string)
 
 Encodes some bytes to the base64 representation
 
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| data | bytes | - Data to encode |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| [0] | string | encoded string |
+
 ## Cast
+
+Provides a function for casting between uint and string
 
 ### uint2str
 
@@ -27,11 +41,27 @@ Encodes some bytes to the base64 representation
 function uint2str(uint256 _i) public pure returns (string _uintAsString)
 ```
 
+Converts uint to string
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _i | uint256 | - Number to convert |
+
 ### str2uint
 
 ```solidity
 function str2uint(string numString) public pure returns (uint256)
 ```
+
+Converts string to uint
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| numString | string | - String to convert |
 
 ## nftMarketplace
 

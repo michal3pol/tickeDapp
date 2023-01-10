@@ -1,9 +1,14 @@
 pragma solidity ^0.8.17;
 // SPDX-License-Identifier: MIT
 
+/// @title Cast
+/// @notice Provides a function for casting between uint and string
 library Cast {
 
   // library functions as public (https://soliditydeveloper.com/max-contract-size)
+
+  /// @notice Converts uint to string
+  /// @param _i - Number to convert
   function uint2str(uint _i) public pure returns (string memory _uintAsString) {
     if (_i == 0) {
         return "0";
@@ -26,6 +31,8 @@ library Cast {
     return string(bstr);
   }
 
+  /// @notice Converts string to uint
+  /// @param numString - String to convert
   function str2uint(string memory numString) public pure returns(uint) {
       uint  val=0;
       bytes   memory stringBytes = bytes(numString);
