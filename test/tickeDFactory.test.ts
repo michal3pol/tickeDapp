@@ -99,7 +99,7 @@ describe('TickeDFactory contract', function () {
             imageUrl,
             sectors
           )
-      ).to.be.revertedWith('Not allowed to mint');
+      ).to.be.revertedWith('Not allowed to create event');
     });
 
     it('Should create concert for authorized sender', async function () {
