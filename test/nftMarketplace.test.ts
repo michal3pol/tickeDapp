@@ -66,7 +66,7 @@ describe('Nft Marketplace contract', function () {
     tickeDFactory['setOrganizatorPermission'](orgAuth1.address, true);
     await tickeDFactory
       .connect(orgAuth1)
-      ['createTickets'](
+      ['createEvent'](
         concertName,
         concertDescription,
         concertDate,

@@ -92,7 +92,7 @@ describe('TickeDFactory contract', function () {
       await expect(
         tickeDFactory
           .connect(orgNotAuth)
-          ['createTickets'](
+          ['createEvent'](
             concertName,
             concertDescription,
             concertDate,
@@ -110,7 +110,7 @@ describe('TickeDFactory contract', function () {
       tickeDFactory['setOrganizatorPermission'](orgAuth1.address, true);
       await tickeDFactory
         .connect(orgAuth1)
-        ['createTickets'](
+        ['createEvent'](
           concertName,
           concertDescription,
           concertDate,

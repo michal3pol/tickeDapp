@@ -41,7 +41,7 @@ const main = async () => {
     const st = ["A1","0","0","1000","1","1","A2","1","1","100","1","1","C5","1","1","20","1","500"];    
     let unixTime = 	1669492800; // Sat Nov 26 2022 21:00:00 GMT+0100 (czas środkowoeuropejski standardowy)
     let image = "https://bafkreiajmvoddrzqjupncsvhyyqdphmz3nrztglogtotimizqm7jhsmqza.ipfs.nftstorage.link/"
-    let txn = await nftContract.createTickets("Metallica concert Warsaw!", "First concert of metallica in Warsaw!", unixTime, image, st );
+    let txn = await nftContract.createEvent("Metallica concert Warsaw!", "First concert of metallica in Warsaw!", unixTime, image, st );
     await txn.wait();
     let adr = await nftContract.getDepContracts(owner.address);
     console.log("Address subcontract " + adr[0].contractAddress);
@@ -101,7 +101,7 @@ const main = async () => {
 
     // SECOND CONCERT 
     // const st2nd = ["A1","0","0","1000","1","1","A2","1","1","100","1","2"];
-    // let txn2nd = await nftContract.createTickets("SECOND concert!", "This is description", 1, st2nd );
+    // let txn2nd = await nftContract.createEvent("SECOND concert!", "This is description", 1, st2nd );
     // await txn2nd.wait();
     // let adr2nd = await nftContract.getDepContracts(owner.address);
     // console.log("Address subcontract " + adr2nd[1].contractAddress);

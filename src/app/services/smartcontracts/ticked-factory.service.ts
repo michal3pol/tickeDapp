@@ -37,7 +37,7 @@ export class TickedFactoryService {
     name: string, desc: string, date: Number, image: string, sectors: string[] ){
     
     const contract = await TickedFactoryService.getContract(true)
-    const transaction = await contract['createTickets'](
+    const transaction = await contract['createEvent'](
       name, desc, date, image, sectors)
     const tx = await transaction.wait()
 
