@@ -213,6 +213,12 @@ describe('Nft Marketplace contract', function () {
           .toLowerCase()
       );
 
+      await nftMarketplace
+        .connect(reseller)
+        ['getListedTicket'](concertAddress, reseller.address
+          .concat(BigNumber.from(ticket1.tokenId).toHexString())
+          .toLowerCase());
+
       expect(newListing.tokenId, 'Wrong ticket tokenId in listing').to.be.equal(
         ticket1.tokenId
       );

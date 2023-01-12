@@ -56,6 +56,7 @@ describe('TickeDFactory contract', function () {
         deployFactoryFixture
       );
       tickeDFactory['setOrganizatorPermission'](orgAuth1.address, true);
+      tickeDFactory['getOrganizers']();
       expect(await tickeDFactory['whitelist'](orgAuth1.address)).to.equal(true);
     });
 
