@@ -708,6 +708,23 @@ describe('TickeD1155 contract tests', function () {
     });
   });
 
+  describe('Updating date', function() {
+    it('Should properly update date', async function() {
+      const { tickeD1155 } = await loadFixture(deployFixtureWithManySectors);
+      const unixTimestamp = new Date().valueOf();
+      await tickeD1155['setDate'](unixTimestamp);
+      expect(await tickeD1155['date']()).to.be.equal(unixTimestamp);
+    })
+
+    it('Should revert if not organizer try to update date', async function() {
+      const { tickeD1155, concertgoer} = await loadFixture(deployFixtureWithManySectors);
+      const unixTimestamp = new Date().valueOf();
+      await expect(tickeD1155.connect(concertgoer)['setDate'](unixTimestamp)).
+        to.be.revertedWith('Only owner!');
+    })
+
+  })
+
   describe('Validate URI', function () {
     it('Should revert if token with given id dont exist', async function () {
       const { tickeD1155 } = await loadFixture(deployFixtureWithManySectors);

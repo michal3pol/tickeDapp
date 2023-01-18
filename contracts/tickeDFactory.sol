@@ -34,8 +34,8 @@ contract tickeDFactory is Ownable {
     /// @param _date - Date of concert 
     /// @param _image - Image of audience layout 
     /// @param _sectors - Structure of sectors at audience
-    function createTickets(string memory _name, string memory _desc, uint256 _date, string memory _image, string [] memory _sectors) external{
-        require(whitelist[msg.sender], "Not allowed to mint");
+    function createEvent(string memory _name, string memory _desc, uint256 _date, string memory _image, string [] memory _sectors) external{
+        require(whitelist[msg.sender], "Not allowed to create event");
         tickeD1155 tickeDContract = new tickeD1155(msg.sender, _name, _desc, _date, _image, _sectors);
 
         if (getDepContracts(msg.sender).length == 0){

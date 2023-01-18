@@ -56,6 +56,7 @@ describe('TickeDFactory contract', function () {
         deployFactoryFixture
       );
       tickeDFactory['setOrganizatorPermission'](orgAuth1.address, true);
+      tickeDFactory['getOrganizers']();
       expect(await tickeDFactory['whitelist'](orgAuth1.address)).to.equal(true);
     });
 
@@ -92,14 +93,14 @@ describe('TickeDFactory contract', function () {
       await expect(
         tickeDFactory
           .connect(orgNotAuth)
-          ['createTickets'](
+          ['createEvent'](
             concertName,
             concertDescription,
             concertDate,
             imageUrl,
             sectors
           )
-      ).to.be.revertedWith('Not allowed to mint');
+      ).to.be.revertedWith('Not allowed to create event');
     });
 
     it('Should create concert for authorized sender', async function () {
@@ -110,7 +111,7 @@ describe('TickeDFactory contract', function () {
       tickeDFactory['setOrganizatorPermission'](orgAuth1.address, true);
       await tickeDFactory
         .connect(orgAuth1)
-        ['createTickets'](
+        ['createEvent'](
           concertName,
           concertDescription,
           concertDate,

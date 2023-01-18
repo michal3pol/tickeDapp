@@ -446,10 +446,10 @@ Function that toggles organizator permission of creating concerts
 | addr | address | - Address of organizator |
 | toggle | bool | - Granted permissions true/false |
 
-### createTickets
+### createEvent
 
 ```solidity
-function createTickets(string _name, string _desc, uint256 _date, string _image, string[] _sectors) external
+function createEvent(string _name, string _desc, uint256 _date, string _image, string[] _sectors) external
 ```
 
 Function creates new smarcontract concert

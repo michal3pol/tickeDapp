@@ -22,7 +22,7 @@ export class ConcertSellComponent implements OnInit {
   async ngOnInit() {
     this.concertOrg = await this.tickedFactoryService.getOrganizers();
     for (let org of this.concertOrg) {
-      this.concerts = await this.tickedFactoryService.getDepContracts(org)
+      this.concerts = this.concerts.concat(await this.tickedFactoryService.getDepContracts(org));
     }
   }
 

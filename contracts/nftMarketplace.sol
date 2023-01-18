@@ -121,7 +121,10 @@ contract nftMarketplace is ReentrancyGuard, ERC1155Holder{
         // using msg.sender we are sure that user deletes HIS offer
         string memory sellerId = string.concat(
                 Strings.toHexString(uint256(uint160(msg.sender)), 20), Strings.toHexString(tokenId));
+        uint256 amount = listing[concertAddr][sellerId].amount;
         delete listing[concertAddr][sellerId];
+        tickeD1155(concertAddr).safeTransferFrom(
+            address(this), msg.sender, tokenId, amount, "");
     }
 
     /// @notice Function for buying ticket (token) from marketplace

@@ -66,7 +66,7 @@ describe('Nft Marketplace contract', function () {
     tickeDFactory['setOrganizatorPermission'](orgAuth1.address, true);
     await tickeDFactory
       .connect(orgAuth1)
-      ['createTickets'](
+      ['createEvent'](
         concertName,
         concertDescription,
         concertDate,
@@ -212,6 +212,12 @@ describe('Nft Marketplace contract', function () {
           .concat(BigNumber.from(ticket1.tokenId).toHexString())
           .toLowerCase()
       );
+
+      await nftMarketplace
+        .connect(reseller)
+        ['getListedTicket'](concertAddress, reseller.address
+          .concat(BigNumber.from(ticket1.tokenId).toHexString())
+          .toLowerCase());
 
       expect(newListing.tokenId, 'Wrong ticket tokenId in listing').to.be.equal(
         ticket1.tokenId

@@ -795,7 +795,7 @@ export class TickedFactoryService {
     name: string, desc: string, date: Number, image: string, sectors: string[] ){
     
     const contract &#x3D; await TickedFactoryService.getContract(true)
-    const transaction &#x3D; await contract[&#x27;createTickets&#x27;](
+    const transaction &#x3D; await contract[&#x27;createEvent&#x27;](
       name, desc, date, image, sectors)
     const tx &#x3D; await transaction.wait()
 
