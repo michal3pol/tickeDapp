@@ -63,6 +63,173 @@ Converts string to uint
 | ---- | ---- | ----------- |
 | numString | string | - String to convert |
 
+## nftMarketplace
+
+### balance
+
+```solidity
+mapping(address => uint256) balance
+```
+
+### listing
+
+```solidity
+mapping(address => mapping(string => struct Listing)) listing
+```
+
+### sellerIds
+
+```solidity
+mapping(address => string[]) sellerIds
+```
+
+### sellerOffers
+
+```solidity
+mapping(address => struct SellerOffer[]) sellerOffers
+```
+
+### isOwner
+
+```solidity
+modifier isOwner(address concertAddr, uint256 tokenId, uint256 amount)
+```
+
+Modifier checks if sender is owner of proper amount tokens
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| concertAddr | address | - Address of concert |
+| tokenId | uint256 | - Token ID |
+| amount | uint256 | - Amount of tokens |
+
+### isNotListed
+
+```solidity
+modifier isNotListed(address concertAddr, uint256 tokenId)
+```
+
+Modifier checks if token is not yet listed
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| concertAddr | address | - Address of concert |
+| tokenId | uint256 | - Token ID |
+
+### isListed
+
+```solidity
+modifier isListed(address concertAddr, address owner, uint256 tokenId)
+```
+
+Modifier checks if token is listed
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| concertAddr | address | - Address of concert |
+| owner | address | - Owner of token |
+| tokenId | uint256 | - Token ID |
+
+### insertOffer
+
+```solidity
+function insertOffer(address concertAddr, struct Listing params) external
+```
+
+Function adds offer on marketplace
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| concertAddr | address | - Address of concert |
+| params | struct Listing | - Offer details |
+
+### updateOffer
+
+```solidity
+function updateOffer(address concertAddr, struct Listing params) external
+```
+
+Function updates offer on marketplace
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| concertAddr | address | - Address of concert |
+| params | struct Listing | - Offer details |
+
+### deleteOffer
+
+```solidity
+function deleteOffer(address concertAddr, uint256 tokenId) external payable
+```
+
+Function deletes offer on marketplace
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| concertAddr | address | - Address of concert |
+| tokenId | uint256 | - Token ID |
+
+### buyTicket
+
+```solidity
+function buyTicket(address concertAddr, address owner, uint256 tokenId, uint256 amount) external payable
+```
+
+Function for buying ticket (token) from marketplace
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| concertAddr | address | - Address of concert |
+| owner | address | - Current owner of token |
+| tokenId | uint256 | - Token ID |
+| amount | uint256 | - Amount of tokens to buy |
+
+### withdraw
+
+```solidity
+function withdraw(address payable destAddr) public
+```
+
+Function withdraws organizator credits
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| destAddr | address payable | - Addres to send money |
+
+### getSellerIds
+
+```solidity
+function getSellerIds(address concert) public view returns (string[])
+```
+
+### getOffersBySeller
+
+```solidity
+function getOffersBySeller(address seller) public view returns (struct SellerOffer[])
+```
+
+### getListedTicket
+
+```solidity
+function getListedTicket(address concertAddr, string sellerId) external view returns (struct ListedTicket)
+```
+
 ## tickeD1155
 
 ### orgAddress
@@ -393,172 +560,5 @@ struct SellerOffer {
   address concertAddr;
   string sellerId;
 }
-```
-
-## nftMarketplace
-
-### balance
-
-```solidity
-mapping(address => uint256) balance
-```
-
-### listing
-
-```solidity
-mapping(address => mapping(string => struct Listing)) listing
-```
-
-### sellerIds
-
-```solidity
-mapping(address => string[]) sellerIds
-```
-
-### sellerOffers
-
-```solidity
-mapping(address => struct SellerOffer[]) sellerOffers
-```
-
-### isOwner
-
-```solidity
-modifier isOwner(address concertAddr, uint256 tokenId, uint256 amount)
-```
-
-Modifier checks if sender is owner of proper amount tokens
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| concertAddr | address | - Address of concert |
-| tokenId | uint256 | - Token ID |
-| amount | uint256 | - Amount of tokens |
-
-### isNotListed
-
-```solidity
-modifier isNotListed(address concertAddr, uint256 tokenId)
-```
-
-Modifier checks if token is not yet listed
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| concertAddr | address | - Address of concert |
-| tokenId | uint256 | - Token ID |
-
-### isListed
-
-```solidity
-modifier isListed(address concertAddr, address owner, uint256 tokenId)
-```
-
-Modifier checks if token is listed
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| concertAddr | address | - Address of concert |
-| owner | address | - Owner of token |
-| tokenId | uint256 | - Token ID |
-
-### insertOffer
-
-```solidity
-function insertOffer(address concertAddr, struct Listing params) external
-```
-
-Function adds offer on marketplace
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| concertAddr | address | - Address of concert |
-| params | struct Listing | - Offer details |
-
-### updateOffer
-
-```solidity
-function updateOffer(address concertAddr, struct Listing params) external
-```
-
-Function updates offer on marketplace
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| concertAddr | address | - Address of concert |
-| params | struct Listing | - Offer details |
-
-### deleteOffer
-
-```solidity
-function deleteOffer(address concertAddr, uint256 tokenId) external payable
-```
-
-Function deletes offer on marketplace
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| concertAddr | address | - Address of concert |
-| tokenId | uint256 | - Token ID |
-
-### buyTicket
-
-```solidity
-function buyTicket(address concertAddr, address owner, uint256 tokenId, uint256 amount) external payable
-```
-
-Function for buying ticket (token) from marketplace
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| concertAddr | address | - Address of concert |
-| owner | address | - Current owner of token |
-| tokenId | uint256 | - Token ID |
-| amount | uint256 | - Amount of tokens to buy |
-
-### withdraw
-
-```solidity
-function withdraw(address payable destAddr) public
-```
-
-Function withdraws organizator credits
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| destAddr | address payable | - Addres to send money |
-
-### getSellerIds
-
-```solidity
-function getSellerIds(address concert) public view returns (string[])
-```
-
-### getOffersBySeller
-
-```solidity
-function getOffersBySeller(address seller) public view returns (struct SellerOffer[])
-```
-
-### getListedTicket
-
-```solidity
-function getListedTicket(address concertAddr, string sellerId) external view returns (struct ListedTicket)
 ```
 
