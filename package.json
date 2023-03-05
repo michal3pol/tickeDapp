@@ -46,6 +46,7 @@
     "@types/chai": "^4.3.4",
     "@types/jasmine": "~4.0.0",
     "@types/node": "^18.11.10",
+    "angular-cli-ghpages": "^1.0.5",
     "chai": "^4.3.7",
     "ethers": "^5.7.1",
     "hardhat": "^2.12.0",
