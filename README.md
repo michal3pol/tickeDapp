@@ -4,9 +4,12 @@ Decentralized application that works on blockchain and enables creating and trad
 
 # TRY IT OUT [HERE!](https://michal3pol.github.io/tickeDapp/)
 Requirements: 
-* use browser with installed [Metamask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) extension - Google Chrome recommended and create wallet
-* **switch to Goerli Test Network in Metamask**
-If you'd like to use all functionalities (ex. buying tickets) you can get some free GoerliETH from one of the active [faucets](https://faucetlink.to/goerli) or contact me to get access to organizer's features. 
+* use browser with installed [Metamask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) extension and create wallet (Google Chrome recommended)
+* **switch to Goerli Test Network in Metamask** - [tutorial](https://blog.cryptostars.is/goerli-g%C3%B6rli-testnet-network-to-metamask-and-receiving-test-ethereum-in-less-than-2-min-de13e6fe5677)
+
+If you'd like to use all functionalities (ex. buying tickets) you can get some free GoerliETH from one of the active [faucets](https://faucetlink.to/goerli) or contact me to get access to organizer's features.
+
+NFT's metadata is compatible with [OpenSea](https://testnets.opensea.io/account)!
 
 # Related technologies:
 - Angular - frontend (Typescript) [[DOC]](/documentation)
