@@ -2,6 +2,12 @@
 
 Decentralized application that works on blockchain and enables creating and trading tickets for events. The application is also intended to create a marketplace for users to ensure safe trading between untrusted users. Tickets are represented by tokens with metadata that covers all relevant information about event. Properties of tokens are provided in standard way to allow external services (ex. OpenSea) to properly display metadata. The application has been tested with unit tests and also some audits were carried out to reduce the risk of vulnerabilities in smartcontracts.
 
+# TRY IT OUT [HERE!](https://michal3pol.github.io/tickeDapp/)
+Requirements: 
+* use browser with installed [Metamask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) extension - Google Chrome recommended and create wallet
+* **switch to Goerli Test Network in Metamask**
+If you'd like to use all functionalities (ex. buying tickets) you can get some free GoerliETH from one of the active [faucets](https://faucetlink.to/goerli) or contact me to get access to organizer's features. 
+
 # Related technologies:
 - Angular - frontend (Typescript) [[DOC]](/documentation)
 - Solidity - smart contracts [[DOC]](/documentation-solidity/index.md)
