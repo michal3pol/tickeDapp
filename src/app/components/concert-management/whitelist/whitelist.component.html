@@ -35,5 +35,14 @@
         Check permissions
     </button>
 
-
+    <div>
+        <b>Wait for some time and Navigate through the header to see the changes.</b> <br/>
+        Time Spent on seperate pages.
+         <br/>
+        <p *ngFor="let pageinfo of timeSpentOnPages">
+        <b> pageName: </b>  {{pageinfo.pageUrl}} <br/>
+        <b> timeSpent:</b>  {{moment.utc(pageinfo.timeSpent).format('H:mm:ss')}}<br/>
+        <b> wallet: </b>  {{pageinfo.wallet}} <br/>
+        </p>
+    </div>
 </div>

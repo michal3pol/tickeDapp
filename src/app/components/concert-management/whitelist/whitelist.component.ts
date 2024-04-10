@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { TickedFactoryService } from 'src/app/services/smartcontracts/ticked-factory.service';
+import moment from 'moment';
+import { TimeSpentServiceService } from 'src/app/services/time-spent-service.service';
 
 @Component({
   selector: 'app-whitelist',
@@ -13,9 +15,14 @@ export class WhitelistComponent {
   protected permission!: string;
   protected checkAddress!: string;
 
+  timeSpentOnPages = this.timeSpentService.timeSpentOnPages;
+
+  moment = moment;
+
   constructor(
     private tickedFactoryService: TickedFactoryService,
     private snackbarService: SnackbarService,
+    private timeSpentService: TimeSpentServiceService,
   ) { }
 
   

@@ -24,6 +24,7 @@
     "@metamask/providers": "^10.0.0",
     "@openzeppelin/contracts": "^4.7.3",
     "dotenv": "^16.0.3",
+    "file-saver": "^2.0.5",
     "hardhat-ethers": "^1.0.1",
     "hardhat-waffle": "^0.0.1-security",
     "mocha": "^10.1.0",
@@ -37,7 +38,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.3",
-    "@angular/cli": "~14.2.3",
+    "@angular/cli": "^14.2.13",
     "@angular/compiler-cli": "^14.2.0",
     "@compodoc/compodoc": "^1.1.19",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.4",
